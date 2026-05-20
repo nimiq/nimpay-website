@@ -1,0 +1,37 @@
+{
+  "name": "nimpay-webpage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt generate",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "^10.3.0",
+    "@nuxtjs/sitemap": "^8.0.15",
+    "motion-v": "^2.2.1",
+    "nimiq-css": "^1.0.0-beta.162",
+    "nuxt": "^4.4.6",
+    "reka-ui": "^2.9.7",
+    "vue": "^3.5.0",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "~5.6.0",
+    "vue-tsc": "^2.1.0",
+    "@antfu/eslint-config": "^9.0.0",
+    "@unocss/eslint-plugin": "^66.6.8",
+    "@unocss/nuxt": "^66.6.8",
+    "unocss": "^66.6.8"
+  },
+  "packageManager": "pnpm@11.1.3"
+}

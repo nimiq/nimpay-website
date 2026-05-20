@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "language": "Language",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeToggle": "Theme: {mode}. Click to switch."
+  },
+  "home": {
+    "eyebrow": "Mini App Directory",
+    "title": "Mini Apps for Nimiq Pay",
+    "subtitle": "Discover apps and games you can open right inside Nimiq Pay. New entries are pulled live from the community-curated nimiq/awesome list.",
+    "metaDescription": "Browse Nimiq Pay mini apps: Nimiq-native games, EVM dapps, and more. Open any one directly inside the Nimiq Pay app.",
+    "empty": "No mini apps match your filter.",
+    "featured": {
+      "title": "Featured",
+      "subtitle": "Hand-picked apps to try first"
+    },
+    "stats": {
+      "total": "All apps",
+      "nimiq": "On Nimiq",
+      "evm": "On EVM"
+    }
+  },
+  "filter": {
+    "all": "All",
+    "nimiq": "Nimiq",
+    "evm": "EVM",
+    "searchLabel": "Search mini apps",
+    "searchPlaceholder": "Search by name, description, developer…",
+    "typeLabel": "Filter by chain type",
+    "count": "Showing {visible} of {total}"
+  },
+  "card": {
+    "open": "Open"
+  },
+  "detail": {
+    "back": "All mini apps",
+    "by": "by {developer}",
+    "about": "About",
+    "developer": "Developer",
+    "source": "Source",
+    "url": "Website",
+    "related": "More mini apps",
+    "unknown": "Unknown",
+    "stats": {
+      "type": "Type",
+      "website": "Website"
+    }
+  },
+  "open": {
+    "title": "Open {name}",
+    "heading": "Opening {name} in Nimiq Pay…",
+    "hint": "If nothing happens in a second, your Nimiq Pay app may not be installed yet."
+  },
+  "cta": {
+    "openInPay": "Open in Nimiq Pay",
+    "installIOS": "Install on iOS",
+    "installAndroid": "Install on Android",
+    "continueInBrowser": "Continue in browser",
+    "downloadOn": "Download on",
+    "appStore": "App Store",
+    "getItOn": "Get it on",
+    "googlePlay": "Google Play"
+  },
+  "error": {
+    "notFoundTitle": "This app isn't in the directory.",
+    "notFoundBody": "It may have been removed, renamed, or it never existed. The catalog is open-source — submit it on GitHub.",
+    "genericTitle": "Something went wrong",
+    "genericBody": "An unexpected error happened. Try again, or head back to the directory.",
+    "backToDirectory": "Back to directory",
+    "submitApp": "Submit an app"
+  },
+  "footer": {
+    "source": "Listings sourced from",
+    "aboutPay": "About Nimiq Pay"
+  }
+}

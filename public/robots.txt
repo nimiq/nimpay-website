@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /miniapps
+Allow: /miniapps/nimiq/
+Allow: /miniapps/evm/
+Disallow: /miniapps/open/
+
+Sitemap: https://nimpay.app/sitemap.xml

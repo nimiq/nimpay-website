@@ -1,0 +1,6 @@
+# Bare root -> Nimiq Pay landing on nimiq.com
+/  https://www.nimiq.com/nimiq-pay/  301
+
+# Dynamic deeplink interstitial route (catch-all) — serve SPA fallback so client-side router can render it
+/miniapps/open/*  /200.html  200
+/:lang/miniapps/open/*  /200.html  200

@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "language": "Langue",
+    "themeLight": "Clair",
+    "themeDark": "Sombre",
+    "themeToggle": "Thème : {mode}. Cliquez pour changer."
+  },
+  "home": {
+    "eyebrow": "Annuaire des mini-apps",
+    "title": "Mini-apps pour Nimiq Pay",
+    "subtitle": "Découvrez des applis et des jeux à ouvrir directement dans Nimiq Pay. Les nouveautés sont récupérées en direct depuis la liste communautaire nimiq/awesome.",
+    "metaDescription": "Parcourez les mini-apps Nimiq Pay : jeux natifs Nimiq, dapps EVM et plus encore. Ouvrez chacune directement dans l’app Nimiq Pay.",
+    "empty": "Aucune mini-app ne correspond à votre filtre.",
+    "featured": {
+      "title": "À la une",
+      "subtitle": "Sélection à essayer en premier"
+    },
+    "stats": {
+      "total": "Total",
+      "nimiq": "Sur Nimiq",
+      "evm": "Sur EVM"
+    }
+  },
+  "filter": {
+    "all": "Toutes",
+    "nimiq": "Nimiq",
+    "evm": "EVM",
+    "searchLabel": "Rechercher des mini-apps",
+    "searchPlaceholder": "Recherchez par nom, description, développeur…",
+    "typeLabel": "Filtrer par type de chaîne",
+    "count": "Affichage de {visible} sur {total}"
+  },
+  "card": {
+    "open": "Ouvrir"
+  },
+  "detail": {
+    "back": "Toutes les mini-apps",
+    "by": "par {developer}",
+    "about": "À propos",
+    "developer": "Développeur",
+    "source": "Code source",
+    "url": "Site web",
+    "related": "Plus de mini-apps",
+    "unknown": "Inconnu",
+    "stats": {
+      "type": "Type",
+      "website": "Site"
+    }
+  },
+  "open": {
+    "title": "Ouvrir {name}",
+    "heading": "Ouverture de {name} dans Nimiq Pay…",
+    "hint": "Si rien ne se passe d’ici une seconde, votre app Nimiq Pay n’est peut-être pas installée."
+  },
+  "cta": {
+    "openInPay": "Ouvrir dans Nimiq Pay",
+    "installIOS": "Installer sur iOS",
+    "installAndroid": "Installer sur Android",
+    "continueInBrowser": "Continuer dans le navigateur",
+    "downloadOn": "Télécharger dans",
+    "appStore": "App Store",
+    "getItOn": "Disponible sur",
+    "googlePlay": "Google Play"
+  },
+  "error": {
+    "notFoundTitle": "Cette app n’est pas dans l’annuaire.",
+    "notFoundBody": "Elle a peut-être été retirée, renommée ou n’a jamais existé. Le catalogue est open-source — proposez-la sur GitHub.",
+    "genericTitle": "Une erreur est survenue",
+    "genericBody": "Une erreur inattendue s’est produite. Réessayez ou revenez à l’annuaire.",
+    "backToDirectory": "Retour à l’annuaire",
+    "submitApp": "Soumettre une app"
+  },
+  "footer": {
+    "source": "Liste obtenue depuis",
+    "aboutPay": "À propos de Nimiq Pay"
+  }
+}

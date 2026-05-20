@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "language": "Idioma",
+    "themeLight": "Claro",
+    "themeDark": "Escuro",
+    "themeToggle": "Tema: {mode}. Toque para alterar."
+  },
+  "home": {
+    "eyebrow": "Diretório de Mini Apps",
+    "title": "Mini Apps para o Nimiq Pay",
+    "subtitle": "Descobre apps e jogos que podes abrir diretamente dentro do Nimiq Pay. As novas entradas são obtidas em direto a partir da lista comunitária nimiq/awesome.",
+    "metaDescription": "Explora as mini apps do Nimiq Pay: jogos nativos da Nimiq, dapps EVM e mais. Abre qualquer uma diretamente dentro da app Nimiq Pay.",
+    "empty": "Nenhuma mini app corresponde ao teu filtro.",
+    "featured": {
+      "title": "Em destaque",
+      "subtitle": "Apps escolhidas para começar"
+    },
+    "stats": {
+      "total": "Total",
+      "nimiq": "Em Nimiq",
+      "evm": "Em EVM"
+    }
+  },
+  "filter": {
+    "all": "Todas",
+    "nimiq": "Nimiq",
+    "evm": "EVM",
+    "searchLabel": "Pesquisar mini apps",
+    "searchPlaceholder": "Pesquisa por nome, descrição, programador…",
+    "typeLabel": "Filtrar por tipo de cadeia",
+    "count": "A mostrar {visible} de {total}"
+  },
+  "card": {
+    "open": "Abrir"
+  },
+  "detail": {
+    "back": "Todas as mini apps",
+    "by": "por {developer}",
+    "about": "Sobre",
+    "developer": "Programador",
+    "source": "Código-fonte",
+    "url": "Website",
+    "related": "Mais mini apps",
+    "unknown": "Desconhecido",
+    "stats": {
+      "type": "Tipo",
+      "website": "Site"
+    }
+  },
+  "open": {
+    "title": "Abrir {name}",
+    "heading": "A abrir {name} no Nimiq Pay…",
+    "hint": "Se nada acontecer num segundo, a app Nimiq Pay pode ainda não estar instalada."
+  },
+  "cta": {
+    "openInPay": "Abrir no Nimiq Pay",
+    "installIOS": "Instalar no iOS",
+    "installAndroid": "Instalar no Android",
+    "continueInBrowser": "Continuar no navegador",
+    "downloadOn": "Baixar na",
+    "appStore": "App Store",
+    "getItOn": "Disponível no",
+    "googlePlay": "Google Play"
+  },
+  "error": {
+    "notFoundTitle": "Esta app não está no diretório.",
+    "notFoundBody": "Pode ter sido removida, renomeada ou nunca ter existido. O catálogo é open-source — submete-a no GitHub.",
+    "genericTitle": "Algo correu mal",
+    "genericBody": "Ocorreu um erro inesperado. Tenta novamente ou volta ao diretório.",
+    "backToDirectory": "Voltar ao diretório",
+    "submitApp": "Submeter uma app"
+  },
+  "footer": {
+    "source": "Listagem obtida de",
+    "aboutPay": "Sobre o Nimiq Pay"
+  }
+}

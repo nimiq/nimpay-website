@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TODO_TEAMID.TODO_BUNDLE_ID"],
+        "components": [
+          {
+            "/": "/miniapps/*",
+            "comment": "Mini apps catalog + open"
+          }
+        ]
+      }
+    ]
+  }
+}
