@@ -5,9 +5,9 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "TODO_ANDROID_PACKAGE",
+      "package_name": "com.nimiq.pay",
       "sha256_cert_fingerprints": [
-        "TODO_SHA256_FINGERPRINT"
+        "08:D6:F6:0F:2E:3E:18:90:9D:E9:BD:1C:59:C7:96:34:52:B6:1E:1B:6D:D5:9E:31:39:28:D3:FF:27:16:8C:D5"
       ]
     }
   }

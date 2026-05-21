@@ -1,14 +1,10 @@
 {
   "applinks": {
+    "apps": [],
     "details": [
       {
-        "appIDs": ["TODO_TEAMID.TODO_BUNDLE_ID"],
-        "components": [
-          {
-            "/": "/miniapps/*",
-            "comment": "Mini apps catalog + open"
-          }
-        ]
+        "appID": "ZK66THWMSR.com.nimiq.pay",
+        "paths": ["*"]
       }
     ]
   }
