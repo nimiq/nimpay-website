@@ -68,6 +68,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       failOnError: true,
       routes: ['/miniapps'],
+      autoSubfolderIndex: false,
     },
   },
 
