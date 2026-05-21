@@ -59,7 +59,7 @@ function onTypeChange(value: unknown) {
             :value="opt.value"
           >
             <motion.button
-              class="relative px-5 py-3 min-h-11 rounded-full border-none bg-transparent text-sm font-bold cursor-pointer focus-ring"
+              class="relative px-5 py-3 min-h-11 rounded-full border-none bg-transparent text-sm font-bold cursor-pointer outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--colors-orange-1100)]"
               :class="{ 'text-white': type === opt.value }"
               :while-press="{ scale: 0.93 }"
               :transition="{ type: 'spring', stiffness: 400, damping: 22 }"

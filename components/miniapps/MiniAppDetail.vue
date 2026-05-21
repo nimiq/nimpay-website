@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import type { MiniApp } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
-import { buildOpenPath, normalizeHost } from '~~/utils/deeplink'
+import { buildOpenPath, hostOf } from '~~/utils/deeplink'
 
 const props = defineProps<{ app: MiniApp }>()
 const { t } = useI18n()
 const localePath = useLocalePath()
-const { data: apps } = await useMiniApps()
+const { data: apps } = useNuxtData<MiniApp[]>('miniapps')
 
 const deeplinkPath = computed(() => buildOpenPath(props.app.url))
-const websiteHost = computed(() => {
-  try { return normalizeHost(new URL(props.app.url).host) }
-  catch { return props.app.url }
-})
+const websiteHost = computed(() => hostOf(props.app.url) ?? props.app.url)
 const sourceLabel = computed(() => props.app.source?.replace(/^https?:\/\//, '') ?? null)
 
-const related = computed(() => apps.value
+const related = computed(() => (apps.value ?? [])
   .filter(a => a.type === props.app.type && a.slug !== props.app.slug)
   .slice(0, 3))
 </script>

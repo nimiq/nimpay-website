@@ -1,20 +1,21 @@
 <script setup lang="ts">
+import type { MiniAppType } from '~~/server/utils/miniapps'
+import { MINI_APP_TYPES } from '~~/server/utils/miniapps'
 import { featuredFirst } from '~/composables/useMiniApps'
 
 const { t } = useI18n()
 const { data: apps } = await useMiniApps()
 
-const featured = computed(() => apps.value.filter(a => a.featured))
-const sorted = computed(() => featuredFirst(apps.value))
-const counts = computed(() => {
-  let nimiq = 0
-  let evm = 0
+const summary = computed(() => {
+  const featured: typeof apps.value = []
+  const counts = Object.fromEntries(MINI_APP_TYPES.map(t => [t, 0])) as Record<MiniAppType, number>
   for (const a of apps.value) {
-    if (a.type === 'nimiq') nimiq++
-    else if (a.type === 'evm') evm++
+    if (a.featured) featured.push(a)
+    counts[a.type]++
   }
-  return { nimiq, evm }
+  return { featured, counts }
 })
+const sorted = computed(() => featuredFirst(apps.value))
 
 const { search, type, filtered } = useMiniAppFilter(sorted)
 
@@ -50,26 +51,18 @@ useSeoMeta({
             {{ apps.length }}
           </dd>
         </div>
-        <div class="flex items-baseline justify-between gap-4">
+        <div v-for="kind in MINI_APP_TYPES" :key="kind" class="flex items-baseline justify-between gap-4">
           <dt class="text-xs text-tertiary">
-            {{ t('home.stats.nimiq') }}
+            {{ t(`home.stats.${kind}`) }}
           </dt>
           <dd class="m-0 text-lg font-bold tracking-[-0.02em]">
-            {{ counts.nimiq }}
-          </dd>
-        </div>
-        <div class="flex items-baseline justify-between gap-4">
-          <dt class="text-xs text-tertiary">
-            {{ t('home.stats.evm') }}
-          </dt>
-          <dd class="m-0 text-lg font-bold tracking-[-0.02em]">
-            {{ counts.evm }}
+            {{ summary.counts[kind] }}
           </dd>
         </div>
       </dl>
     </section>
 
-    <MiniAppFeaturedStrip v-if="featured.length" :apps="featured" />
+    <MiniAppFeaturedStrip v-if="summary.featured.length" :apps="summary.featured" />
 
     <section class="flex flex-col gap-6">
       <MiniAppFilter

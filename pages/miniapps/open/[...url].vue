@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { motion, useReducedMotion } from 'motion-v'
 import { findByHost } from '~~/server/utils/miniapps'
-import { joinQuery, parseOpenPath } from '~~/utils/deeplink'
+import { buildOpenPath, joinQuery, parseOpenPath } from '~~/utils/deeplink'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -23,25 +23,15 @@ if (!app.value) {
 const forwardQuery = computed(() => route.query as Record<string, string | string[]>)
 const hasQuery = computed(() => Object.keys(forwardQuery.value).length > 0)
 
-const fallbackUrl = computed(() =>
+const fullUrl = computed(() =>
   hasQuery.value ? joinQuery(parsed.full, forwardQuery.value) : parsed.full,
 )
 
-const deeplinkPath = computed(() => {
-  const base = `/miniapps/open/${parsed.host}${parsed.path}`
-  if (!hasQuery.value) return base
-  const qs = new URLSearchParams()
-  for (const [k, v] of Object.entries(forwardQuery.value)) {
-    if (Array.isArray(v)) v.forEach(item => qs.append(k, item))
-    else qs.set(k, v)
-  }
-  return `${base}?${qs.toString()}`
-})
+const deeplinkPath = computed(() => buildOpenPath(fullUrl.value))
 
 useSeoMeta({
   title: () => `${t('open.title', { name: app.value!.name })} · Nimiq Pay`,
   description: () => app.value!.description,
-  robots: 'noindex',
 })
 
 definePageMeta({ robots: false, layout: false })
@@ -55,20 +45,9 @@ definePageMeta({ robots: false, layout: false })
     data-theme="dark"
   >
     <div
-      class="absolute inset-0 bg-[var(--colors-darkblue)]"
-      aria-hidden="true"
-    />
-    <div
       class="absolute inset-0"
       :style="{
-        background: `radial-gradient(circle at 50% 30%, var(--colors-blue-1100) 0%, transparent 55%), radial-gradient(circle at 88% 96%, var(--colors-orange-1100) 0%, transparent 38%)`,
-      }"
-      aria-hidden="true"
-    />
-    <div
-      class="absolute inset-0"
-      :style="{
-        background: 'radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.42) 0%, transparent 62%)',
+        background: `radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.42) 0%, transparent 62%), radial-gradient(circle at 50% 30%, var(--colors-blue-1100) 0%, transparent 55%), radial-gradient(circle at 88% 96%, var(--colors-orange-1100) 0%, transparent 38%), var(--colors-darkblue)`,
       }"
       aria-hidden="true"
     />
@@ -98,7 +77,7 @@ definePageMeta({ robots: false, layout: false })
       <div
         class="w-full max-w-[360px] mt-8 [--surface-1:rgb(255_255_255/0.08)] [--surface-2:rgb(255_255_255/0.14)] [--border-default:rgb(255_255_255/0.22)] [--border-strong:rgb(255_255_255/0.34)] [--text-primary:#f4f4f8] [--text-tertiary:rgb(255_255_255/0.78)]"
       >
-        <OpenInPayCTA :deeplink="deeplinkPath" :fallback-url="fallbackUrl" :type="app.type" />
+        <OpenInPayCTA :deeplink="deeplinkPath" :fallback-url="fullUrl" :type="app.type" />
       </div>
     </div>
   </article>

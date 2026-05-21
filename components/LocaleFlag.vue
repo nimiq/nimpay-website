@@ -4,6 +4,8 @@ import type { LocaleCode } from '~~/nuxt.config'
 withDefaults(defineProps<{ code: LocaleCode, size?: number }>(), {
   size: 20,
 })
+
+const clipId = useId()
 </script>
 
 <template>
@@ -16,11 +18,11 @@ withDefaults(defineProps<{ code: LocaleCode, size?: number }>(), {
     class="block flex-shrink-0"
   >
     <defs>
-      <clipPath :id="`flag-clip-${code}`">
+      <clipPath :id="clipId">
         <rect x="0" y="0" width="24" height="16" rx="2.4" />
       </clipPath>
     </defs>
-    <g :clip-path="`url(#flag-clip-${code})`">
+    <g :clip-path="`url(#${clipId})`">
       <!-- United States (en) -->
       <template v-if="code === 'en'">
         <rect width="24" height="16" fill="#bf0a30" />

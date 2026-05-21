@@ -10,8 +10,7 @@ import {
   DropdownMenuTrigger,
 } from 'reka-ui'
 
-const { t } = useI18n()
-const { locale, locales } = useI18n()
+const { t, locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 
 const open = ref(false)

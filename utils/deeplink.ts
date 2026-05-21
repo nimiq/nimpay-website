@@ -1,20 +1,6 @@
 export const APP_STORE_URL = 'https://apps.apple.com/app/nimiq-pay/id6471844738'
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.nimiq.pay'
 
-export function detectPlatform(ua: string): 'ios' | 'android' | 'other' {
-  const s = ua.toLowerCase()
-  if (/iphone|ipad|ipod/.test(s)) return 'ios'
-  if (/android/.test(s)) return 'android'
-  return 'other'
-}
-
-export function installUrlForUA(ua: string): string {
-  const p = detectPlatform(ua)
-  if (p === 'ios') return APP_STORE_URL
-  if (p === 'android') return PLAY_STORE_URL
-  return APP_STORE_URL
-}
-
 export function joinQuery(targetUrl: string, extraQuery: Record<string, string | string[]>): string {
   const url = new URL(targetUrl)
   for (const [k, v] of Object.entries(extraQuery)) {
@@ -26,6 +12,11 @@ export function joinQuery(targetUrl: string, extraQuery: Record<string, string |
 
 export function normalizeHost(host: string): string {
   return host.toLowerCase().replace(/^www\./, '')
+}
+
+export function hostOf(url: string): string | null {
+  try { return normalizeHost(new URL(url).host) }
+  catch { return null }
 }
 
 /** Builds the pretty `/miniapps/open/{host}[/path][?qs]` path for a mini-app URL. */

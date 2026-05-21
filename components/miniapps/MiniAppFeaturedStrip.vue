@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import type { MiniApp, MiniAppType } from '~~/server/utils/miniapps'
+import type { MiniApp } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
-import { backgroundForType, labelForType } from '~/utils/miniAppType'
+import { themeForType } from '~/utils/miniAppType'
 
 defineProps<{ apps: MiniApp[] }>()
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-
-function glowFor(type: MiniAppType): string {
-  return type === 'nimiq' ? 'var(--colors-gold-1100)' : 'var(--colors-blue-1100)'
-}
 </script>
 
 <template>
@@ -37,7 +33,7 @@ function glowFor(type: MiniAppType): string {
         <NuxtLink
           :to="localePath(`/miniapps/${app.type}/${app.slug}`)"
           class="group relative flex flex-col gap-4 h-full min-h-[180px] p-5 rounded-3xl overflow-hidden text-white no-underline shadow-[0_20px_56px_-22px_var(--card-glow)] hover:shadow-[0_36px_80px_-18px_var(--card-glow)] transition-shadow duration-300 focus-ring"
-          :style="{ background: backgroundForType(app.type), '--card-glow': glowFor(app.type) }"
+          :style="{ background: themeForType(app.type).gradient, '--card-glow': themeForType(app.type).glow }"
         >
           <HexField color="rgba(255,255,255,0.14)" :size="22" />
           <div
@@ -53,7 +49,7 @@ function glowFor(type: MiniAppType): string {
               size="sm"
             />
             <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase text-white bg-black/45 backdrop-blur-sm">
-              {{ labelForType(app.type) }}
+              {{ themeForType(app.type).label }}
             </span>
           </div>
           <div class="relative mt-auto flex flex-col gap-1.5 text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.18)]">

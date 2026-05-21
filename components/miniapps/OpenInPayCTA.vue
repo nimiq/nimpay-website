@@ -2,26 +2,19 @@
 import type { MiniAppType } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
 import { APP_STORE_URL, PLAY_STORE_URL } from '~~/utils/deeplink'
-import { backgroundForType } from '~/utils/miniAppType'
+import { themeForType } from '~/utils/miniAppType'
 
 const props = withDefaults(defineProps<{
-  /** Pretty deeplink URL: /miniapps/open/<host>[/path][?qs] */
   deeplink: string
-  /** Raw destination URL the user lands on if they continue in browser */
   fallbackUrl: string
-  /** Mini app chain type — drives the primary CTA gradient */
   type: MiniAppType
-  /** Compact mode: hide app store buttons, show primary + browser fallback only */
   compact?: boolean
 }>(), { compact: false })
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 const localizedDeeplink = computed(() => localePath(props.deeplink))
-const primaryBackground = computed(() => backgroundForType(props.type))
-const primaryShadow = computed(() => props.type === 'nimiq'
-  ? '0 10px 28px -14px oklch(0.7924 0.1593 85.61 / 0.5)'
-  : '0 10px 28px -14px oklch(0.5849 0.1438 244.29 / 0.5)')
+const theme = computed(() => themeForType(props.type))
 
 const btnBase = 'inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl font-semibold no-underline text-base transition-[transform,filter] duration-150 active:scale-[0.98] hover:brightness-[1.05]'
 const primary = `${btnBase} text-white`
@@ -34,7 +27,7 @@ const storeBtn = 'flex items-center justify-center gap-2 h-12 px-5 w-full min-w-
     <motion.a
       :href="localizedDeeplink"
       :class="primary"
-      :style="{ background: primaryBackground, boxShadow: primaryShadow }"
+      :style="{ background: theme.gradient, boxShadow: theme.ctaShadow }"
       :while-hover="{ scale: 1.02, y: -1 }"
       :while-press="{ scale: 0.97 }"
       :transition="{ type: 'spring', stiffness: 380, damping: 22 }"
