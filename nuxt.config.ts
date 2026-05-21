@@ -61,9 +61,19 @@ export default defineNuxtConfig({
 
   sitemap: {
     exclude: ['/miniapps/open/**', '/200.html', '/404.html'],
+    zeroRuntime: true,
   },
 
   nitro: {
+    preset: 'cloudflare-module',
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+      wrangler: {
+        name: 'nimpay-website',
+        compatibility_date: '2025-05-01',
+      },
+    },
     prerender: {
       crawlLinks: true,
       failOnError: true,
