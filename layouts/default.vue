@@ -9,13 +9,13 @@ import { motion } from 'motion-v'
     >
       <NuxtLink :to="$localePath('/miniapps')" class="flex items-center gap-2.5 no-underline">
         <motion.span
-          class="w-8 h-8 rounded-lg grid place-items-center font-bold text-white bg-[var(--colors-orange-gradient)]"
+          class="w-8 h-8 rounded-lg grid place-items-center overflow-hidden shadow-[0_8px_20px_rgba(224,135,0,0.24)]"
           aria-hidden="true"
           :while-hover="{ rotate: -8, scale: 1.08 }"
           :while-press="{ scale: 0.92 }"
           :transition="{ type: 'spring', stiffness: 380, damping: 18 }"
         >
-          N
+          <img src="/header-mark.svg" alt="" class="w-full h-full block">
         </motion.span>
         <span class="font-bold text-base">Nimiq Pay</span>
         <span class="hidden sm:inline text-[13px] text-tertiary pl-2 border-l border-[var(--border-strong)] ml-1">Mini Apps</span>
