@@ -4,7 +4,7 @@ export const IOS_APP_ID = '6471844738'
 export const APP_PACKAGE_NAME = 'com.nimiq.pay'
 // If the custom scheme dispatch did not launch the app within this window, the
 // tab is still visible and we redirect to the App Store as a fallback.
-export const IOS_STORE_FALLBACK_MS = 1500
+export const IOS_STORE_FALLBACK_MS = 5000
 
 /**
  * Same-origin Universal Links / App Links are not honoured by Safari or Chrome

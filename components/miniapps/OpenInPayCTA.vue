@@ -28,16 +28,37 @@ function onOpenInApp(e: MouseEvent) {
     window.location.href = buildAndroidIntentUrl(props.fallbackUrl)
     return
   }
-  // iOS custom schemes fail silently when the app is not installed. Schedule a
-  // store fallback that fires only if the page is still visible (i.e. the app
-  // did not take over and backgrounded Safari).
-  const fallbackTimer = window.setTimeout(() => {
-    if (!document.hidden) window.location.href = APP_STORE_URL
-  }, IOS_STORE_FALLBACK_MS)
-  const cancel = () => {
-    if (document.hidden) window.clearTimeout(fallbackTimer)
+  // iOS custom schemes fail silently when the app is not installed. Poll while
+  // the page remains visible and cancel permanently once the app backgrounds it.
+  const fallbackStartedAt = Date.now()
+  let fallbackInterval: number | undefined
+  const abortFallbackListeners = new AbortController()
+
+  const stopFallback = () => {
+    if (fallbackInterval !== undefined) {
+      window.clearInterval(fallbackInterval)
+      fallbackInterval = undefined
+    }
+    abortFallbackListeners.abort()
   }
-  document.addEventListener('visibilitychange', cancel, { once: true })
+
+  const onVisibilityChange = () => {
+    if (document.hidden) stopFallback()
+  }
+
+  fallbackInterval = window.setInterval(() => {
+    if (document.hidden) {
+      stopFallback()
+      return
+    }
+    if (Date.now() - fallbackStartedAt >= IOS_STORE_FALLBACK_MS) {
+      stopFallback()
+      window.location.href = APP_STORE_URL
+    }
+  }, 250)
+
+  document.addEventListener('visibilitychange', onVisibilityChange, { signal: abortFallbackListeners.signal })
+  window.addEventListener('pagehide', stopFallback, { once: true, signal: abortFallbackListeners.signal })
   window.location.href = buildIosCustomSchemeUrl(props.fallbackUrl)
 }
 
