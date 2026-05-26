@@ -10,5 +10,15 @@
         "08:D6:F6:0F:2E:3E:18:90:9D:E9:BD:1C:59:C7:96:34:52:B6:1E:1B:6D:D5:9E:31:39:28:D3:FF:27:16:8C:D5"
       ]
     }
-  }
+  },
+  {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.nimiq.pay.debug",
+        "sha256_cert_fingerprints": [
+          "00:01:D1:E0:DF:6C:C9:7C:B3:24:AC:66:FA:81:DA:A8:13:07:E9:4F:70:EF:64:95:31:61:26:B4:DE:B8:9D:B5"
+        ]
+      }
+    }
 ]
