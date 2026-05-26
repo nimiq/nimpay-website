@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MiniAppType } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
-import { APP_STORE_URL, PLAY_STORE_URL } from '~~/utils/deeplink'
+import { APP_STORE_URL, buildAndroidIntentUrl, buildIosCustomSchemeUrl, detectMobilePlatform, IOS_STORE_FALLBACK_MS, PLAY_STORE_URL } from '~~/utils/deeplink'
 import { themeForType } from '~/utils/miniAppType'
 
 const props = withDefaults(defineProps<{
@@ -15,6 +15,31 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const localizedDeeplink = computed(() => localePath(props.deeplink))
 const theme = computed(() => themeForType(props.type))
+
+// Same-origin Universal Links / App Links are blocked by Safari and Chrome.
+// Re-dispatch via platform-specific schemes that bypass the block.
+function onOpenInApp(e: MouseEvent) {
+  // Allow modifier/middle clicks to keep their default behavior (new tab etc.).
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+  const platform = detectMobilePlatform()
+  if (!platform) return
+  e.preventDefault()
+  if (platform === 'android') {
+    window.location.href = buildAndroidIntentUrl(props.fallbackUrl)
+    return
+  }
+  // iOS custom schemes fail silently when the app is not installed. Schedule a
+  // store fallback that fires only if the page is still visible (i.e. the app
+  // did not take over and backgrounded Safari).
+  const fallbackTimer = window.setTimeout(() => {
+    if (!document.hidden) window.location.href = APP_STORE_URL
+  }, IOS_STORE_FALLBACK_MS)
+  const cancel = () => {
+    if (document.hidden) window.clearTimeout(fallbackTimer)
+  }
+  document.addEventListener('visibilitychange', cancel, { once: true })
+  window.location.href = buildIosCustomSchemeUrl(props.fallbackUrl)
+}
 
 const btnBase = 'inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl font-semibold no-underline text-base transition-[transform,filter] duration-150 active:scale-[0.98] hover:brightness-[1.05]'
 const primary = `${btnBase} text-white`
@@ -31,6 +56,7 @@ const storeBtn = 'flex items-center justify-center gap-2 h-12 px-5 w-full min-w-
       :while-hover="{ scale: 1.02, y: -1 }"
       :while-press="{ scale: 0.97 }"
       :transition="{ type: 'spring', stiffness: 380, damping: 22 }"
+      @click="onOpenInApp"
     >
       <svg viewBox="0 0 24 24" class="w-5 h-5 rotate-180" aria-hidden="true">
         <path

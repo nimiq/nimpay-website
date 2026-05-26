@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { motion, useReducedMotion } from 'motion-v'
 import { findByHost } from '~~/server/utils/miniapps'
-import { buildOpenPath, joinQuery, parseOpenPath } from '~~/utils/deeplink'
+import { buildOpenPath, IOS_APP_ID, joinQuery, parseOpenPath } from '~~/utils/deeplink'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -32,6 +32,17 @@ const deeplinkPath = computed(() => buildOpenPath(fullUrl.value))
 useSeoMeta({
   title: () => `${t('open.title', { name: app.value!.name })} · Nimiq Pay`,
   description: () => app.value!.description,
+})
+
+// Smart App Banner on iOS Safari — `app-argument` is delivered to the app via
+// appUrlOpen and resolved by the existing https branch in src/lib/deep-link.ts.
+// Include `search` so query params forwarded to the mini-app survive the launch.
+const requestUrl = useRequestURL()
+const appArgument = computed(() => `${requestUrl.origin}${requestUrl.pathname}${requestUrl.search}`)
+useHead({
+  meta: [
+    { name: 'apple-itunes-app', content: () => `app-id=${IOS_APP_ID}, app-argument=${appArgument.value}` },
+  ],
 })
 
 definePageMeta({ robots: false, layout: false })
