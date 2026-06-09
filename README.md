@@ -18,7 +18,7 @@ This Nuxt app statically generates the mini app catalog, detail pages, localized
 - `@nuxtjs/sitemap` for generated sitemap output
 - `motion-v` and `reka-ui` for UI behavior
 - ESLint with Antfu, Nuxt, and UnoCSS configs
-- Cloudflare Pages hosting
+- Cloudflare Workers hosting (Nitro `cloudflare-module` preset)
 
 ## Data and routes
 
@@ -54,15 +54,32 @@ Run `pnpm lint` after making changes.
 
 ## Deployment notes
 
-Cloudflare Pages:
+Cloudflare Workers (Workers Builds, git-connected). `nuxt build` emits the Worker plus
+`.output/server/wrangler.json`; `deployConfig: true` makes Cloudflare run `wrangler deploy`
+with that generated config on each push.
 
 - Build command: `pnpm install && pnpm run build`
-- Output directory: `.output/public`
 - Node version: `22`
+
+### Environment variables
+
+`wrangler deploy` treats the generated config as the source of truth for plaintext vars, so
+any non-secret var set only in the dashboard gets wiped on each deploy. Non-secret vars are
+therefore pinned in `nitro.cloudflare.wrangler.vars` (`nuxt.config.ts`) and sourced from
+build-time env:
+
+- `NUXT_PUBLIC_TURNSTILE_SITE_KEY` — set as a **Build variable** (inlined at build, also
+  propagated to the Worker via `vars`).
+- `NUXT_REPORT_REPO_OWNER` / `NUXT_REPORT_REPO_NAME` — default to `nimiq` / `awesome`; set
+  only to override.
+
+Secrets (`NUXT_TURNSTILE_SECRET_KEY`, `NUXT_GITHUB_APP_*`) stay as **Worker secrets** — never
+in `vars`. Secrets persist across deploys.
 
 Deeplink files live in `public/.well-known/`
 
-Catalog refresh is handled by rebuilding Cloudflare Pages when `nimiq/awesome` changes. A scheduled fallback workflow can hit the same deploy hook if webhook delivery is missed.
+Catalog refresh is handled by rebuilding the Worker when `nimiq/awesome` changes. A scheduled
+fallback workflow can hit the same deploy hook if webhook delivery is missed.
 
 ## Verification
 

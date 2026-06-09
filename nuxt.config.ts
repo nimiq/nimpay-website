@@ -94,6 +94,15 @@ export default defineNuxtConfig({
       wrangler: {
         name: 'nimpay-website',
         compatibility_date: '2025-05-01',
+        // Non-secret vars baked into the deployed Worker config so each `wrangler
+        // deploy` (run on push) keeps them. Without this, plaintext dashboard vars
+        // get wiped on deploy. Values come from build-time env; secrets stay as
+        // Worker secrets, never here.
+        vars: {
+          NUXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+          NUXT_REPORT_REPO_OWNER: process.env.NUXT_REPORT_REPO_OWNER || 'nimiq',
+          NUXT_REPORT_REPO_NAME: process.env.NUXT_REPORT_REPO_NAME || 'awesome',
+        },
       },
     },
     prerender: {
