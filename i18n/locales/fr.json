@@ -42,9 +42,33 @@
     "url": "Site web",
     "related": "Plus de mini-apps",
     "unknown": "Inconnu",
+    "report": "Signaler cette app",
     "stats": {
       "type": "Type",
       "website": "Site"
+    }
+  },
+  "report": {
+    "title": "Signaler cette Mini-App",
+    "description": "Signalez une annonce malveillante, trompeuse ou offensante. Votre signalement ouvre un ticket pour les mainteneurs. Aucun compte requis.",
+    "choose": "Sélectionnez une option",
+    "optional": "(facultatif)",
+    "summaryPlaceholder": "Quel est le problème avec cette annonce, et pourquoi devrait-elle être examinée ?",
+    "contactPlaceholder": "nom{'@'}exemple.com",
+    "submit": "Envoyer le signalement",
+    "submitting": "Envoi…",
+    "error": "Impossible d'envoyer votre signalement. Veuillez réessayer.",
+    "successTitle": "Signalement envoyé",
+    "successBody": "Merci. Les mainteneurs l'examineront. Vous pouvez suivre le signalement sur GitHub.",
+    "viewReport": "Voir votre signalement",
+    "backToApp": "Retour à l'app",
+    "fields": {
+      "target": "Annonce ou URL signalée",
+      "category": "De quel type de problème s'agit-il ?",
+      "summary": "Quel est le problème ?",
+      "evidence": "Liens ou preuves à l'appui",
+      "severity": "Quelle est sa gravité ?",
+      "contact": "Votre contact"
     }
   },
   "open": {

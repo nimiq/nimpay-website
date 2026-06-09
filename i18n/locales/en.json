@@ -42,9 +42,33 @@
     "url": "Website",
     "related": "More mini apps",
     "unknown": "Unknown",
+    "report": "Report this app",
     "stats": {
       "type": "Type",
       "website": "Website"
+    }
+  },
+  "report": {
+    "title": "Report this Mini App",
+    "description": "Flag a malicious, deceptive, or offensive listing. Your report opens an issue for the maintainers to review. No account needed.",
+    "choose": "Select an option",
+    "optional": "(optional)",
+    "summaryPlaceholder": "What's wrong with this listing, and why should it be reviewed?",
+    "contactPlaceholder": "name{'@'}example.com",
+    "submit": "Submit report",
+    "submitting": "Submitting…",
+    "error": "Could not send your report. Please try again.",
+    "successTitle": "Report submitted",
+    "successBody": "Thanks. The maintainers will review it. You can follow the report on GitHub.",
+    "viewReport": "View your report",
+    "backToApp": "Back to the app",
+    "fields": {
+      "target": "Listing or URL being reported",
+      "category": "What kind of issue is this?",
+      "summary": "What is the issue?",
+      "evidence": "Supporting links or evidence",
+      "severity": "How harmful is it?",
+      "contact": "Your contact"
     }
   },
   "open": {

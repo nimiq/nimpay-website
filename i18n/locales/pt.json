@@ -42,9 +42,33 @@
     "url": "Website",
     "related": "Mais mini apps",
     "unknown": "Desconhecido",
+    "report": "Reportar esta app",
     "stats": {
       "type": "Tipo",
       "website": "Site"
+    }
+  },
+  "report": {
+    "title": "Reportar esta Mini App",
+    "description": "Sinaliza um item malicioso, enganoso ou ofensivo. O teu reporte abre uma issue para os responsáveis analisarem. Não precisas de conta.",
+    "choose": "Seleciona uma opção",
+    "optional": "(opcional)",
+    "summaryPlaceholder": "Qual é o problema deste item e por que deve ser analisado?",
+    "contactPlaceholder": "nome{'@'}exemplo.com",
+    "submit": "Enviar reporte",
+    "submitting": "A enviar…",
+    "error": "Não foi possível enviar o teu reporte. Tenta novamente.",
+    "successTitle": "Reporte enviado",
+    "successBody": "Obrigado. Os responsáveis irão analisá-lo. Podes acompanhar o reporte no GitHub.",
+    "viewReport": "Ver o teu reporte",
+    "backToApp": "Voltar à app",
+    "fields": {
+      "target": "Item ou URL reportado",
+      "category": "Que tipo de problema é?",
+      "summary": "Qual é o problema?",
+      "evidence": "Links ou provas de apoio",
+      "severity": "Quão prejudicial é?",
+      "contact": "O teu contacto"
     }
   },
   "open": {

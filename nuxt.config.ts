@@ -1,4 +1,5 @@
 import type {MiniApp} from './server/utils/miniapps';
+import process from 'node:process'
 import { fetchMiniApps  } from './server/utils/miniapps'
 
 const SITE_URL = 'https://nimpay.app'
@@ -19,7 +20,22 @@ const NON_DEFAULT_LOCALES = I18N_LOCALES.filter(l => l.code !== DEFAULT_LOCALE).
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-01',
   ssr: true,
-  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt', '@nuxtjs/turnstile'],
+
+  // Cloudflare Turnstile: secret read from NUXT_TURNSTILE_SECRET_KEY at runtime
+  turnstile: {
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+  },
+
+  // Secrets injected as Cloudflare Worker secrets (NUXT_*-prefixed). Repo target
+  // overridable via env for testing against a scratch repo before nimiq/awesome.
+  runtimeConfig: {
+    githubAppId: '',
+    githubAppPrivateKey: '',
+    githubAppInstallationId: '',
+    reportRepoOwner: 'nimiq',
+    reportRepoName: 'awesome',
+  },
   eslint: {
     config: {
       standalone: false,
@@ -60,8 +76,14 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    exclude: ['/miniapps/open/**', '/200.html', '/404.html'],
+    exclude: ['/miniapps/open/**', '/miniapps/*/*/report', '/200.html', '/404.html'],
     zeroRuntime: true,
+  },
+
+  // Report form is a runtime page (Turnstile + POST); keep crawlLinks from
+  // statically rendering it per mini app.
+  routeRules: {
+    '/miniapps/*/*/report': { prerender: false },
   },
 
   nitro: {

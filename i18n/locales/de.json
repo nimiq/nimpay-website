@@ -42,9 +42,33 @@
     "url": "Website",
     "related": "Weitere Mini-Apps",
     "unknown": "Unbekannt",
+    "report": "Diese App melden",
     "stats": {
       "type": "Typ",
       "website": "Website"
+    }
+  },
+  "report": {
+    "title": "Diese Mini-App melden",
+    "description": "Melde einen schädlichen, irreführenden oder anstößigen Eintrag. Deine Meldung öffnet ein Issue zur Prüfung durch die Maintainer. Kein Konto nötig.",
+    "choose": "Option auswählen",
+    "optional": "(optional)",
+    "summaryPlaceholder": "Was stimmt mit diesem Eintrag nicht, und warum sollte er geprüft werden?",
+    "contactPlaceholder": "name{'@'}beispiel.com",
+    "submit": "Meldung senden",
+    "submitting": "Wird gesendet…",
+    "error": "Deine Meldung konnte nicht gesendet werden. Bitte versuche es erneut.",
+    "successTitle": "Meldung gesendet",
+    "successBody": "Danke. Die Maintainer werden sie prüfen. Du kannst die Meldung auf GitHub verfolgen.",
+    "viewReport": "Meldung ansehen",
+    "backToApp": "Zurück zur App",
+    "fields": {
+      "target": "Gemeldeter Eintrag oder URL",
+      "category": "Um welche Art von Problem handelt es sich?",
+      "summary": "Worin besteht das Problem?",
+      "evidence": "Belege oder Links",
+      "severity": "Wie schädlich ist es?",
+      "contact": "Dein Kontakt"
     }
   },
   "open": {
