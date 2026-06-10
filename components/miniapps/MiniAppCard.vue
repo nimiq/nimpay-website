@@ -23,16 +23,16 @@ const { select, vtStyle } = useMiniAppViewTransition()
     >
       <div class="flex items-start justify-between gap-3">
         <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" :style="vtStyle(app, 'grid', 'logo')" />
-        <MiniAppTypeBadge :type="app.type" />
+        <MiniAppTypeBadge :type="app.type" :style="vtStyle(app, 'grid', 'badge')" />
       </div>
       <div class="flex flex-col gap-1.5 flex-1">
         <h3 class="m-0 text-lg font-bold leading-tight line-clamp-2 break-words" :style="vtStyle(app, 'grid', 'name')">
           {{ app.name }}
         </h3>
-        <p v-if="app.developer" class="m-0 text-xs text-tertiary truncate">
+        <p v-if="app.developer" class="m-0 text-xs text-tertiary truncate" :style="vtStyle(app, 'grid', 'developer')">
           {{ app.developer }}
         </p>
-        <p class="mt-1 mb-0 text-sm leading-snug text-secondary line-clamp-2">
+        <p class="mt-1 mb-0 text-sm leading-snug text-secondary line-clamp-2" :style="vtStyle(app, 'grid', 'description')">
           {{ app.description }}
         </p>
       </div>

@@ -7,6 +7,7 @@ const props = defineProps<{ app: MiniApp }>()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const { data: apps } = useNuxtData<MiniApp[]>('miniapps')
+const { select, vtStyle, vtDetailStyle } = useMiniAppViewTransition()
 
 const deeplinkPath = computed(() => buildOpenPath(props.app.url))
 const websiteHost = computed(() => hostOf(props.app.url) ?? props.app.url)
@@ -30,13 +31,13 @@ const related = computed(() => (apps.value ?? [])
       </motion.span>
 
       <header class="flex flex-col sm:flex-row gap-6 items-start">
-        <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" />
+        <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" :style="vtDetailStyle(app, 'logo')" />
         <div class="flex flex-col gap-2.5 min-w-0">
-          <MiniAppTypeBadge :type="app.type" />
-          <h1 class="m-0 text-4xl sm:text-5xl font-bold leading-[1.02] tracking-[-0.025em]">
+          <MiniAppTypeBadge :type="app.type" :style="vtDetailStyle(app, 'badge')" />
+          <h1 class="m-0 text-4xl sm:text-5xl font-bold leading-[1.02] tracking-[-0.025em]" :style="vtDetailStyle(app, 'name')">
             {{ app.name }}
           </h1>
-          <p v-if="app.developer" class="m-0 text-sm text-tertiary">
+          <p v-if="app.developer" class="m-0 text-sm text-tertiary" :style="vtDetailStyle(app, 'developer')">
             {{ t('detail.by', { developer: app.developer }) }}
           </p>
         </div>
@@ -46,7 +47,7 @@ const related = computed(() => (apps.value ?? [])
         <h2 class="m-0 text-[11px] font-bold tracking-[0.1em] uppercase text-label">
           {{ t('detail.about') }}
         </h2>
-        <p class="m-0 text-base leading-[1.6] text-secondary max-w-[60ch]">
+        <p class="m-0 text-base leading-[1.6] text-secondary max-w-[60ch]" :style="vtDetailStyle(app, 'description')">
           {{ app.description }}
         </p>
       </section>
@@ -66,11 +67,13 @@ const related = computed(() => (apps.value ?? [])
               <NuxtLink
                 :to="localePath(`/miniapps/${r.type}/${r.slug}`)"
                 class="group flex items-center gap-3 p-3 rounded-xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline transition-[background,border-color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-default)] focus-ring"
+                @pointerdown="select(r, 'related')"
+                @click="select(r, 'related')"
               >
-                <MiniAppLogo :logo="r.logo" :url="r.url" :name="r.name" size="sm" />
+                <MiniAppLogo :logo="r.logo" :url="r.url" :name="r.name" size="sm" :style="vtStyle(r, 'related', 'logo')" />
                 <div class="flex-1 min-w-0 flex flex-col gap-0.5">
-                  <span class="text-[15px] font-semibold leading-tight truncate">{{ r.name }}</span>
-                  <MiniAppTypeBadge :type="r.type" variant="dot" />
+                  <span class="text-[15px] font-semibold leading-tight truncate" :style="vtStyle(r, 'related', 'name')">{{ r.name }}</span>
+                  <MiniAppTypeBadge :type="r.type" variant="dot" :style="vtStyle(r, 'related', 'badge')" />
                 </div>
                 <span class="text-tertiary transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </NuxtLink>

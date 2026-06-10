@@ -129,6 +129,7 @@ export default defineNuxtConfig({
 
   experimental: {
     payloadExtraction: true,
+    viewTransition: true,
   },
 
   typescript: {

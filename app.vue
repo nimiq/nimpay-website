@@ -61,4 +61,26 @@ html, body, #__nuxt {
   -webkit-font-smoothing: antialiased;
   transition: background-color 180ms ease, color 180ms ease;
 }
+
+/* Shared-element morph for mini app logo + name (see useMiniAppViewTransition) */
+::view-transition-old(miniapp-logo),
+::view-transition-new(miniapp-logo) {
+  animation-duration: 0.28s;
+}
+::view-transition-old(miniapp-badge),
+::view-transition-new(miniapp-badge) {
+  animation-duration: 0.28s;
+}
+/* keep text snapshots crisp while morphing between very different sizes */
+::view-transition-old(miniapp-name),
+::view-transition-new(miniapp-name),
+::view-transition-old(miniapp-description),
+::view-transition-new(miniapp-description),
+::view-transition-old(miniapp-developer),
+::view-transition-new(miniapp-developer) {
+  animation-duration: 0.28s;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
 </style>

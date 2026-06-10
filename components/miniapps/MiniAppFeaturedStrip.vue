@@ -7,6 +7,7 @@ defineProps<{ apps: MiniApp[] }>()
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const { select, vtStyle } = useMiniAppViewTransition()
 </script>
 
 <template>
@@ -34,6 +35,8 @@ const localePath = useLocalePath()
           :to="localePath(`/miniapps/${app.type}/${app.slug}`)"
           class="group relative flex flex-col gap-4 h-full min-h-[180px] p-5 rounded-3xl overflow-hidden text-white no-underline shadow-[0_20px_56px_-22px_var(--card-glow)] hover:shadow-[0_36px_80px_-18px_var(--card-glow)] transition-shadow duration-300 focus-ring"
           :style="{ background: themeForType(app.type).gradient, '--card-glow': themeForType(app.type).glow }"
+          @pointerdown="select(app, 'featured')"
+          @click="select(app, 'featured')"
         >
           <HexField color="rgba(255,255,255,0.14)" :size="22" />
           <div
@@ -47,19 +50,20 @@ const localePath = useLocalePath()
               :url="app.url"
               :name="app.name"
               size="sm"
+              :style="vtStyle(app, 'featured', 'logo')"
             />
-            <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase text-white bg-black/45 backdrop-blur-sm">
+            <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[10px] font-bold tracking-[0.1em] uppercase text-white bg-black/45 backdrop-blur-sm" :style="vtStyle(app, 'featured', 'badge')">
               {{ themeForType(app.type).label }}
             </span>
           </div>
           <div class="relative mt-auto flex flex-col gap-1.5 text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.18)]">
-            <p v-if="app.developer" class="m-0 text-[10px] font-bold tracking-[0.1em] uppercase text-white opacity-95">
+            <p v-if="app.developer" class="m-0 text-[10px] font-bold tracking-[0.1em] uppercase text-white opacity-95" :style="vtStyle(app, 'featured', 'developer')">
               {{ app.developer }}
             </p>
-            <h3 class="m-0 text-[22px] font-extrabold leading-[1.05] tracking-[-0.02em] text-white line-clamp-2 break-words">
+            <h3 class="m-0 text-[22px] font-extrabold leading-[1.05] tracking-[-0.02em] text-white line-clamp-2 break-words" :style="vtStyle(app, 'featured', 'name')">
               {{ app.name }}
             </h3>
-            <p class="m-0 text-[13px] font-medium leading-snug line-clamp-2 text-white">
+            <p class="m-0 text-[13px] font-medium leading-snug line-clamp-2 text-white" :style="vtStyle(app, 'featured', 'description')">
               {{ app.description }}
             </p>
           </div>
