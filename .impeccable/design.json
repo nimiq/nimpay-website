@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-10T00:00:00Z",
+  "title": "Design System: Nimiq Pay Mini Apps",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0c0f24", "tonalRamp": ["oklch(0.15 0.03 276)", "oklch(0.25 0.04 276)", "oklch(0.35 0.04 276)", "oklch(0.45 0.04 276)", "oklch(0.58 0.03 276)", "oklch(0.72 0.02 276)", "oklch(0.86 0.01 276)", "oklch(0.95 0.005 276)"] },
+      "paper-white": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "tonalRamp": ["oklch(0.3 0 0)", "oklch(0.45 0 0)", "oklch(0.6 0 0)", "oklch(0.72 0 0)", "oklch(0.82 0 0)", "oklch(0.9 0 0)", "oklch(0.96 0 0)", "oklch(1 0 0)"] },
+      "mist": { "role": "neutral", "displayName": "Mist", "canonical": "#f4f4f8", "tonalRamp": ["oklch(0.2 0.01 286)", "oklch(0.32 0.01 286)", "oklch(0.46 0.01 286)", "oklch(0.6 0.01 286)", "oklch(0.72 0.01 286)", "oklch(0.84 0.008 286)", "oklch(0.92 0.006 286)", "oklch(0.97 0.004 286)"] },
+      "midnight-blue": { "role": "neutral", "displayName": "Midnight Blue", "canonical": "oklch(0.2737 0.068 276.29)", "tonalRamp": ["oklch(0.15 0.05 276)", "oklch(0.2737 0.068 276.29)", "oklch(0.38 0.07 276)", "oklch(0.48 0.07 276)", "oklch(0.6 0.06 276)", "oklch(0.72 0.05 276)", "oklch(0.85 0.03 276)", "oklch(0.95 0.01 276)"] },
+      "nimiq-orange": { "role": "primary", "displayName": "Nimiq Orange", "canonical": "light-dark(oklch(0.6769 0.1633 57), oklch(0.772 0.1738 64.55))", "tonalRamp": ["oklch(0.25 0.08 57)", "oklch(0.38 0.11 57)", "oklch(0.5 0.14 57)", "oklch(0.6 0.16 57)", "oklch(0.6769 0.1633 57)", "oklch(0.772 0.1738 64.55)", "oklch(0.87 0.1 64)", "oklch(0.95 0.04 64)"] },
+      "arcade-gold": { "role": "secondary", "displayName": "Arcade Gold", "canonical": "light-dark(oklch(0.7924 0.1593 85.61), oklch(0.8517 0.1579 83.77))", "tonalRamp": ["oklch(0.28 0.07 86)", "oklch(0.42 0.1 86)", "oklch(0.55 0.13 86)", "oklch(0.67 0.15 86)", "oklch(0.7924 0.1593 85.61)", "oklch(0.8517 0.1579 83.77)", "oklch(0.91 0.1 86)", "oklch(0.97 0.04 88)"] },
+      "nimiq-blue": { "role": "secondary", "displayName": "Nimiq Blue", "canonical": "light-dark(oklch(0.5849 0.1438 244.29), oklch(0.6982 0.1694 243.83))", "tonalRamp": ["oklch(0.22 0.06 244)", "oklch(0.34 0.09 244)", "oklch(0.46 0.12 244)", "oklch(0.5849 0.1438 244.29)", "oklch(0.6982 0.1694 243.83)", "oklch(0.8 0.11 240)", "oklch(0.9 0.05 237)", "oklch(0.9545 0.0167 236.69)"] },
+      "mint-green": { "role": "secondary", "displayName": "Mint Green", "canonical": "light-dark(oklch(0.6932 0.1245 178.48), oklch(0.755 0.1426 170.23))", "tonalRamp": ["oklch(0.24 0.05 178)", "oklch(0.37 0.08 178)", "oklch(0.5 0.1 178)", "oklch(0.6 0.11 178)", "oklch(0.6932 0.1245 178.48)", "oklch(0.755 0.1426 170.23)", "oklch(0.87 0.08 178)", "oklch(0.9637 0.017 187.9)"] },
+      "evm-indigo": { "role": "secondary", "displayName": "EVM Indigo", "canonical": "#3451d1", "tonalRamp": ["oklch(0.22 0.12 268)", "oklch(0.32 0.16 268)", "oklch(0.42 0.19 268)", "oklch(0.49 0.19 268)", "oklch(0.58 0.16 268)", "oklch(0.68 0.12 268)", "oklch(0.82 0.07 268)", "oklch(0.93 0.03 268)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page H1 only." },
+      "headline": { "displayName": "Headline", "purpose": "Section headers, featured-shelf subtitle." },
+      "title": { "displayName": "Title", "purpose": "Card and detail app names." },
+      "body": { "displayName": "Body", "purpose": "Descriptions and interstitial copy; secondary at 82% alpha, tertiary ~70%." },
+      "label": { "displayName": "Label", "purpose": "Type badges, eyebrows, stat labels; uppercase, tracked." }
+    },
+    "shadows": [
+      { "name": "cta-glow", "value": "0 10px 28px -14px oklch(0.7924 0.1593 85.61 / 0.5)", "purpose": "Colored glow under the gradient Open-in-Pay CTA; hue follows app type." },
+      { "name": "card-glow", "value": "0 20px 56px -22px var(--card-glow)", "purpose": "Featured gradient cards; deepens to 0 36px 80px -18px on hover." },
+      { "name": "dropdown-float", "value": "0 18px 48px rgb(12 15 36 / 0.12), 0 0 0 1px rgb(12 15 36 / 0.06)", "purpose": "Language/theme menus (light values; dark uses black 50% + white ring)." }
+    ],
+    "motion": [
+      { "name": "spring-card", "value": "spring(stiffness 320, damping 22-24)", "purpose": "Card hover lift (y -4, scale 1.015) and press squish." },
+      { "name": "spring-button", "value": "spring(stiffness 380, damping 18-22)", "purpose": "CTA/logo hover and press responses." },
+      { "name": "spring-pill", "value": "spring(stiffness 360-400, damping 22-30)", "purpose": "Filter pill slide (shared layout-id) and press." },
+      { "name": "theme-fade", "value": "background-color 180ms ease, color 180ms ease", "purpose": "Theme switch crossfade on html/body." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "content-max", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Open in Nimiq Pay CTA",
+      "kind": "button",
+      "refersTo": "cta-primary",
+      "description": "The one gradient action per view; gold for Nimiq apps, EVM gradient for EVM apps.",
+      "html": "<a href=\"#\" class=\"ds-cta-primary\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" style=\"transform:rotate(180deg)\" aria-hidden=\"true\"><path d=\"M12 3v12m0 0-4-4m4 4 4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Open in Nimiq Pay</a>",
+      "css": ".ds-cta-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; border-radius: 16px; background: radial-gradient(at 100% 100%, oklch(0.7 0.17 50), oklch(0.7924 0.1593 85.61)); color: #fff; font-weight: 600; font-size: 16px; text-decoration: none; box-shadow: 0 10px 28px -14px oklch(0.7924 0.1593 85.61 / 0.5); transition: transform 150ms ease, filter 150ms ease; } .ds-cta-primary:hover { transform: scale(1.02) translateY(-1px); filter: brightness(1.05); } .ds-cta-primary:active { transform: scale(0.97); } .ds-cta-primary:focus-visible { outline: 2px solid oklch(0.6769 0.1633 57); outline-offset: 2px; }"
+    },
+    {
+      "name": "Store Button",
+      "kind": "button",
+      "refersTo": "store-button",
+      "description": "Neutral secondary action for App Store / Google Play installs.",
+      "html": "<a href=\"#\" class=\"ds-store-btn\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg><span>App Store</span></a>",
+      "css": ".ds-store-btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface-1, rgb(12 15 36 / 0.04)); border: 1px solid var(--border-default, rgb(12 15 36 / 0.14)); color: var(--text-primary, #0c0f24); font-size: 15px; font-weight: 700; text-decoration: none; transition: background 150ms, border-color 150ms; } .ds-store-btn:hover { background: var(--surface-2, rgb(12 15 36 / 0.06)); border-color: var(--border-strong, rgb(12 15 36 / 0.22)); } .ds-store-btn:focus-visible { outline: 2px solid oklch(0.6769 0.1633 57); outline-offset: 2px; }"
+    },
+    {
+      "name": "Catalog Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Neutral shelf card: alpha-tint surface, hairline border, hover strengthens both.",
+      "html": "<a href=\"#\" class=\"ds-card\"><div class=\"ds-card-top\"><div class=\"ds-card-logo\">N</div><span class=\"ds-badge\">NIMIQ</span></div><h3 class=\"ds-card-title\">Mini App Name</h3><p class=\"ds-card-dev\">Developer</p><p class=\"ds-card-desc\">Short description of what this mini app does.</p><div class=\"ds-card-foot\"><span>Open →</span></div></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 6px; padding: 24px; border-radius: 16px; background: var(--surface-1, rgb(12 15 36 / 0.04)); border: 1px solid var(--border-subtle, rgb(12 15 36 / 0.08)); color: var(--text-primary, #0c0f24); text-decoration: none; transition: border-color 200ms, background 200ms, transform 200ms; } .ds-card:hover { border-color: var(--border-strong, rgb(12 15 36 / 0.22)); background: var(--surface-2, rgb(12 15 36 / 0.06)); transform: translateY(-4px) scale(1.015); } .ds-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; } .ds-card-logo { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: radial-gradient(at 100% 100%, oklch(0.7 0.17 50), oklch(0.7924 0.1593 85.61)); color: #fff; font-weight: 700; font-size: 20px; } .ds-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; background: radial-gradient(at 100% 100%, oklch(0.7 0.17 50), oklch(0.7924 0.1593 85.61)); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; } .ds-card-title { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.25; } .ds-card-dev { margin: 0; font-size: 12px; color: var(--text-tertiary, rgb(12 15 36 / 0.68)); } .ds-card-desc { margin: 4px 0 0; font-size: 14px; line-height: 1.4; color: var(--text-secondary, rgb(12 15 36 / 0.82)); } .ds-card-foot { display: flex; justify-content: flex-end; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--border-subtle, rgb(12 15 36 / 0.08)); font-size: 13px; font-weight: 700; }"
+    },
+    {
+      "name": "Filter Pill Group",
+      "kind": "chip",
+      "refersTo": "filter-pill",
+      "description": "Full-pill toggle group; active pill wears the type gradient and slides between options.",
+      "html": "<div class=\"ds-pill-track\"><button class=\"ds-pill ds-pill-active\">All</button><button class=\"ds-pill\">Nimiq</button><button class=\"ds-pill\">EVM</button></div>",
+      "css": ".ds-pill-track { display: inline-flex; padding: 4px; background: var(--surface-1, rgb(12 15 36 / 0.04)); border-radius: 9999px; } .ds-pill { padding: 12px 20px; min-height: 44px; border: none; border-radius: 9999px; background: transparent; color: var(--text-primary, #0c0f24); font-size: 14px; font-weight: 700; cursor: pointer; transition: transform 120ms; } .ds-pill:active { transform: scale(0.93); } .ds-pill-active { background: radial-gradient(at 100% 100%, oklch(0.6 0.12 178), oklch(0.6932 0.1245 178.48)); color: #fff; } .ds-pill:focus-visible { outline: 2px solid oklch(0.6769 0.1633 57); outline-offset: -2px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Catalog search with leading icon; focus turns the border Nimiq Orange.",
+      "html": "<label class=\"ds-search-wrap\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" class=\"ds-search-icon\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"m21 21-5-5\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><input type=\"search\" class=\"ds-search\" placeholder=\"Search mini apps\"></label>",
+      "css": ".ds-search-wrap { position: relative; display: flex; align-items: center; } .ds-search-icon { position: absolute; left: 14px; color: var(--text-tertiary, rgb(12 15 36 / 0.68)); pointer-events: none; } .ds-search { width: 100%; min-height: 44px; padding: 12px 14px 12px 42px; border-radius: 12px; border: 1px solid var(--border-default, rgb(12 15 36 / 0.14)); background: var(--surface-1, rgb(12 15 36 / 0.04)); color: inherit; font-size: 15px; transition: border-color 200ms; } .ds-search:focus { outline: 2px solid oklch(0.6769 0.1633 57); outline-offset: 2px; border-color: oklch(0.6769 0.1633 57); }"
+    },
+    {
+      "name": "Featured Card",
+      "kind": "custom",
+      "refersTo": "featured-card",
+      "description": "Signature arcade cabinet: full type gradient, legibility scrim, colored glow.",
+      "html": "<a href=\"#\" class=\"ds-featured\"><div class=\"ds-featured-scrim\"></div><div class=\"ds-featured-body\"><h3>Featured App</h3><p>Plays loud on the quiet shelf.</p></div></a>",
+      "css": ".ds-featured { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 180px; padding: 20px; border-radius: 24px; overflow: hidden; background: radial-gradient(at 100% 100%, oklch(0.7 0.17 50), oklch(0.7924 0.1593 85.61)); color: #fff; text-decoration: none; box-shadow: 0 20px 56px -22px oklch(0.6642 0.1329 85.55); transition: box-shadow 300ms; } .ds-featured:hover { box-shadow: 0 36px 80px -18px oklch(0.6642 0.1329 85.55); } .ds-featured-scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.14) 45%, transparent 100%); pointer-events: none; } .ds-featured-body { position: relative; } .ds-featured-body h3 { margin: 0 0 4px; font-size: 18px; font-weight: 700; } .ds-featured-body p { margin: 0; font-size: 14px; opacity: 0.9; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Neon Arcade Shelf",
+    "overview": "The catalog is a quiet shelf in a dim arcade: the chrome (backgrounds, borders, text) stays near-monochrome — white or Nimiq midnight blue with alpha-tint surfaces — while every mini app glows like its own cabinet. Saturated color enters the page exclusively through the app-type gradients (gold for Nimiq, indigo for EVM, green for 'all') and the apps' own logos. The shelf never competes with the cabinets. The system is playful and tactile, not corporate: every interactive element responds with a spring, because browsing here should feel like an app store, not a SaaS brochure.",
+    "keyCharacteristics": [
+      "Dual-theme via CSS light-dark() — white paper in light, Nimiq midnight blue in dark; every neutral is an alpha tint of ink or white.",
+      "Color is earned: saturated gradients belong to app types, never to chrome.",
+      "Springy motion (motion-v) with reduced-motion='user' honored globally.",
+      "Flat surfaces; shadows exist only as colored glow under gradient elements."
+    ],
+    "rules": [
+      { "name": "The Shelf Rule", "body": "Chrome is never saturated. Backgrounds, cards, borders, and text use only alpha tints of ink or white. If an element wants color, it must be an app-type gradient or an app's own logo — there is no third source of color.", "section": "colors" },
+      { "name": "The One Cabinet Rule", "body": "One gradient CTA per view. Store buttons, browser-fallback links, and secondary actions stay neutral so 'Open in Nimiq Pay' is always the loudest thing on screen.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Mulish does everything. Never introduce a second display face; reach for weight (400 → 600 → 700) and alpha (100% → 82% → 70%) instead.", "section": "typography" },
+      { "name": "The Glow Rule", "body": "A shadow must be tinted by the gradient it sits under, or it must belong to a floating overlay. A gray drop shadow on a flat neutral card is forbidden.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep chrome on alpha-tint neutrals (the Shelf Rule); let gradients and app logos be the only saturated color.",
+      "Do give every interactive element a spring response (stiffness 320–400, damping 18–30) and rely on MotionConfig reduced-motion='user' to quiet it.",
+      "Do use light-dark() pairs for every new color token so both themes ship together.",
+      "Do keep exactly one gradient CTA per view (the One Cabinet Rule) — 'Open in Nimiq Pay' always wins.",
+      "Do use the focus-ring shortcut (2px Nimiq Orange, offset 2) on anything focusable."
+    ],
+    "donts": [
+      "Don't build corporate SaaS landing patterns — hero-metric blocks, identical icon-heading-text card grids, stock-marketing tone.",
+      "Don't clutter like a noisy app store: no ad banners, ranking spam, or competing CTAs next to Open-in-Pay.",
+      "Don't put gray drop shadows on flat neutral cards; shadows are colored glows under gradients or overlay floats only.",
+      "Don't introduce a second font family, gradient text (background-clip: text), glassmorphism, or colored side-stripe borders.",
+      "Don't hardcode single-theme colors; a hex without a light-dark() partner breaks the dark theme.",
+      "Don't use empty <span>/<p> for decorative elements — nimiq-css preflight hides empty spans; use <div>."
+    ]
+  }
+}
