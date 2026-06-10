@@ -57,17 +57,24 @@ const related = computed(() => (apps.value ?? [])
         </h2>
         <ul class="list-none p-0 m-0 flex flex-col gap-2">
           <li v-for="r in related" :key="`${r.type}/${r.slug}`">
-            <NuxtLink
-              :to="localePath(`/miniapps/${r.type}/${r.slug}`)"
-              class="group flex items-center gap-3 p-3 rounded-xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline transition-[background,border-color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-default)] focus-ring"
+            <motion.div
+              class="rounded-xl"
+              :while-hover="{ y: -2 }"
+              :while-press="{ scale: 0.99 }"
+              :transition="{ type: 'spring', stiffness: 340, damping: 24 }"
             >
-              <MiniAppLogo :logo="r.logo" :url="r.url" :name="r.name" size="sm" />
-              <div class="flex-1 min-w-0 flex flex-col gap-0.5">
-                <span class="text-[15px] font-semibold leading-tight truncate">{{ r.name }}</span>
-                <MiniAppTypeBadge :type="r.type" variant="dot" />
-              </div>
-              <span class="text-tertiary transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
-            </NuxtLink>
+              <NuxtLink
+                :to="localePath(`/miniapps/${r.type}/${r.slug}`)"
+                class="group flex items-center gap-3 p-3 rounded-xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline transition-[background,border-color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-default)] focus-ring"
+              >
+                <MiniAppLogo :logo="r.logo" :url="r.url" :name="r.name" size="sm" />
+                <div class="flex-1 min-w-0 flex flex-col gap-0.5">
+                  <span class="text-[15px] font-semibold leading-tight truncate">{{ r.name }}</span>
+                  <MiniAppTypeBadge :type="r.type" variant="dot" />
+                </div>
+                <span class="text-tertiary transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+              </NuxtLink>
+            </motion.div>
           </li>
         </ul>
       </section>

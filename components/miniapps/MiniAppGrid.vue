@@ -52,4 +52,12 @@ const { t } = useI18n()
   opacity: 0;
   transform: scale(0.8);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-enter-active,
+  .grid-leave-active,
+  .grid-move {
+    transition: none;
+  }
+}
 </style>

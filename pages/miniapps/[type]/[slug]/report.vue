@@ -211,7 +211,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
         <button
           type="submit"
           :disabled="!canSubmit"
-          class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-2xl font-semibold text-base text-white bg-[var(--colors-orange-1100)] no-underline transition-[filter,opacity] duration-150 hover:brightness-[1.05] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed focus-ring"
+          class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-2xl font-semibold text-base text-white bg-[var(--colors-orange-1100)] no-underline transition-[filter,opacity] duration-150 hover:brightness-[1.05] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:active:scale-100 focus-ring"
         >
           <svg v-if="status === 'submitting'" viewBox="0 0 24 24" class="w-5 h-5 animate-spin" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" stroke-opacity="0.3" />

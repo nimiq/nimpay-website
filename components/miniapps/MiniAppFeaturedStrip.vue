@@ -56,7 +56,7 @@ const localePath = useLocalePath()
             <p v-if="app.developer" class="m-0 text-[10px] font-bold tracking-[0.1em] uppercase text-white opacity-95">
               {{ app.developer }}
             </p>
-            <h3 class="m-0 text-[22px] font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
+            <h3 class="m-0 text-[22px] font-extrabold leading-[1.05] tracking-[-0.02em] text-white line-clamp-2 break-words">
               {{ app.name }}
             </h3>
             <p class="m-0 text-[13px] font-medium leading-snug line-clamp-2 text-white">

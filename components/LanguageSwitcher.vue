@@ -96,6 +96,12 @@ const currentLocale = computed(() =>
   from { opacity: 1; transform: translateY(0) scale(1); }
   to { opacity: 0; transform: translateY(-4px) scale(0.97); }
 }
+@media (prefers-reduced-motion: reduce) {
+  .lang-dropdown-content[data-state='open'],
+  .lang-dropdown-content[data-state='closed'] {
+    animation: none;
+  }
+}
 [data-active='true'] > .lang-dropdown-item {
   color: var(--colors-orange-1100, #f6831f);
 }

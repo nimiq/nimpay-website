@@ -2,6 +2,8 @@ import { presetNimiq } from 'nimiq-css/unocss'
 import { defineConfig, presetWind4 } from 'unocss'
 
 export default defineConfig({
+  // ':' only, so the dash-variant parser can't shadow the focus-ring shortcut as focus:ring
+  separators: [':'],
   presets: [
     presetWind4(),
     presetNimiq({

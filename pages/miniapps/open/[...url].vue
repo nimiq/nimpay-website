@@ -49,6 +49,7 @@ definePageMeta({ robots: false, layout: false })
 </script>
 
 <template>
+  <!-- Gradient-backed surface: always dark-on-color in both themes, so neutrals here skip light-dark() on purpose -->
   <article
     v-if="app"
     class="relative w-full min-h-screen overflow-hidden text-white"

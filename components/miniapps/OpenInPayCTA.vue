@@ -62,7 +62,7 @@ function onOpenInApp(e: MouseEvent) {
   window.location.href = buildIosCustomSchemeUrl(props.fallbackUrl)
 }
 
-const btnBase = 'inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl font-semibold no-underline text-base transition-[transform,filter] duration-150 active:scale-[0.98] hover:brightness-[1.05]'
+const btnBase = 'inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl font-semibold no-underline text-base focus-ring'
 const primary = `${btnBase} text-white`
 const link = 'inline-flex items-center justify-center bg-transparent text-tertiary font-medium text-sm no-underline hover:text-[var(--text-primary)] focus-ring rounded'
 const storeBtn = 'flex items-center justify-center gap-2 h-12 px-5 w-full min-w-min rounded-xl bg-[var(--surface-1)] border border-[var(--border-default)] text-[var(--text-primary)] no-underline transition-[background,border-color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-strong)] focus-ring'

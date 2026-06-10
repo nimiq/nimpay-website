@@ -37,16 +37,10 @@
     "back": "Alle Mini-Apps",
     "by": "von {developer}",
     "about": "Über",
-    "developer": "Entwickler",
     "source": "Quellcode",
     "url": "Website",
     "related": "Weitere Mini-Apps",
-    "unknown": "Unbekannt",
-    "report": "Diese App melden",
-    "stats": {
-      "type": "Typ",
-      "website": "Website"
-    }
+    "report": "Diese App melden"
   },
   "report": {
     "title": "Diese Mini-App melden",
@@ -81,9 +75,7 @@
     "installIOS": "Auf iOS installieren",
     "installAndroid": "Auf Android installieren",
     "continueInBrowser": "Im Browser fortfahren",
-    "downloadOn": "Laden im",
     "appStore": "App Store",
-    "getItOn": "Jetzt bei",
     "googlePlay": "Google Play"
   },
   "error": {
