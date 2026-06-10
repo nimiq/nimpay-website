@@ -19,7 +19,10 @@
       "total": "All apps",
       "nimiq": "On Nimiq",
       "evm": "On EVM"
-    }
+    },
+    "emptyFor": "No results for “{query}”.",
+    "clearFilters": "Clear search & filters",
+    "allApps": "All mini apps"
   },
   "filter": {
     "all": "All",
@@ -31,7 +34,8 @@
     "count": "Showing {visible} of {total}"
   },
   "card": {
-    "open": "Open"
+    "details": "Details",
+    "linkLabel": "{name} – {type} mini app"
   },
   "detail": {
     "back": "All mini apps",

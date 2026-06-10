@@ -11,7 +11,7 @@ colors:
   nimiq-blue: "oklch(0.5849 0.1438 244.29)"
   mint-green: "oklch(0.6932 0.1245 178.48)"
   evm-indigo: "#3451d1"
-  evm-periwinkle: "#627eea"
+  evm-periwinkle: "#4d66de"
 typography:
   display:
     fontFamily: "Mulish, system-ui, sans-serif"
@@ -106,7 +106,7 @@ A near-monochrome shelf with three type-gradient voices that carry all saturatio
 
 ### Secondary
 - **Arcade Gold** (oklch(0.7924 0.1593 85.61), used as `var(--colors-gold-gradient)`): the Nimiq app-type identity. Radial gradient on Nimiq-type badges, featured cards, and the Open-in-Pay CTA. Its glow (`--colors-gold-1100`) backs gold surfaces.
-- **EVM Indigo → Periwinkle** (#3451d1 → #627eea, `--colors-evm-gradient`): the EVM app-type identity. Same roles for EVM-type apps.
+- **EVM Indigo → Periwinkle** (#3451d1 → #4d66de, `--colors-evm-gradient`): the EVM app-type identity. Same roles for EVM-type apps.
 - **Mint Green** (oklch(0.6932 0.1245 178.48), `--colors-green-gradient`): the "all" filter pill only.
 
 ### Neutral

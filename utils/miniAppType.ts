@@ -36,7 +36,6 @@ export function backgroundForType(type: MiniAppType): string {
 export function backgroundForFilter(type: TypeFilter): string {
   return type === 'all' ? ALL_FILTER_GRADIENT : TYPE_THEME[type].gradient
 }
-
 export function labelForType(type: MiniAppType): string {
   return TYPE_THEME[type].label
 }

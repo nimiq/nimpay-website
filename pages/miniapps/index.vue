@@ -17,7 +17,7 @@ const summary = computed(() => {
 })
 const sorted = computed(() => featuredFirst(apps.value))
 
-const { search, type, filtered } = useMiniAppFilter(sorted)
+const { search, type, filtered, isFiltering, clear } = useMiniAppFilter(sorted)
 
 useSeoMeta({
   title: () => `${t('home.title')} · Nimiq Pay`,
@@ -62,16 +62,19 @@ useSeoMeta({
       </dl>
     </section>
 
-    <MiniAppFeaturedStrip v-if="summary.featured.length" :apps="summary.featured" />
+    <MiniAppFeaturedStrip v-if="summary.featured.length && !(isFiltering && filtered.length === 0)" :apps="summary.featured" />
 
     <section class="flex flex-col gap-6">
+      <h2 class="sr-only">
+        {{ t('home.allApps') }}
+      </h2>
       <MiniAppFilter
         v-model:search="search"
         v-model:type="type"
         :total="apps.length"
         :visible="filtered.length"
       />
-      <MiniAppGrid :apps="filtered" />
+      <MiniAppGrid :apps="filtered" :query="search" @clear="clear" />
     </section>
   </div>
 </template>

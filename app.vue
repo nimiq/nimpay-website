@@ -47,7 +47,7 @@ useHead({
   --text-faint: light-dark(rgb(12 15 36 / 0.66), rgb(255 255 255 / 0.66));
   --dropdown-bg: light-dark(#ffffff, #141732);
   --strip-bg: light-dark(rgb(244 244 248 / 1), rgb(41 44 77 / 1));
-  --colors-evm-gradient: radial-gradient(100% 100% at 100% 100%, #3451D1 0%, #627EEA 100%);
+  --colors-evm-gradient: radial-gradient(100% 100% at 100% 100%, #3451D1 0%, #4D66DE 100%);
   --shadow-dropdown:
     light-dark(0 18px 48px rgb(12 15 36 / 0.12), 0 18px 48px rgb(0 0 0 / 0.5)),
     light-dark(0 0 0 1px rgb(12 15 36 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.04));

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MiniApp } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
-import { buildOpenPath, hostOf } from '~~/utils/deeplink'
+import { buildOpenPath } from '~~/utils/deeplink'
 
 const props = defineProps<{ app: MiniApp }>()
 const { t } = useI18n()
@@ -10,8 +10,6 @@ const { data: apps } = useNuxtData<MiniApp[]>('miniapps')
 const { select, vtStyle, vtDetailStyle } = useMiniAppViewTransition()
 
 const deeplinkPath = computed(() => buildOpenPath(props.app.url))
-const websiteHost = computed(() => hostOf(props.app.url) ?? props.app.url)
-const sourceLabel = computed(() => props.app.source?.replace(/^https?:\/\//, '') ?? null)
 
 const related = computed(() => (apps.value ?? [])
   .filter(a => a.type === props.app.type && a.slug !== props.app.slug)
@@ -52,6 +50,8 @@ const related = computed(() => (apps.value ?? [])
         </p>
       </section>
 
+      <MiniAppMetaPanel :app="app" class="md:hidden" />
+
       <section v-if="related.length" class="flex flex-col gap-4">
         <h2 class="m-0 text-[11px] font-bold tracking-[0.1em] uppercase text-label">
           {{ t('detail.related') }}
@@ -60,6 +60,7 @@ const related = computed(() => (apps.value ?? [])
           <li v-for="r in related" :key="`${r.type}/${r.slug}`">
             <motion.div
               class="rounded-xl"
+              tabindex="-1"
               :while-hover="{ y: -2 }"
               :while-press="{ scale: 0.99 }"
               :transition="{ type: 'spring', stiffness: 340, damping: 24 }"
@@ -87,36 +88,10 @@ const related = computed(() => (apps.value ?? [])
       <section class="p-6 rounded-2xl bg-[var(--surface-1)] border border-[var(--border-subtle)]">
         <OpenInPayCTA :deeplink="deeplinkPath" :fallback-url="app.url" :type="app.type" />
       </section>
-      <dl class="m-0 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-1)] overflow-hidden">
-        <div class="flex justify-between items-center gap-3 px-4 py-3 border-b border-[var(--border-subtle)] min-w-0">
-          <dt class="text-[11px] font-bold tracking-[0.08em] uppercase text-label">
-            {{ t('detail.url') }}
-          </dt>
-          <dd class="m-0 text-[13px] font-semibold truncate text-right min-w-0">
-            <a :href="app.url" target="_blank" rel="noopener" class="font-mono text-inherit no-underline hover:underline">{{ websiteHost }}</a>
-          </dd>
-        </div>
-        <div v-if="app.source" class="flex justify-between items-center gap-3 px-4 py-3 min-w-0">
-          <dt class="text-[11px] font-bold tracking-[0.08em] uppercase text-label">
-            {{ t('detail.source') }}
-          </dt>
-          <dd class="m-0 text-[13px] font-semibold truncate text-right min-w-0">
-            <a :href="app.source" target="_blank" rel="noopener" class="font-mono text-inherit no-underline hover:underline">{{ sourceLabel }}</a>
-          </dd>
-        </div>
-      </dl>
-      <NuxtLink
-        :to="localePath(`/miniapps/${app.type}/${app.slug}/report`)"
-        class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-tertiary font-medium text-[13px] no-underline transition-[background,border-color,color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-default)] hover:text-[var(--text-secondary)] focus-ring"
-      >
-        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
-        </svg>
-        {{ t('detail.report') }}
-      </NuxtLink>
+      <MiniAppMetaPanel :app="app" />
     </aside>
 
-    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 px-5 pt-8 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none" aria-hidden="false">
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 px-5 pt-8 pb-[max(1rem,env(safe-area-inset-bottom))] pointer-events-none">
       <div class="absolute inset-0 bg-gradient-to-t from-[var(--app-bg)] via-[var(--app-bg)] to-transparent" aria-hidden="true" />
       <div class="relative pointer-events-auto">
         <OpenInPayCTA :deeplink="deeplinkPath" :fallback-url="app.url" :type="app.type" compact />

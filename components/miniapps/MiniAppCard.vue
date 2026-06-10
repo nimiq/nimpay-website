@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MiniApp } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
+import { themeForType } from '~/utils/miniAppType'
 
 defineProps<{ app: MiniApp }>()
 const { t } = useI18n()
@@ -11,12 +12,14 @@ const { select, vtStyle } = useMiniAppViewTransition()
 <template>
   <motion.div
     class="group block h-full rounded-2xl"
+    tabindex="-1"
     :while-hover="{ y: -4, scale: 1.015 }"
     :while-press="{ scale: 0.985 }"
     :transition="{ type: 'spring', stiffness: 320, damping: 24 }"
   >
     <NuxtLink
       :to="localePath(`/miniapps/${app.type}/${app.slug}`)"
+      :aria-label="t('card.linkLabel', { name: app.name, type: themeForType(app.type).label })"
       class="flex flex-col gap-4 h-full p-6 rounded-2xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline transition-[border-color,background] duration-200 group-hover:border-[var(--border-strong)] group-hover:bg-[var(--surface-2)] focus-ring"
       @pointerdown="select(app, 'grid')"
       @click="select(app, 'grid')"
@@ -38,7 +41,7 @@ const { select, vtStyle } = useMiniAppViewTransition()
       </div>
       <div class="flex items-center justify-end pt-3 mt-auto border-t border-[var(--border-subtle)]">
         <span class="inline-flex items-center gap-1 text-[13px] font-bold text-[var(--text-primary)] transition-transform duration-200 group-hover:translate-x-0.5">
-          {{ t('card.open') }}
+          {{ t('card.details') }}
           <span aria-hidden="true">→</span>
         </span>
       </div>

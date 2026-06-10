@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { MiniApp } from '~~/server/utils/miniapps'
 
-defineProps<{ apps: MiniApp[] }>()
+defineProps<{ apps: MiniApp[], query?: string }>()
+const emit = defineEmits<{ clear: [] }>()
 const { t } = useI18n()
 </script>
 
@@ -21,16 +22,25 @@ const { t } = useI18n()
         <MiniAppCard :app="app" />
       </li>
     </TransitionGroup>
-    <p v-else class="text-center py-12 text-tertiary">
-      {{ t('home.empty') }}
-    </p>
+    <div v-else class="flex flex-col items-center gap-4 py-12 text-center">
+      <p class="m-0 text-tertiary">
+        {{ query?.trim() ? t('home.emptyFor', { query: query.trim() }) : t('home.empty') }}
+      </p>
+      <button
+        type="button"
+        class="px-5 py-3 min-h-11 rounded-xl border border-[var(--border-default)] bg-[var(--surface-1)] text-sm font-semibold text-inherit cursor-pointer transition-[background,border-color] duration-150 hover:bg-[var(--surface-2)] hover:border-[var(--border-strong)] focus-ring"
+        @click="emit('clear')"
+      >
+        {{ t('home.clearFilters') }}
+      </button>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .grid-enter-active {
   transition: opacity 0.2s ease, transform 0.2s ease;
-  transition-delay: 0.18s;
+  transition-delay: 0.05s;
 }
 
 .grid-leave-active {

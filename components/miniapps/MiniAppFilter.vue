@@ -78,7 +78,7 @@ function onTypeChange(value: unknown) {
         </ToggleGroupRoot>
       </LayoutGroup>
     </div>
-    <p class="m-0 text-[13px] whitespace-nowrap text-tertiary">
+    <p role="status" class="m-0 text-[13px] whitespace-nowrap text-tertiary">
       {{ t('filter.count', { visible, total }) }}
     </p>
   </div>

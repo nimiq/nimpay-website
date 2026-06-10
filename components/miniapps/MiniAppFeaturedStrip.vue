@@ -23,7 +23,10 @@ const { select, vtStyle } = useMiniAppViewTransition()
         {{ t('home.featured.subtitle') }}
       </h2>
     </header>
-    <ul class="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <ul
+      class="list-none p-0 m-0 grid grid-cols-1 gap-4"
+      :class="apps.length === 1 ? '' : apps.length === 2 ? 'sm:grid-cols-2 lg:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'"
+    >
       <motion.li
         v-for="app in apps"
         :key="`${app.type}/${app.slug}`"
@@ -33,6 +36,7 @@ const { select, vtStyle } = useMiniAppViewTransition()
       >
         <NuxtLink
           :to="localePath(`/miniapps/${app.type}/${app.slug}`)"
+          :aria-label="t('card.linkLabel', { name: app.name, type: themeForType(app.type).label })"
           class="group relative flex flex-col gap-4 h-full min-h-[180px] p-5 rounded-3xl overflow-hidden text-white no-underline shadow-[0_20px_56px_-22px_var(--card-glow)] hover:shadow-[0_36px_80px_-18px_var(--card-glow)] transition-shadow duration-300 focus-ring"
           :style="{ background: themeForType(app.type).gradient, '--card-glow': themeForType(app.type).glow }"
           @pointerdown="select(app, 'featured')"
@@ -41,7 +45,7 @@ const { select, vtStyle } = useMiniAppViewTransition()
           <HexField color="rgba(255,255,255,0.14)" :size="22" />
           <div
             class="absolute inset-0 pointer-events-none"
-            :style="{ background: 'linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.22) 22%, rgba(0,0,0,0.14) 45%, rgba(0,0,0,0.07) 68%, transparent 100%)' }"
+            :style="{ background: 'linear-gradient(to top, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.44) 22%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0.12) 68%, transparent 100%)' }"
             aria-hidden="true"
           />
           <div class="relative flex items-start justify-between gap-3">

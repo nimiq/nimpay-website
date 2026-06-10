@@ -11,6 +11,7 @@ import { motion } from 'motion-v'
         <motion.span
           class="w-8 h-8 rounded-lg grid place-items-center overflow-hidden shadow-[0_8px_20px_rgba(224,135,0,0.24)]"
           aria-hidden="true"
+          tabindex="-1"
           :while-hover="{ rotate: -8, scale: 1.08 }"
           :while-press="{ scale: 0.92 }"
           :transition="{ type: 'spring', stiffness: 380, damping: 18 }"

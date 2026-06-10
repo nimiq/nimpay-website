@@ -37,6 +37,8 @@ const currentLocale = computed(() =>
           viewBox="0 0 24 24"
           class="w-3.5 h-3.5 opacity-70"
           aria-hidden="true"
+          tabindex="-1"
+          focusable="false"
           :animate="{ rotate: open ? 180 : 0 }"
           :transition="{ type: 'spring', stiffness: 360, damping: 26 }"
         >
