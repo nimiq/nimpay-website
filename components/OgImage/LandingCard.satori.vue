@@ -39,8 +39,8 @@ defineProps<{ title: string }>()
     </div>
 
     <!-- gold mark anchor (always gold) -->
-    <div :style="{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '280px' }">
-      <svg width="208" height="185" viewBox="0 0 63 56">
+    <div :style="{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '300px', paddingRight: '56px' }">
+      <svg width="200" height="178" viewBox="0 0 63 56">
         <defs>
           <linearGradient id="lc-gold-big" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#EC991C" />
