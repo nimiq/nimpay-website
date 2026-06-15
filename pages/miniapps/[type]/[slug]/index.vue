@@ -24,16 +24,18 @@ useSeoMeta({
   ogDescription: () => clampDescription(app.value!.description),
 })
 
-const { name, description, developer, logo, type } = app.value!
+const { name, description, developer, logo, url, type } = app.value!
 defineOgImage('OgMiniApp', {
   title: name,
   description,
   developer: developer ?? undefined,
   logo,
+  url,
   type,
 }, {
   // Card content is locale-independent (English app data), so all 5 localized
-  // routes share one render instead of re-rendering identical pixels.
+  // routes share one render. The same cacheKey lets the /open dispatch route
+  // reuse this prerendered card instead of rendering at runtime.
   cacheKey: `miniapp-${typeParam}-${slugParam}`,
 })
 </script>

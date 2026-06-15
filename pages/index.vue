@@ -17,7 +17,6 @@ useSeoMeta({
 
 defineOgImage('LandingCard', {
   title: t('landing.hero.title'),
-  description: t('landing.hero.subtitle'),
 })
 </script>
 

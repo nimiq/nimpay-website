@@ -1,6 +1,7 @@
 import type {MiniApp} from './server/utils/miniapps';
 import process from 'node:process'
 import { fetchMiniApps  } from './server/utils/miniapps'
+import { hostOf } from './utils/deeplink'
 
 const SITE_URL = 'https://nimpay.app'
 
@@ -144,9 +145,16 @@ export default defineNuxtConfig({
         return [base, ...NON_DEFAULT_LOCALES.map(l => `/${l}${base}`)]
       })
       const homeRoutes = NON_DEFAULT_LOCALES.flatMap(l => [`/${l}`, `/${l}/miniapps`])
+      // Bare deeplink per app (the canonical shareable /open URL). Prerendering
+      // it lets each reuse its detail OG card via the shared cacheKey; runtime
+      // query/sub-path variants fall back to the static image.
+      const openRoutes = apps
+        .map((app: MiniApp) => hostOf(app.url))
+        .filter((h): h is string => !!h)
+        .map(h => `/miniapps/open/${h}`)
       nitroConfig.prerender ||= {}
       nitroConfig.prerender.routes ||= []
-      nitroConfig.prerender.routes.push(...homeRoutes, ...detailRoutes)
+      nitroConfig.prerender.routes.push(...homeRoutes, ...detailRoutes, ...openRoutes)
     },
   },
 

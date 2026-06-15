@@ -34,15 +34,39 @@ useSeoMeta({
   description: () => app.value!.description,
   ogTitle: () => app.value!.name,
   ogDescription: () => clampDescription(app.value!.description),
-  // Dynamic dispatch route (not prerendered) — static brand image fallback.
-  ogImage: '/og-default.png',
+  robots: 'noindex',
 })
+
+const { name, description, developer, logo, url, type, slug } = app.value!
+if (import.meta.prerender) {
+  // The bare deeplink is prerendered (see nuxt.config nitro hook). Render the
+  // app's card here, sharing the detail page's render via the same cacheKey.
+  defineOgImage('OgMiniApp', {
+    title: name,
+    description,
+    developer: developer ?? undefined,
+    logo,
+    url,
+    type,
+  }, {
+    cacheKey: `miniapp-${type}-${slug}`,
+  })
+}
+else {
+  // Runtime query / sub-path variants can't render under zeroRuntime; use the
+  // static brand image so the card never 404s.
+  useSeoMeta({ ogImage: '/og-default.png' })
+}
 
 // Smart App Banner on iOS Safari — `app-argument` is delivered to the app via
 // appUrlOpen and resolved by the existing https branch in src/lib/deep-link.ts.
 // Include `search` so query params forwarded to the mini-app survive the launch.
 const requestUrl = useRequestURL()
-const appArgument = computed(() => `${requestUrl.origin}${requestUrl.pathname}${requestUrl.search}`)
+// The deeplink must use the public origin. At runtime requestUrl.origin already
+// is the real host; at prerender it's localhost, so use the canonical site URL.
+const { url: siteUrl } = useSiteConfig()
+const origin = import.meta.prerender ? siteUrl.replace(/\/$/, '') : requestUrl.origin
+const appArgument = computed(() => `${origin}${requestUrl.pathname}${requestUrl.search}`)
 useHead({
   meta: [
     { name: 'apple-itunes-app', content: () => `app-id=${IOS_APP_ID}, app-argument=${appArgument.value}` },
