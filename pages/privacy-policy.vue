@@ -18,6 +18,18 @@ useHead({
     },
   ],
 })
+
+useSeoMeta({
+  ogTitle: 'Privacy Policy · Nimiq Pay',
+  ogDescription: 'How Nimiq Pay collects, uses, and protects your personal data.',
+})
+
+// Prerendered, indexable page — generate a branded card.
+defineOgImage('SiteCard', {
+  title: 'Privacy Policy',
+  description: 'How Nimiq Pay collects, uses, and protects your data.',
+  cta: 'Open Nimiq Pay',
+})
 </script>
 
 <template>

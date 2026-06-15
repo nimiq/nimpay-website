@@ -8,6 +8,11 @@ const localePath = useLocalePath()
 useSeoMeta({
   title: () => t('submit.title'),
   description: () => t('submit.body'),
+  ogTitle: () => t('submit.title'),
+  ogDescription: () => clampDescription(t('submit.body')),
+  // Runtime form (prerender:false) — use the static brand image, not a
+  // build-time generated card.
+  ogImage: '/og-default.png',
 })
 
 const form = reactive({

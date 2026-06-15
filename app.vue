@@ -15,6 +15,9 @@ useHead({
     { name: 'theme-color', content: resolved.value === 'light' ? '#ffffff' : '#1f2348' },
   ],
 })
+
+// Site-wide OG/Twitter defaults; pages override per-key as needed.
+useSeoMeta({ ogSiteName: 'Nimiq Pay', ogType: 'website', twitterCard: 'summary_large_image' })
 </script>
 
 <template>

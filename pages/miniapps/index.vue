@@ -14,8 +14,13 @@ useSeoMeta({
   title: () => `${t('home.title')} · Nimiq Pay`,
   description: () => t('home.metaDescription'),
   ogTitle: () => t('home.title'),
-  ogDescription: () => t('home.metaDescription'),
-  ogType: 'website',
+  ogDescription: () => clampDescription(t('home.metaDescription')),
+})
+
+defineOgImage('SiteCard', {
+  title: t('home.title'),
+  description: t('home.metaDescription'),
+  cta: 'Browse mini apps',
 })
 </script>
 

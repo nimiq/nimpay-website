@@ -12,10 +12,12 @@ useSeoMeta({
   title: () => t('landing.metaTitle'),
   description: () => t('landing.metaDescription'),
   ogTitle: () => t('landing.metaTitle'),
-  ogDescription: () => t('landing.metaDescription'),
-  ogType: 'website',
-  ogImage: 'https://nimpay.app/readme-header.png',
-  twitterCard: 'summary_large_image',
+  ogDescription: () => clampDescription(t('landing.metaDescription')),
+})
+
+defineOgImage('LandingCard', {
+  title: t('landing.hero.title'),
+  description: t('landing.hero.subtitle'),
 })
 </script>
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { findMiniApp, isMiniAppType } from '~~/server/utils/miniapps'
-import { getFaviconUrl } from '~~/utils/deeplink'
 
 const route = useRoute()
 const { data: apps } = await useMiniApps()
@@ -22,10 +21,20 @@ useSeoMeta({
   title: () => `${app.value!.name} · Nimiq Pay Mini Apps`,
   description: () => app.value!.description,
   ogTitle: () => app.value!.name,
-  ogDescription: () => app.value!.description,
-  ogImage: () => app.value!.logo || getFaviconUrl(app.value!.url) || undefined,
-  ogType: 'website',
-  twitterCard: 'summary',
+  ogDescription: () => clampDescription(app.value!.description),
+})
+
+const { name, description, developer, logo, type } = app.value!
+defineOgImage('OgMiniApp', {
+  title: name,
+  description,
+  developer: developer ?? undefined,
+  logo,
+  type,
+}, {
+  // Card content is locale-independent (English app data), so all 5 localized
+  // routes share one render instead of re-rendering identical pixels.
+  cacheKey: `miniapp-${typeParam}-${slugParam}`,
 })
 </script>
 

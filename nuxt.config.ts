@@ -20,7 +20,7 @@ const NON_DEFAULT_LOCALES = I18N_LOCALES.filter(l => l.code !== DEFAULT_LOCALE).
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-01',
   ssr: true,
-  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt', '@nuxtjs/turnstile'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', 'nuxt-og-image', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt', '@nuxtjs/turnstile'],
 
   // Cloudflare Turnstile: secret read from NUXT_TURNSTILE_SECRET_KEY at runtime
   turnstile: {
@@ -83,6 +83,18 @@ export default defineNuxtConfig({
     zeroRuntime: true,
   },
 
+  // OG images render from Satori components at build time (every indexable route
+  // is prerendered), so zeroRuntime ships no resvg/satori WASM into the Worker.
+  // Mulish (used via fontFamily in the OG components) is auto-resolved by
+  // nuxt-og-image v6's fontless downloader.
+  ogImage: {
+    zeroRuntime: true,
+    defaults: { width: 1200, height: 630 },
+    // Build-time Satori/resvg/sharp pipeline can saturate under parallel
+    // prerender; give each render room and cap concurrency (see nitro.prerender).
+    security: { renderTimeout: 60000 },
+  },
+
   // Report form is a runtime page (Turnstile + POST); keep crawlLinks from
   // statically rendering it per mini app.
   routeRules: {
@@ -118,6 +130,9 @@ export default defineNuxtConfig({
       failOnError: true,
       routes: ['/', '/miniapps'],
       autoSubfolderIndex: false,
+      // Cap parallelism so the native OG render pipeline (satori/resvg/sharp)
+      // doesn't saturate and time out during build.
+      concurrency: 4,
     },
   },
 

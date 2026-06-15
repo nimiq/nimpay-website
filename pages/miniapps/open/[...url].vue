@@ -32,6 +32,10 @@ const deeplinkPath = computed(() => buildOpenPath(fullUrl.value))
 useSeoMeta({
   title: () => `${t('open.title', { name: app.value!.name })} · Nimiq Pay`,
   description: () => app.value!.description,
+  ogTitle: () => app.value!.name,
+  ogDescription: () => clampDescription(app.value!.description),
+  // Dynamic dispatch route (not prerendered) — static brand image fallback.
+  ogImage: '/og-default.png',
 })
 
 // Smart App Banner on iOS Safari — `app-argument` is delivered to the app via
