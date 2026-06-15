@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     githubAppInstallationId: '',
     reportRepoOwner: 'nimiq',
     reportRepoName: 'awesome',
+    submitRepoOwner: 'nimiq',
+    submitRepoName: 'awesome',
+    submitRepoBranch: 'main',
   },
   eslint: {
     config: {
@@ -48,7 +51,7 @@ export default defineNuxtConfig({
 
   site: {
     url: SITE_URL,
-    name: 'Nimiq Pay Mini Apps',
+    name: 'Nimiq Pay',
   },
 
   app: {
@@ -84,6 +87,8 @@ export default defineNuxtConfig({
   // statically rendering it per mini app.
   routeRules: {
     '/miniapps/*/*/report': { prerender: false },
+    // Submit form is runtime too (Turnstile + POST that opens a PR).
+    '/miniapps/submit': { prerender: false },
   },
 
   nitro: {
@@ -102,13 +107,16 @@ export default defineNuxtConfig({
           NUXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
           NUXT_REPORT_REPO_OWNER: process.env.NUXT_REPORT_REPO_OWNER || 'nimiq',
           NUXT_REPORT_REPO_NAME: process.env.NUXT_REPORT_REPO_NAME || 'awesome',
+          NUXT_SUBMIT_REPO_OWNER: process.env.NUXT_SUBMIT_REPO_OWNER || 'nimiq',
+          NUXT_SUBMIT_REPO_NAME: process.env.NUXT_SUBMIT_REPO_NAME || 'awesome',
+          NUXT_SUBMIT_REPO_BRANCH: process.env.NUXT_SUBMIT_REPO_BRANCH || 'main',
         },
       },
     },
     prerender: {
       crawlLinks: true,
       failOnError: true,
-      routes: ['/miniapps'],
+      routes: ['/', '/miniapps'],
       autoSubfolderIndex: false,
     },
   },
@@ -120,7 +128,7 @@ export default defineNuxtConfig({
         const base = `/miniapps/${app.type}/${app.slug}`
         return [base, ...NON_DEFAULT_LOCALES.map(l => `/${l}${base}`)]
       })
-      const homeRoutes = NON_DEFAULT_LOCALES.map(l => `/${l}/miniapps`)
+      const homeRoutes = NON_DEFAULT_LOCALES.flatMap(l => [`/${l}`, `/${l}/miniapps`])
       nitroConfig.prerender ||= {}
       nitroConfig.prerender.routes ||= []
       nitroConfig.prerender.routes.push(...homeRoutes, ...detailRoutes)

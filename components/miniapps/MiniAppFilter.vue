@@ -26,7 +26,7 @@ function onTypeChange(value: unknown) {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-[minmax(220px,1fr)_auto_auto] gap-4 items-center">
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(260px,1fr)_auto] gap-5 items-center">
     <Label as-child>
       <label class="relative flex items-center">
         <span class="absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0 [clip:rect(0,0,0,0)]">{{ t('filter.searchLabel') }}</span>
@@ -38,18 +38,18 @@ function onTypeChange(value: unknown) {
           :value="search"
           type="search"
           :placeholder="t('filter.searchPlaceholder')"
-          class="w-full min-h-11 pl-10.5 pr-3.5 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--surface-1)] text-inherit text-[15px] transition-colors duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-[var(--colors-orange-1100)] focus:border-[var(--colors-orange-1100)]"
+          class="w-full min-h-14 pl-12 pr-4 py-4 rounded-2xl border border-[var(--border-default)] bg-[var(--surface-1)] text-inherit text-[15px] font-semibold shadow-[0_10px_30px_rgba(32,35,75,0.04)] transition-colors duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-[var(--brand-yellow)] focus:border-[var(--brand-yellow)]"
           @input="emit('update:search', ($event.target as HTMLInputElement).value)"
         >
       </label>
     </Label>
-    <div class="overflow-x-auto scrollbar-none -mx-1 px-1 sm:overflow-visible">
+    <div class="overflow-x-auto scrollbar-none -mx-1 px-1 lg:overflow-visible">
       <LayoutGroup>
         <ToggleGroupRoot
           type="single"
           :model-value="type"
           :aria-label="t('filter.typeLabel')"
-          class="inline-flex p-1 bg-[var(--surface-1)] rounded-full"
+          class="inline-flex p-1.5 bg-[var(--surface-2)] rounded-2xl min-h-14"
           @update:model-value="onTypeChange"
         >
           <ToggleGroupItem
@@ -59,15 +59,15 @@ function onTypeChange(value: unknown) {
             :value="opt.value"
           >
             <motion.button
-              class="relative px-5 py-3 min-h-11 rounded-full border-none bg-transparent text-sm font-bold cursor-pointer outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--colors-orange-1100)]"
-              :class="{ 'text-white': type === opt.value }"
+              class="relative px-8 py-3 min-h-11 rounded-xl border-none bg-transparent text-sm font-extrabold cursor-pointer outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--brand-yellow)]"
+              :class="type === opt.value ? 'text-white' : 'text-tertiary'"
               :while-press="{ scale: 0.93 }"
               :transition="{ type: 'spring', stiffness: 400, damping: 22 }"
             >
               <motion.div
                 v-if="type === opt.value"
                 layout-id="filter-pill"
-                class="absolute inset-0 rounded-full z-0"
+                class="absolute inset-0 rounded-xl z-0"
                 :style="{ background: pillBackground }"
                 :transition="{ type: 'spring', stiffness: 360, damping: 30 }"
                 aria-hidden="true"
@@ -78,7 +78,7 @@ function onTypeChange(value: unknown) {
         </ToggleGroupRoot>
       </LayoutGroup>
     </div>
-    <p role="status" class="m-0 text-[13px] whitespace-nowrap text-tertiary">
+    <p role="status" class="lg:col-span-2 m-0 text-[13px] whitespace-nowrap text-tertiary">
       {{ t('filter.count', { visible, total }) }}
     </p>
   </div>

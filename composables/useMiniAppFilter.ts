@@ -20,14 +20,14 @@ export function useMiniAppFilter(apps: Ref<MiniApp[]>) {
   const type = ref<TypeFilter>('all')
 
   function readFromRoute() {
-    const q = firstParam(route.query.q) ?? ''
+    const q = firstParam(route.query.q) ?? firstParam(route.query.search) ?? ''
     if (q !== search.value.trim()) search.value = q
     const rawType = firstParam(route.query.type)
     type.value = rawType && isMiniAppType(rawType) ? rawType : 'all'
   }
 
   function queryForState(): LocationQueryRaw {
-    const { q: _q, type: _type, ...rest } = route.query
+    const { q: _q, search: _search, type: _type, ...rest } = route.query
     const q = search.value.trim()
     return {
       ...rest,

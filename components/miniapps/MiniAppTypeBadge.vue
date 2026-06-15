@@ -16,7 +16,7 @@ const label = computed(() => labelForType(props.type))
 <template>
   <span
     v-if="variant === 'pill'"
-    class="inline-flex items-center self-start gap-1.5 py-1 pl-2 pr-2.5 rounded-full text-[11px] font-bold tracking-[0.04em] text-white"
+    class="inline-flex items-center self-start gap-1.5 py-1.5 pl-2.5 pr-3 rounded-full text-[10px] font-extrabold tracking-[0.1em] uppercase text-white"
     :style="{ background }"
   >
     <svg v-if="type === 'nimiq'" class="flex-shrink-0 inline-block fill-current" width="11" height="10" viewBox="0 0 63 56" fill="currentColor" aria-hidden="true">

@@ -45,32 +45,28 @@ useHead({
   ],
 })
 
-definePageMeta({ robots: false, layout: false })
+definePageMeta({ robots: false })
 </script>
 
 <template>
-  <!-- Gradient-backed surface: always dark-on-color in both themes, so neutrals here skip light-dark() on purpose -->
   <article
     v-if="app"
-    class="relative w-full min-h-screen overflow-hidden text-white"
-    style="color-scheme: dark;"
-    data-theme="dark"
+    class="relative min-h-[calc(100vh-260px)] grid place-items-center overflow-hidden py-20 text-center"
   >
     <div
-      class="absolute inset-0"
-      :style="{
-        background: `radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.42) 0%, transparent 62%), radial-gradient(circle at 50% 30%, var(--colors-blue-1100) 0%, transparent 55%), radial-gradient(circle at 88% 96%, var(--colors-orange-1100) 0%, transparent 38%), var(--colors-darkblue)`,
-      }"
+      class="absolute inset-0 bg-[radial-gradient(circle_at_18%_50%,rgba(255,199,44,0.12),transparent_30%),radial-gradient(circle_at_82%_45%,rgba(20,122,243,0.12),transparent_32%)]"
       aria-hidden="true"
     />
-    <HexField color="rgba(255,255,255,0.07)" :size="28" />
 
-    <div class="relative flex flex-col items-center justify-center px-6 py-16 min-h-screen text-center">
-      <div class="relative w-[220px] h-[220px] mb-8 grid place-items-center">
+    <div class="relative flex flex-col items-center max-w-[680px] mx-auto">
+      <p class="m-0 mb-8 px-4 py-2 rounded-full bg-[var(--chip-blue-bg)] text-[var(--chip-blue-text)] text-[11px] font-extrabold uppercase tracking-[0.12em]">
+        {{ t('open.invite') }}
+      </p>
+      <div class="relative w-[120px] h-[120px] mb-7 grid place-items-center">
         <motion.div
           v-for="(base, i) in [0.45, 0.75, 1]"
           :key="i"
-          class="absolute inset-0 rounded-full border border-white/20"
+          class="absolute inset-0 rounded-[32px] border border-[var(--border-default)]"
           :initial="{ scale: base, opacity: 0.65 - i * 0.18 }"
           :animate="reduced ? { scale: base, opacity: 0.65 - i * 0.18 } : { scale: [base, base * 1.15, base], opacity: [0.65 - i * 0.18, 0.22, 0.65 - i * 0.18] }"
           :transition="reduced ? { duration: 0 } : { duration: 2.4, repeat: Infinity, delay: i * 0.4, ease: 'easeOut' }"
@@ -79,15 +75,15 @@ definePageMeta({ robots: false, layout: false })
         <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" />
       </div>
 
-      <h1 class="m-0 text-[26px] sm:text-[34px] font-bold tracking-[-0.025em] leading-[1.1] max-w-[28ch] text-white">
+      <h1 class="m-0 text-[46px] sm:text-[64px] font-black tracking-[-0.03em] leading-[0.96] max-w-[12ch] text-[var(--heading-contrast)]">
         {{ t('open.heading', { name: app.name }) }}
       </h1>
-      <p class="m-0 mt-3 text-sm sm:text-base text-white/90 max-w-[44ch] leading-[1.5]">
-        {{ t('open.hint') }}
+      <p class="m-0 mt-4 text-lg sm:text-xl text-secondary max-w-[42ch] leading-[1.5]">
+        {{ app.description }}
       </p>
 
       <div
-        class="w-full max-w-[360px] mt-8 [--surface-1:rgb(255_255_255/0.08)] [--surface-2:rgb(255_255_255/0.14)] [--border-default:rgb(255_255_255/0.22)] [--border-strong:rgb(255_255_255/0.34)] [--text-primary:#f4f4f8] [--text-tertiary:rgb(255_255_255/0.78)]"
+        class="w-full max-w-[560px] mt-10"
       >
         <OpenInPayCTA :deeplink="deeplinkPath" :fallback-url="fullUrl" :type="app.type" />
       </div>

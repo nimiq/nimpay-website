@@ -1,23 +1,34 @@
 <script setup lang="ts">
-// `/` is redirected at the edge by public/_redirects on Cloudflare Pages.
-// This page is the SSG fallback when the edge redirect isn't in effect (dev, local preview).
-definePageMeta({ layout: false })
+definePageMeta({ ecosystemBanner: true })
 
-const TARGET = 'https://www.nimiq.com/nimiq-pay/'
+const { t } = useI18n()
+const { data: apps } = await useMiniApps()
+const featured = computed(() => apps.value
+  .filter(a => a.featured)
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .slice(0, 3))
 
-if (import.meta.server) {
-  await navigateTo(TARGET, { external: true, redirectCode: 301 })
-}
-else {
-  window.location.replace(TARGET)
-}
+useSeoMeta({
+  title: () => t('landing.metaTitle'),
+  description: () => t('landing.metaDescription'),
+  ogTitle: () => t('landing.metaTitle'),
+  ogDescription: () => t('landing.metaDescription'),
+  ogType: 'website',
+  ogImage: 'https://nimpay.app/readme-header.png',
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <template>
-  <noscript>
-    <meta http-equiv="refresh" :content="`0; url=${'https://www.nimiq.com/nimiq-pay/'}`">
-    <p>
-    Redirecting to <a href="https://www.nimiq.com/nimiq-pay/">nimiq.com/nimiq-pay</a>…
-    </p>
-  </noscript>
+  <div class="flex flex-col gap-20 sm:gap-28">
+    <LandingHero />
+    <LandingFactsStrip :count="apps.length" />
+    <LandingFeatures />
+    <LandingMarqueeBands />
+    <LandingHowItWorks />
+    <LandingAssetsNetworks />
+    <LandingMiniApps v-if="featured.length" :apps="featured" :total="apps.length" />
+    <LandingFaq />
+    <LandingDownload />
+  </div>
 </template>

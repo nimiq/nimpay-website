@@ -1,50 +1,55 @@
 ---
-name: Nimiq Pay Mini Apps
-description: Public catalog of Nimiq Pay mini apps — a quiet shelf where every app glows in its own gradient.
+name: Nimiq Pay
+description: Nimiq Pay landing + mini-apps catalog — a sunny storefront where yellow sells the app and every mini app keeps its own gradient voice.
 colors:
-  ink: "#0c0f24"
-  paper-white: "#ffffff"
+  brand-navy: "#20234b"
+  brand-ink: "#151620"
+  brand-yellow: "#ffc72c"
+  brand-yellow-deep: "#f2b600"
+  brand-blue: "#147af3"
+  app-bg-light: "#f6f7f9"
+  app-bg-dark: "#11142d"
   mist: "#f4f4f8"
-  midnight-blue: "oklch(0.2737 0.068 276.29)"
-  nimiq-orange: "oklch(0.6769 0.1633 57)"
-  arcade-gold: "oklch(0.7924 0.1593 85.61)"
-  nimiq-blue: "oklch(0.5849 0.1438 244.29)"
-  mint-green: "oklch(0.6932 0.1245 178.48)"
+  gold-gradient: "var(--colors-gold-gradient) (nimiq-css)"
   evm-indigo: "#3451d1"
   evm-periwinkle: "#4d66de"
+  chip-blue-bg: "light-dark(#eaf3ff, rgb(20 122 243 / 0.18))"
+  chip-blue-text: "light-dark(#1769e0, #8ec2ff)"
 typography:
   display:
     fontFamily: "Mulish, system-ui, sans-serif"
-    fontSize: "34px / 44px (sm+)"
-    fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.025em"
+    fontSize: "42px / 58–66px (lg)"
+    fontWeight: 900
+    lineHeight: 1.02
+    letterSpacing: "-0.02em"
   headline:
     fontFamily: "Mulish, system-ui, sans-serif"
-    fontSize: "22px / 26px (sm+)"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
+    fontSize: "34px / 48–72px (sm+)"
+    fontWeight: 900
+    lineHeight: 0.95–1
+    letterSpacing: "-0.02em to -0.03em"
   title:
     fontFamily: "Mulish, system-ui, sans-serif"
-    fontSize: "18px"
-    fontWeight: 700
-    lineHeight: 1.25
+    fontSize: "18–30px"
+    fontWeight: 900
+    lineHeight: 1.05–1.25
   body:
     fontFamily: "Mulish, system-ui, sans-serif"
-    fontSize: "15px"
+    fontSize: "15–18px"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.45–1.65
   label:
     fontFamily: "Mulish, system-ui, sans-serif"
-    fontSize: "11px"
-    fontWeight: 700
-    letterSpacing: "0.04em"
+    fontSize: "10–11px"
+    fontWeight: 800
+    letterSpacing: "0.1–0.16em"
 rounded:
-  md: "8px"
-  xl: "12px"
-  2xl: "16px"
-  3xl: "24px"
+  control: "10px"
+  logo-tile: "14px"
+  input: "16px (1rem, .mock-input & rounded-2xl buttons)"
+  card: "28px"
+  panel: "32px"
+  hero-panel: "40px"
   full: "9999px"
 spacing:
   xs: "6px"
@@ -52,151 +57,125 @@ spacing:
   md: "16px"
   lg: "24px"
   xl: "32px"
-  section: "56px"
+  section: "56px+ (gap-14 to gap-20)"
 components:
   cta-primary:
+    background: "var(--brand-navy)"
     textColor: "#ffffff"
-    rounded: "{rounded.2xl}"
-    padding: "14px 20px"
+    rounded: "16px (rounded-2xl)"
+    shadow: "type-tinted glow (theme.ctaShadow)"
+  cta-yellow:
+    background: "var(--brand-yellow)"
+    textColor: "var(--brand-navy)"
+    rounded: "16px"
   store-button:
-    rounded: "{rounded.xl}"
-    height: "48px"
-    padding: "0 20px"
+    background: "#000000 (light) + subtle white border (dark)"
+    textColor: "#ffffff"
+    rounded: "12px (rounded-xl)"
+    height: "44–56px"
   card:
-    rounded: "{rounded.2xl}"
-    padding: "24px"
+    background: "var(--surface-1)"
+    border: "1px var(--border-subtle)"
+    rounded: "28px"
+    shadow: "var(--card-shadow)"
   featured-card:
-    textColor: "#ffffff"
-    rounded: "{rounded.3xl}"
-    padding: "20px"
-  filter-pill:
-    rounded: "{rounded.full}"
-    padding: "12px 20px"
-  input-search:
-    rounded: "{rounded.xl}"
-    padding: "12px 14px 12px 42px"
+    background: "app-type gradient + HexField + bottom scrim"
+    textColor: "#ffffff over scrim; white/92 chip with navy text"
+    rounded: "32px"
   type-badge:
+    background: "app-type gradient (gold / EVM indigo)"
     textColor: "#ffffff"
-    rounded: "{rounded.full}"
-    padding: "4px 10px 4px 8px"
+    rounded: "full"
+  chip:
+    background: "var(--chip-blue-bg)"
+    textColor: "var(--chip-blue-text)"
+    rounded: "full"
 ---
 
-# Design System: Nimiq Pay Mini Apps
+# Design System: Nimiq Pay
 
 ## 1. Overview
 
-**Creative North Star: "The Neon Arcade Shelf"**
+**Creative North Star: "The Sunny Storefront"**
 
-The catalog is a quiet shelf in a dim arcade: the chrome (backgrounds, borders, text) stays near-monochrome — white or Nimiq midnight blue with alpha-tint surfaces — while every mini app glows like its own cabinet. Saturated color enters the page exclusively through the app-type gradients (gold for Nimiq, indigo for EVM, green for "all") and the apps' own logos. The shelf never competes with the cabinets.
-
-The system is playful and tactile, not corporate. Every interactive element responds with a spring — cards lift, pills squish, the CTA breathes — because browsing here should feel like an app store, not a SaaS brochure. It explicitly rejects the corporate SaaS landing (hero-metric templates, identical icon-heading-text card grids) and the cluttered app store (banner noise, competing CTAs). One gradient action per view: "Open in Nimiq Pay".
+One site, two registers. The **landing** sells Nimiq Pay with the brand's own voice: big black-weight Mulish headlines, Nimiq-yellow hero and download panels, navy ink, and real app screenshots in phone frames. The **mini-apps catalog** is the store inside it: near-neutral chrome (white / deep navy-blue, alpha-tint surfaces) where each mini app keeps its own gradient identity (gold for Nimiq, indigo for EVM). Yellow sells the app; the gradients sell the apps.
 
 **Key Characteristics:**
-- Dual-theme via CSS `light-dark()` — white paper in light, Nimiq midnight blue in dark; every neutral is an alpha tint of ink or white, so themes stay in lockstep.
-- Color is earned: saturated gradients belong to app types, never to chrome.
-- Springy motion (motion-v) with `reduced-motion="user"` honored globally.
-- Flat surfaces; shadows exist only as colored glow under gradient elements.
+- Dual-theme via CSS `light-dark()` on every token in `app.vue` — **the only theme mechanism**. UnoCSS `dark:` variants do NOT work here (theme is `data-theme` + `color-scheme`, no `.dark` class); never use them.
+- Brand yellow is a surface color (hero panel, download panel, marquee bands, CTAs) and always carries **navy ink text** — never white on yellow.
+- Saturated mini-app gradients (gold / EVM indigo) appear only on type-coded elements: featured cards, type badges, asset chips, CTA glow.
+- Springy motion (motion-v) under a global `MotionConfig reduced-motion="user"` in `app.vue`.
 
 ## 2. Colors
 
-A near-monochrome shelf with three type-gradient voices that carry all saturation.
-
 ### Primary
-- **Nimiq Orange** (oklch(0.6769 0.1633 57) light / oklch(0.772 0.1738 64.55) dark): the brand's focus voice. Focus rings, search-input focus border, active outlines. It marks "you are here", not decoration.
+- **Brand Yellow** (`--brand-yellow` #ffc72c → `--brand-yellow-deep` #f2b600, `--brand-yellow-gradient`): hero/download panels, marquee, primary "browse" CTA. Text on yellow is always `--brand-navy` (~9:1).
+- **Brand Navy** (`--brand-navy` #20234b): primary action color (Open in Wallet, Continue button), heading color in light theme, tip-card surface.
 
 ### Secondary
-- **Arcade Gold** (oklch(0.7924 0.1593 85.61), used as `var(--colors-gold-gradient)`): the Nimiq app-type identity. Radial gradient on Nimiq-type badges, featured cards, and the Open-in-Pay CTA. Its glow (`--colors-gold-1100`) backs gold surfaces.
-- **EVM Indigo → Periwinkle** (#3451d1 → #4d66de, `--colors-evm-gradient`): the EVM app-type identity. Same roles for EVM-type apps.
-- **Mint Green** (oklch(0.6932 0.1245 178.48), `--colors-green-gradient`): the "all" filter pill only.
+- **Gold gradient** (`--colors-gold-gradient`, nimiq-css): Nimiq-type identity. The chain chips (type badge, filter switch, supported-assets) keep white text on the gradient — a deliberate brand choice, kept over strict AA.
+- **EVM indigo gradient** (`--colors-evm-gradient` #3451d1→#4d66de): EVM-type identity. Text on indigo is white.
+- **Brand Blue** (`--brand-blue` #147af3): feature-card tint, blue chips (`--chip-blue-bg/text`).
 
-### Neutral
-- **Ink** (#0c0f24): light-theme text anchor. All light-theme neutrals are alpha tints of ink: text at 0.66–0.82, surfaces at 0.04–0.10, borders at 0.08–0.22.
-- **Paper White** (#ffffff): light-theme page and header background.
-- **Midnight Blue** (oklch(0.2737 0.068 276.29), `--colors-darkblue`): dark-theme page background. Dark-theme neutrals are white alpha tints on top of it.
-- **Mist** (#f4f4f8): dark-theme text anchor; light-theme strip background.
+### Neutrals
+All neutrals are `light-dark()` pairs in `app.vue:28-100`: `--app-bg`, `--surface-1/2/3`, `--surface-hover`, `--card-hover-bg`, `--border-subtle/default/strong`, `--text-primary/secondary/tertiary/label/muted/faint`, `--heading-contrast` (navy in light, mist in dark), `--dropdown-bg`, `--strip-bg`.
 
 ### Named Rules
-**The Shelf Rule.** Chrome is never saturated. Backgrounds, cards, borders, and text use only alpha tints of ink or white. If an element wants color, it must be an app-type gradient or an app's own logo — there is no third source of color.
+**The Navy-on-Yellow Rule.** Yellow surfaces always carry navy ink text. White on yellow/gold is forbidden (≈1.8–2:1).
 
-**The One Cabinet Rule.** One gradient CTA per view. Store buttons, browser-fallback links, and secondary actions stay neutral so "Open in Nimiq Pay" is always the loudest thing on screen.
+**The Chain-Chip Rule.** Type-coded chips (type badge, filter switch pill, supported-assets) wear the chain gradient (gold for Nimiq, indigo for EVM, green for "all") with **white text**. This is a fixed brand identity — don't recolor it for contrast.
+
+**The light-dark() Rule.** Every color literal in a component must be theme-safe: either a `var(--…)` token or an inline `light-dark(light, dark)` pair. A bare hex without a dark partner breaks the dark theme. **Never use `dark:` utilities** — they silently no-op.
+
+**Heading colors are explicit.** nimiq-css preflight assigns headings their own color; on colored surfaces (navy/gold cards) always set `text-white` / ink explicitly on the h-element, not just on the parent.
 
 ## 3. Typography
 
-**Display Font:** Mulish (system-ui fallback) — supplied by nimiq-css preflight
-**Body Font:** Mulish (same family, lighter weights)
-**Label/Mono Font:** Fira Code (available via nimiq-css; rarely used in the catalog)
+**One family: Mulish** (system-ui fallback), weight-driven hierarchy (400 → 700 → 800 → 900). Fira Code only for URLs/source paths (`font-mono` in MiniAppMetaPanel).
 
-**Character:** One humanist sans in many weights. Warm and rounded enough to feel friendly, bold cuts tight enough to feel like product UI. Hierarchy comes from weight and size, never from a second family.
-
-### Hierarchy
-- **Display** (700, 34px mobile / 44px desktop, 1.05, -0.025em): page H1 only ("Mini Apps for Nimiq Pay").
-- **Headline** (600, 22–26px, -0.01em): section headers like the featured-shelf subtitle.
-- **Title** (700, 18px, leading-tight): card and detail app names.
-- **Body** (400, 15–16px, 1.5): descriptions, interstitial copy. Secondary text drops to 82% alpha, tertiary to ~70%.
-- **Label** (700, 10–12px, 0.04–0.12em tracking, uppercase): type badges, eyebrows, stat labels.
-
-### Named Rules
-**The One Family Rule.** Mulish does everything. Never introduce a second display face; reach for weight (400 → 600 → 700) and alpha (100% → 82% → 70%) instead.
+- **Display** (900, 42–66px, -0.02em, `text-balance`): page h1s.
+- **Headline** (900, 34–72px, -0.02 to -0.03em): section h2s.
+- **Title** (900, 18–30px): card and panel titles.
+- **Body** (400–600, 15–18px, 1.45–1.65): `--text-secondary` for supporting copy.
+- **Label** (800, 10–11px, 0.1–0.16em tracking, uppercase): chips, badges, field labels, `--text-label`.
 
 ## 4. Elevation
 
-Flat by default, glow on color. Resting surfaces are alpha tints with 1px borders — no shadows. Shadow exists in exactly three places, and it is always either colored glow under a gradient element or the float of an overlay: the Open-in-Pay CTA (`0 10px 28px -14px <type-color at 50%>`), featured cards (`0 20px 56px -22px var(--card-glow)`, deepening on hover), and dropdowns (`--shadow-dropdown`, a soft dark float + 1px ring). Neutral cards communicate hover through border strengthening and surface tint (`--surface-1` → `--surface-2`), never through shadow.
-
-### Shadow Vocabulary
-- **CTA glow** (`box-shadow: 0 10px 28px -14px oklch(... / 0.5)`): under the gradient CTA, tinted to the app type.
-- **Card glow** (`0 20px 56px -22px var(--card-glow)` → hover `0 36px 80px -18px`): under featured gradient cards only.
-- **Dropdown float** (`--shadow-dropdown`): language/theme menus.
-
-### Named Rules
-**The Glow Rule.** A shadow must be tinted by the gradient it sits under, or it must belong to a floating overlay. A gray drop shadow on a flat neutral card is forbidden.
+Soft and generous: `--card-shadow` (22px/70px navy-tinted in light, black in dark) on white cards is the default. Colored glows appear under colored elements: yellow glow under the download panel and header mark, `--card-glow` (type-tinted) under featured cards, `theme.ctaShadow` under the Open-in-Wallet CTA. The detail CTA card wears a signature neo-brutalist offset: `border-2 border-navy` + `shadow-[14px_14px_0_var(--brand-navy)]`.
 
 ## 5. Components
 
-Springy and tactile: every interactive element answers touch with a motion-v spring (stiffness 320–400, damping 18–30), and `MotionConfig reduced-motion="user"` quiets all of it for users who ask.
+Springs: stiffness 320–400, damping 18–26, via motion-v. Global reduced-motion handling in `app.vue`; CSS animations get their own `@media (prefers-reduced-motion)` blocks (see MiniAppGrid, LandingFaq, marquees).
 
-### Buttons
-- **Shape:** generously rounded (16px, `rounded-2xl`) for the primary CTA; 12px for store buttons.
-- **Primary (Open in Nimiq Pay):** app-type radial gradient background, white text, 600 weight, 14px 20px padding, type-tinted glow shadow. Spring hover (scale 1.02, y -1) and press (scale 0.97).
-- **Store buttons (App Store / Google Play):** neutral — `--surface-1` fill, `--border-default` 1px border, 48px height; hover strengthens border and tint, springs y -2.
-- **Tertiary (Continue in browser):** bare text link in tertiary color, hover shifts x +2 and brightens to primary text.
-- **Hover / Focus:** all interactive elements use the `focus-ring` shortcut — 2px Nimiq Orange outline, 2px offset.
+- **Primary CTA (Open in Wallet / Open in Nimiq Pay):** navy fill, white text, rounded-2xl, type-tinted glow, spring hover (scale 1.02, y -1) press (0.97). One per view.
+- **Yellow CTA (Browse All Apps):** yellow fill, navy text, yellow-tinted shadow.
+- **Store buttons:** black fill (`bg-[#000000]` — `bg-black` is not in the preset palette and silently fails), white text, subtle white border in dark theme; `onGradient` variant is white with ink text.
+- **Cards:** `--surface-1` + `--border-subtle` + `--card-shadow`, rounded-[28px]; hover = `--card-hover-bg` + border-default + spring lift.
+- **Panels:** rounded-[32px]; hero-scale panels rounded-[40px].
+- **Featured cards:** type gradient + white HexField texture + bottom scrim `rgba(0,0,0,0.68→transparent)`; white text over the scrim, white/92 chip with navy text, white "Details" pill.
+- **Type badges:** chain-gradient pill, white text, 10px/800/uppercase; dot variant for dense rows.
+- **Filter switch:** reka-ui ToggleGroup on a `--surface-2` track; active pill is a shared `layout-id` chain-gradient (gold/indigo/green via `backgroundForFilter`) with white text that slides between options.
+- **Chips:** `--chip-blue-bg/text` for informational labels (preview, invite, feature labels).
+- **Inputs:** 16px radius, `--surface-2` fill, `--border-default`, placeholder `--text-tertiary`; focus = orange `focus-ring` (2px `--colors-orange-1100`, offset 2).
+- **Nav:** sticky blurred header, `min-h-11` links, yellow underline on active (`router-link-active`), springy logo mark.
+- **Disabled:** opacity 50–60 + `cursor-not-allowed` (mock submit flow).
 
-### Chips
-- **Type badge (pill):** app-type gradient fill, white 700-weight 11px uppercase text with type icon, full-pill radius.
-- **Type badge (dot):** 6px gradient dot + tertiary uppercase label, for dense contexts.
-- **Filter pills:** full-pill toggle group on a `--surface-1` track; the active pill is a shared motion-v `layout-id` gradient that slides between options; inactive pills are transparent with default text.
-
-### Cards / Containers
-- **Corner Style:** 16px (`rounded-2xl`) for catalog cards; 24px (`rounded-3xl`) for featured gradient cards.
-- **Background:** catalog cards `--surface-1` with `--border-subtle`; featured cards wear the full app-type gradient with a white hex-field texture and a bottom legibility scrim.
-- **Shadow Strategy:** per the Glow Rule — neutral cards never; featured cards colored glow.
-- **Hover:** spring lift (y -4, scale ~1.015) plus border/tint strengthen.
-- **Internal Padding:** 24px catalog, 20px featured.
-
-### Inputs / Fields
-- **Style:** 12px radius, `--surface-1` fill, `--border-default` 1px border, 15px text, inline leading search icon, 44px min height.
-- **Focus:** 2px Nimiq Orange outline (offset 2) and the border itself turns Nimiq Orange.
-
-### Navigation
-- **Header:** sticky, page-background fill with `--header-border` hairline; logo mark springs on hover (rotate -8°, scale 1.08). Theme and language switchers are quiet icon buttons; menus use `--dropdown-bg` and the dropdown float.
-- **Footer:** hairline-topped, 13px tertiary text, underline-on-hover links.
-
-### Featured Card (signature)
-The full arcade cabinet: app-type radial gradient, `HexField` white hex pattern at 14% alpha, dark bottom scrim for text legibility, app logo + white type treatment, colored glow that deepens on hover. This is the catalog's hero moment — nothing else gets to be this loud.
+### Radius scale
+10 (controls) / 14 (logo tiles) / 16 (inputs, buttons) / 24 (small cards) / 28 (cards) / 32 (panels) / 40 (hero panels) / full (pills). No other values.
 
 ## 6. Do's and Don'ts
 
 ### Do:
-- **Do** keep chrome on alpha-tint neutrals (the Shelf Rule); let gradients and app logos be the only saturated color.
-- **Do** give every interactive element a spring response (stiffness 320–400, damping 18–30) and rely on `MotionConfig reduced-motion="user"` to quiet it.
-- **Do** use `light-dark()` pairs for every new color token so both themes ship together.
-- **Do** keep exactly one gradient CTA per view (the One Cabinet Rule) — "Open in Nimiq Pay" always wins.
-- **Do** use the `focus-ring` shortcut (2px Nimiq Orange, offset 2) on anything focusable.
+- **Do** pair every new color with `light-dark()` and test both themes — `data-theme` + system fallback.
+- **Do** use `themeForType()` / `backgroundForFilter()` for anything type-coded (gradient, glow, ctaShadow); chain chips always use white text on the gradient.
+- **Do** keep the `focus-ring` shortcut on every focusable; use `-outline-offset-2` inside `overflow-hidden` containers (see LandingFaq).
+- **Do** keep one navy "open" CTA per view; "Details" is the only label for links to detail pages.
+- **Do** apply the theme in standalone roots: `error.vue` must call `useTheme()` + `useHead({ htmlAttrs })` itself (it renders outside `app.vue`).
 
 ### Don't:
-- **Don't** build corporate SaaS landing patterns — hero-metric blocks, identical icon-heading-text card grids, stock-marketing tone. PRODUCT.md names these as anti-references.
-- **Don't** clutter like a noisy app store: no ad banners, ranking spam, or competing CTAs next to Open-in-Pay.
-- **Don't** put gray drop shadows on flat neutral cards; shadows are colored glows under gradients or overlay floats only (the Glow Rule).
-- **Don't** introduce a second font family, gradient text (`background-clip: text`), glassmorphism, or colored side-stripe borders.
-- **Don't** hardcode single-theme colors; a hex without a `light-dark()` partner breaks the dark theme.
+- **Don't** use `dark:` UnoCSS variants — they never apply in this setup.
+- **Don't** use `bg-black`/palette color names that aren't in the nimiq-css/wind4 theme — use arbitrary hex (`bg-[#000000]`) or tokens.
+- **Don't** put white text on yellow or gold, or gray text on colored surfaces.
+- **Don't** introduce a second font family, gradient text, glassmorphism, or side-stripe borders.
+- **Don't** rely on inherited color for headings on colored cards — preflight overrides it; set the heading color explicitly.
 - **Don't** use empty `<span>`/`<p>` for decorative elements — nimiq-css preflight hides empty spans; use `<div>`.

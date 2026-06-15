@@ -85,12 +85,12 @@ async function onSubmit() {
   }
 }
 
-const field = 'w-full min-h-11 px-3.5 py-3 rounded-xl border border-[var(--border-default)] bg-[var(--surface-1)] text-inherit text-[15px] transition-colors duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-[var(--colors-orange-1100)] focus:border-[var(--colors-orange-1100)]'
-const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
+const field = 'w-full min-h-12 px-4 py-3.5 rounded-2xl border border-[var(--border-default)] bg-[var(--surface-2)] text-inherit text-[15px] font-semibold transition-colors duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-[var(--brand-yellow)] focus:border-[var(--brand-yellow)]'
+const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
 </script>
 
 <template>
-  <div v-if="app" class="w-full max-w-[600px] mx-auto px-5 py-10 md:py-16 flex flex-col gap-8">
+  <div v-if="app" class="w-full max-w-[720px] mx-auto py-10 md:py-16 flex flex-col gap-8">
     <NuxtLink :to="detailPath" class="text-sm text-tertiary no-underline self-start hover:text-[var(--text-primary)] focus-ring rounded">
       ← {{ app.name }}
     </NuxtLink>
@@ -104,7 +104,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
         </div>
       </div>
       <div class="flex flex-col gap-2">
-        <h1 class="m-0 text-3xl font-bold tracking-[-0.02em] text-wrap-balance">
+        <h1 class="m-0 text-[40px] sm:text-[50px] font-black leading-[0.98] tracking-[-0.025em] text-wrap-balance text-[var(--heading-contrast)]">
           {{ t('report.title') }}
         </h1>
         <p class="m-0 text-[15px] leading-[1.6] text-secondary">
@@ -115,7 +115,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
 
     <Transition name="swap" mode="out-in">
       <!-- Success -->
-      <section v-if="status === 'success'" key="success" class="flex flex-col items-center text-center gap-4 py-8 px-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-1)]">
+      <section v-if="status === 'success'" key="success" class="flex flex-col items-center text-center gap-4 py-10 px-8 rounded-[32px] border border-[var(--border-subtle)] bg-[var(--surface-1)] shadow-[var(--card-shadow)]">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--colors-green-400,rgba(33,188,114,0.16))] text-[var(--colors-green,#21bc72)]">
           <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m5 13 4 4L19 7" />
@@ -130,8 +130,9 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
           </p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 mt-2">
-          <a :href="issueUrl" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border-default)] text-[var(--text-primary)] font-semibold text-sm no-underline transition-colors duration-150 hover:bg-[var(--surface-hover)] hover:border-[var(--border-strong)] focus-ring">
-            {{ t('report.viewReport') }} →
+          <a :href="issueUrl" target="_blank" rel="noopener" class="group inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-[var(--surface-2)] border border-[var(--border-default)] text-[var(--text-primary)] font-semibold text-sm no-underline transition-colors duration-150 hover:bg-[var(--surface-hover)] hover:border-[var(--border-strong)] focus-ring">
+            {{ t('report.viewReport') }}
+            <ArrowIcon direction="top-right" class="transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
           <NuxtLink :to="detailPath" class="inline-flex items-center justify-center px-5 py-3 rounded-xl text-tertiary font-medium text-sm no-underline hover:text-[var(--text-primary)] focus-ring">
             {{ t('report.backToApp') }}
@@ -140,7 +141,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
       </section>
 
       <!-- Form -->
-      <form v-else key="form" class="flex flex-col gap-6" novalidate @submit.prevent="onSubmit">
+      <form v-else key="form" class="flex flex-col gap-6 rounded-[32px] border border-[var(--border-subtle)] bg-[var(--surface-1)] shadow-[var(--card-shadow)] p-6 sm:p-8" novalidate @submit.prevent="onSubmit">
         <div class="flex flex-col gap-2">
           <label for="report-target" :class="labelClass">{{ t('report.fields.target') }}</label>
           <input id="report-target" v-model="form.target" type="url" inputmode="url" :class="field" required>
@@ -198,7 +199,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
         </div>
 
         <label class="flex items-start gap-3 cursor-pointer">
-          <input v-model="form.confirmation" type="checkbox" class="mt-0.5 w-4 h-4 shrink-0 accent-[var(--colors-orange-1100)] focus-ring rounded" required>
+          <input v-model="form.confirmation" type="checkbox" class="mt-0.5 w-4 h-4 shrink-0 accent-[var(--brand-yellow)] focus-ring rounded" required>
           <span class="text-[13px] leading-[1.5] text-secondary">{{ REPORT_CONFIRMATION }}</span>
         </label>
 
@@ -211,7 +212,7 @@ const labelClass = 'text-[13px] font-semibold text-[var(--text-primary)]'
         <button
           type="submit"
           :disabled="!canSubmit"
-          class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-2xl font-semibold text-base text-white bg-[var(--colors-orange-1100)] no-underline transition-[filter,opacity] duration-150 hover:brightness-[1.05] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:active:scale-100 focus-ring"
+          class="inline-flex items-center justify-center gap-2 w-full px-5 py-4 rounded-2xl font-black text-base text-white bg-[var(--brand-navy)] no-underline transition-[filter,opacity] duration-150 hover:brightness-[1.05] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:active:scale-100 focus-ring"
         >
           <svg v-if="status === 'submitting'" viewBox="0 0 24 24" class="w-5 h-5 animate-spin" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" stroke-opacity="0.3" />

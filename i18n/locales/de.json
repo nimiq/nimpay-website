@@ -3,12 +3,162 @@
     "language": "Sprache",
     "themeLight": "Hell",
     "themeDark": "Dunkel",
-    "themeToggle": "Thema: {mode}. Klicken zum Wechseln."
+    "themeToggle": "Thema: {mode}. Klicken zum Wechseln.",
+    "miniApps": "Mini-Apps",
+    "blog": "Blog",
+    "developers": "Entwickler",
+    "downloadApp": "App herunterladen",
+    "submitApp": "App einreichen"
+  },
+  "landing": {
+    "metaTitle": "Nimiq Pay — Krypto-Zahlungen für die echte Welt",
+    "metaDescription": "Bezahle einfach mit NIM und USDT, wo immer BTC Lightning, die NAKA-Karte und Cryptopayment Link akzeptiert werden. 100% kostenlos, selbstverwahrend, mit Nimiq- und EVM-Mini-Apps.",
+    "banner": {
+      "text": "Nimiq Pay ist Teil des Nimiq-Ökosystems",
+      "cta": "Mehr erfahren"
+    },
+    "hero": {
+      "title": "Eine App für Krypto-Zahlungen in der echten Welt",
+      "subtitle": "Bezahle einfach in NIM und USDT, wo immer BTC Lightning, die NAKA-Karte, Cryptopayment Link und viele mehr akzeptiert werden. Kein Aufwand: scannen, bezahlen, fertig.",
+      "phoneAlt": "Nimiq Pay Startbildschirm mit NIM-Guthaben und PAY-Button"
+    },
+    "facts": {
+      "free": "100% kostenlos",
+      "selfCustodial": "Selbstverwahrung",
+      "miniApps": "{count} Mini-Apps",
+      "currencies": "NIM · USDT",
+      "acceptance": "Bezahle per BTC Lightning & NAKA-Karte"
+    },
+    "features": {
+      "title": "Gebaut zum Bezahlen, nicht für Charts",
+      "payments": {
+        "title": "Schnelle Zahlungen zuerst",
+        "body": "Nimiq Pay konzentriert sich ganz auf Zahlungen in der echten Welt. App öffnen, PAY drücken, QR-Code scannen — dein Kaffee ist bezahlt, bevor die Schlange weiterrückt.",
+        "label": "Schnelle Zahlungen zuerst",
+        "cta": "Demo ausprobieren"
+      },
+      "currencies": {
+        "title": "Dein Geld, deine Wahl",
+        "body": "Halte und gib NIM oder USDT aus. Die App wählt bei jedem Bezahlvorgang das richtige Netzwerk — du musst nie über Chains nachdenken.",
+        "alt": "Nimiq Pay Startbildschirm mit USDT-Guthaben",
+        "label": "Sofortige Bestätigung",
+        "cta": "App herunterladen"
+      },
+      "rewards": {
+        "title": "Nimiq- & EVM-Mini-Apps",
+        "body": "Öffne Mini-Apps direkt in deiner Wallet — Spiele, Shops und Tools auf Nimiq und EVM-Chains.",
+        "alt": "Mini-Apps-Entdeckungsansicht in Nimiq Pay",
+        "label": "Mini-Apps inklusive",
+        "cta": "Mini-Apps entdecken"
+      },
+      "custody": {
+        "title": "Selbstverwahrend, immer",
+        "body": "Deine Schlüssel bleiben deine und liegen auf deinem Gerät — Nimiq Pay hält nie deine Gelder."
+      },
+      "subtitle": "Einfach, schnell und sicher. Nimiq Pay ist für echte Bezahlvorgänge gemacht — nicht für Trading-Bildschirme."
+    },
+    "how": {
+      "title": "Scannen. Bezahlen. Fertig.",
+      "step1": {
+        "title": "Hol dir die App",
+        "body": "Kostenlos im App Store und bei Google Play."
+      },
+      "step2": {
+        "title": "Lade Guthaben auf",
+        "body": "Lade NIM oder USDT auf."
+      },
+      "step3": {
+        "title": "Scannen & bezahlen",
+        "body": "Richte die Kamera auf einen unterstützten QR-Code und drücke PAY. Das war's."
+      },
+      "step4": {
+        "title": "Entdecke Mini-Apps",
+        "body": "Spiele, Shops und Tools auf Nimiq und EVM — direkt in der App."
+      },
+      "label": "Schnelle Zahlungen zuerst",
+      "body": "Nimiq Pay ist auf Geschwindigkeit ausgelegt. Kein Navigieren durch komplexe Menüs oder Trading-Oberflächen. App öffnen, scannen, bestätigen."
+    },
+    "miniapps": {
+      "eyebrow": "Mini-Apps",
+      "title": "Ein App-Store in deiner Wallet",
+      "body": "Spiele, Shops und Tools, die sich direkt in Nimiq Pay öffnen — live aus dem Community-Katalog geladen.",
+      "browseAll": "Alle {count} Mini-Apps entdecken"
+    },
+    "faq": {
+      "title": "Fragen, beantwortet",
+      "items": {
+        "cost": {
+          "q": "Was kostet Nimiq Pay?",
+          "a": "Nichts. Die App ist 100% kostenlos — kein Abo, keine versteckten Gebühren von Nimiq. Du zahlst nur die üblichen Netzwerkgebühren — und bei Nimiq sind sie null."
+        },
+        "custody": {
+          "q": "Wer verwahrt meine Kryptowährungen?",
+          "a": "Du. Nimiq Pay ist selbstverwahrend: Deine Schlüssel bleiben auf deinem Gerät."
+        },
+        "where": {
+          "q": "Wo kann ich damit bezahlen?",
+          "a": "Überall, wo BTC Lightning, die NAKA-Karte, Cryptopayment Link und andere unterstützte Systeme akzeptiert werden — Läden, Cafés, Online-Checkouts."
+        },
+        "currencies": {
+          "q": "Welche Kryptowährungen werden unterstützt?",
+          "a": "NIM und USDT."
+        },
+        "miniapps": {
+          "q": "Was sind Mini-Apps?",
+          "a": "Kleine Apps — Spiele, Shops, Tools — auf Nimiq und EVM-Chains, die sich in Nimiq Pay öffnen und deine Wallet für Zahlungen nutzen können."
+        },
+        "account": {
+          "q": "Brauche ich ein Konto?",
+          "a": "Kein Konto, keine Registrierung. App herunterladen, Guthaben aufladen, bezahlen."
+        }
+      }
+    },
+    "download": {
+      "title": "Bezahle noch heute mit Krypto",
+      "body": "Kostenlos, selbstverwahrend, in Minuten startklar."
+    },
+    "marquee": {
+      "label": "Unsere Grundwerte",
+      "title": "Was macht Nimiq Pay aus?",
+      "body": "Einfach, schnell und sicher. Wir haben ein Krypto-Bezahlerlebnis gebaut, das mit dem Tempo deines Lebens mithält.",
+      "selfCustodial": "Selbstverwahrung",
+      "miniApps": "Mini-Apps",
+      "zeroFees": "Null Gebühren",
+      "secureWallet": "Sichere Wallet",
+      "globalAccess": "Weltweiter Zugang",
+      "scanPay": "Scannen und bezahlen"
+    },
+    "assets": {
+      "label": "Assets & Netzwerke",
+      "title": "Dein Geld, deine Wahl",
+      "body": "Gib natives NIM oder stabiles USDT aus. Nimiq Pay übernimmt das komplexe Netzwerk-Routing, damit du dich auf den Bezahlvorgang konzentrieren kannst.",
+      "bestFor": "Ideal für",
+      "nim": {
+        "title": "Nimiq (NIM)",
+        "body": "Die native Währung des Nimiq-Ökosystems. Erlebe blitzschnelle, zensurresistente Zahlungen mit Gebühren nahe null.",
+        "bestFor": "Mikrozahlungen & den Alltag",
+        "items": {
+          "speed": "Native Geschwindigkeit & Abwicklung",
+          "potential": "Volatil, aber mit hohem Potenzial",
+          "payments": "Zahlungen ohne Zwischenhändler"
+        }
+      },
+      "usdt": {
+        "title": "Tether (USDT)",
+        "body": "Der vertrauenswürdigste Stablecoin der Welt. 1:1 an den US-Dollar gekoppelt — perfekt für größere Transaktionen, bei denen Stabilität zählt.",
+        "bestFor": "Sparen & größere Einkäufe",
+        "items": {
+          "stable": "Preisstabilität (1 USDT = 1 $)",
+          "acceptance": "Weltweite Akzeptanz",
+          "support": "Unterstützung für Polygon & Ethereum"
+        }
+      }
+    }
   },
   "home": {
-    "eyebrow": "Mini-App-Verzeichnis",
-    "title": "Mini-Apps für Nimiq Pay",
-    "subtitle": "Entdecke Apps und Spiele, die du direkt in Nimiq Pay öffnen kannst. Neue Einträge werden live aus der Community-Liste nimiq/awesome geladen.",
+    "eyebrow": "Mini-App-Ökosystem",
+    "title": "Ein App-Store in deiner Wallet",
+    "subtitle": "Entdecke eine Welt aus Spielen, Tools und Services, gebaut von der Community. Nutze Nimiq- und EVM-Chains direkt in Nimiq Pay.",
     "metaDescription": "Stöbere durch die Nimiq Pay Mini-Apps: Nimiq-eigene Spiele, EVM-Dapps und mehr. Öffne jede direkt in der Nimiq Pay App.",
     "empty": "Keine Mini-App passt zu deinem Filter.",
     "featured": {
@@ -22,7 +172,18 @@
     },
     "emptyFor": "Keine Ergebnisse für „{query}“.",
     "clearFilters": "Suche & Filter zurücksetzen",
-    "allApps": "Alle Mini-Apps"
+    "allApps": "Alle Mini-Apps",
+    "available": "{count}+ Apps verfügbar",
+    "updated": "Täglich aktualisiert",
+    "noResultsTitle": "Keine Apps für diese Suche gefunden",
+    "browseAll": "Alle Apps entdecken",
+    "suggestedCategories": "Vorgeschlagene Kategorien",
+    "suggestions": {
+      "shopping": "Shopping",
+      "utility": "Tools",
+      "gaming": "Gaming",
+      "finance": "Finanzen"
+    }
   },
   "filter": {
     "all": "Alle",
@@ -44,7 +205,13 @@
     "source": "Quellcode",
     "url": "Website",
     "related": "Weitere Mini-Apps",
-    "report": "Diese App melden"
+    "report": "Diese App melden",
+    "directory": "Verzeichnis",
+    "curated": "Kuratiert",
+    "aboutNamed": "Über {name}",
+    "supportedAssets": "Unterstützte Assets",
+    "category": "Kategorie",
+    "viewAll": "Alle Apps ansehen"
   },
   "report": {
     "title": "Diese Mini-App melden",
@@ -71,8 +238,9 @@
   },
   "open": {
     "title": "{name} öffnen",
-    "heading": "{name} wird in Nimiq Pay geöffnet…",
-    "hint": "Falls nach einer Sekunde nichts passiert, ist die Nimiq Pay App möglicherweise nicht installiert."
+    "heading": "{name} öffnen",
+    "hint": "Falls nach einer Sekunde nichts passiert, ist die Nimiq Pay App möglicherweise nicht installiert.",
+    "invite": "Mini-App-Einladung"
   },
   "cta": {
     "openInPay": "In Nimiq Pay öffnen",
@@ -80,7 +248,8 @@
     "installAndroid": "Auf Android installieren",
     "continueInBrowser": "Im Browser fortfahren",
     "appStore": "App Store",
-    "googlePlay": "Google Play"
+    "googlePlay": "Google Play",
+    "openInWallet": "In der Wallet öffnen"
   },
   "error": {
     "notFoundTitle": "Diese App ist nicht im Verzeichnis.",
@@ -93,5 +262,53 @@
   "footer": {
     "source": "Auflistung stammt aus",
     "aboutPay": "Über Nimiq Pay"
+  },
+  "submit": {
+    "title": "Reiche deine Mini-App ein",
+    "body": "Füge deine App zum Nimiq-Ökosystem hinzu. Beim Einreichen wird ein Pull Request im Repository nimiq/awesome geöffnet, den ein Maintainer prüft.",
+    "backToApps": "Zurück zu den Mini-Apps",
+    "fields": {
+      "name": "App-Name",
+      "type": "Typ",
+      "url": "App-URL",
+      "description": "Kurzbeschreibung",
+      "source": "Quellcode",
+      "developer": "Entwickler-Handle"
+    },
+    "placeholders": {
+      "name": "z. B. Nimiq Store",
+      "url": "https://meineapp.com",
+      "description": "Beschreibe deine App in maximal 200 Zeichen...",
+      "source": "https://github.com/du/deine-app",
+      "developer": "{'@'}deinhandle"
+    },
+    "types": {
+      "nimiq": "Nimiq",
+      "evm": "EVM"
+    },
+    "choose": "Typ auswählen",
+    "optional": "(optional)",
+    "descriptionHint": "{count}/200",
+    "visuals": "App-Icon",
+    "upload": {
+      "title": "App-Icon hochladen",
+      "body": "Nur SVG (max. 100 KB)",
+      "remove": "Entfernen",
+      "invalid": "Bitte wähle eine SVG-Datei.",
+      "tooLarge": "Das SVG darf höchstens 100 KB groß sein.",
+      "developerRequired": "Füge oben dein Entwickler-Handle hinzu, um ein Logo einzufügen."
+    },
+    "previewLabel": "Live-Vorschau",
+    "previewName": "Dein App-Name",
+    "previewDescription": "Die Beschreibung deiner App erscheint hier im Verzeichnis und in den Suchergebnissen.",
+    "tipTitle": "Tipps zum Einreichen",
+    "tipBody": "Verwende einen klaren Namen und eine prägnante Beschreibung. Ein einfaches SVG-Icon, das in kleiner Größe gut lesbar ist, erhöht die Klickrate.",
+    "submit": "Pull Request öffnen",
+    "submitting": "Pull Request wird geöffnet...",
+    "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "successTitle": "Pull Request geöffnet!",
+    "successBody": "Deine Mini-App ist jetzt auf nimiq/awesome geöffnet. Ein Maintainer prüft sie bald.",
+    "viewPr": "Pull Request ansehen",
+    "watchPrBody": "Maintainer können Änderungen anfordern oder Fragen zur Pull Request stellen – behalte sie im Blick und antworte, damit deine Einreichung vorankommt."
   }
 }

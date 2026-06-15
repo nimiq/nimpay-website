@@ -11,7 +11,7 @@ const { select, vtStyle } = useMiniAppViewTransition()
 
 <template>
   <motion.div
-    class="group block h-full rounded-2xl"
+    class="group block h-full rounded-[28px]"
     tabindex="-1"
     :while-hover="{ y: -4, scale: 1.015 }"
     :while-press="{ scale: 0.985 }"
@@ -20,30 +20,24 @@ const { select, vtStyle } = useMiniAppViewTransition()
     <NuxtLink
       :to="localePath(`/miniapps/${app.type}/${app.slug}`)"
       :aria-label="t('card.linkLabel', { name: app.name, type: themeForType(app.type).label })"
-      class="flex flex-col gap-4 h-full p-6 rounded-2xl bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline transition-[border-color,background] duration-200 group-hover:border-[var(--border-strong)] group-hover:bg-[var(--surface-2)] focus-ring"
+      class="flex flex-col gap-5 h-full min-h-[210px] p-6 rounded-[28px] bg-[var(--surface-1)] border border-[var(--border-subtle)] text-inherit no-underline shadow-[var(--card-shadow)] transition-[border-color,background,box-shadow] duration-200 group-hover:border-[var(--border-strong)] group-hover:bg-[var(--card-hover-bg)] group-hover:shadow-[0_28px_70px_rgba(32,35,75,0.12)] focus-ring"
       @pointerdown="select(app, 'grid')"
       @click="select(app, 'grid')"
     >
       <div class="flex items-start justify-between gap-3">
-        <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" :style="vtStyle(app, 'grid', 'logo')" />
+        <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="sm" :style="vtStyle(app, 'grid', 'logo')" />
         <MiniAppTypeBadge :type="app.type" :style="vtStyle(app, 'grid', 'badge')" />
       </div>
-      <div class="flex flex-col gap-1.5 flex-1">
-        <h3 class="m-0 text-lg font-bold leading-tight line-clamp-2 break-words" :style="vtStyle(app, 'grid', 'name')">
+      <div class="flex flex-col gap-2 flex-1">
+        <h3 class="m-0 text-xl font-black leading-tight line-clamp-2 break-words text-[var(--text-primary)]" :style="vtStyle(app, 'grid', 'name')">
           {{ app.name }}
         </h3>
-        <p v-if="app.developer" class="m-0 text-xs text-tertiary truncate" :style="vtStyle(app, 'grid', 'developer')">
+        <p v-if="app.developer" class="m-0 text-xs font-extrabold uppercase tracking-[0.08em] text-tertiary truncate" :style="vtStyle(app, 'grid', 'developer')">
           {{ app.developer }}
         </p>
-        <p class="mt-1 mb-0 text-sm leading-snug text-secondary line-clamp-2" :style="vtStyle(app, 'grid', 'description')">
+        <p class="mt-auto mb-0 text-sm leading-[1.45] text-secondary line-clamp-3" :style="vtStyle(app, 'grid', 'description')">
           {{ app.description }}
         </p>
-      </div>
-      <div class="flex items-center justify-end pt-3 mt-auto border-t border-[var(--border-subtle)]">
-        <span class="inline-flex items-center gap-1 text-[13px] font-bold text-[var(--text-primary)] transition-transform duration-200 group-hover:translate-x-0.5">
-          {{ t('card.details') }}
-          <span aria-hidden="true">→</span>
-        </span>
       </div>
     </NuxtLink>
   </motion.div>

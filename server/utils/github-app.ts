@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { importPKCS8, SignJWT } from 'jose'
 
 const GITHUB_API = 'https://api.github.com'
@@ -81,6 +82,109 @@ export async function createIssue(token: string, input: CreateIssueInput): Promi
         'X-GitHub-Api-Version': '2022-11-28',
       },
       body: { title: input.title, body: input.body, labels: input.labels },
+    },
+  )
+  return { url: res.html_url, number: res.number }
+}
+
+// ---------------------------------------------------------------------------
+// Pull-request helpers (require the App to have Contents: write + Pull
+// requests: write on the target repo). Used by server/api/submit-app.post.ts to
+// open a PR adding a mini app. Same auth/headers as createIssue; no Octokit.
+// ---------------------------------------------------------------------------
+
+function ghHeaders(token: string): Record<string, string> {
+  return {
+    'Authorization': `Bearer ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'User-Agent': USER_AGENT,
+    'X-GitHub-Api-Version': '2022-11-28',
+  }
+}
+
+interface RepoRef {
+  owner: string
+  repo: string
+}
+
+// Latest commit SHA of a branch.
+export async function getBranchSha(token: string, { owner, repo }: RepoRef, branch: string): Promise<string> {
+  const res = await $fetch<{ object: { sha: string } }>(
+    `${GITHUB_API}/repos/${owner}/${repo}/git/ref/heads/${branch}`,
+    { headers: ghHeaders(token) },
+  )
+  return res.object.sha
+}
+
+// Creates a new branch pointing at `fromSha`.
+export async function createBranch(token: string, { owner, repo }: RepoRef, branch: string, fromSha: string): Promise<void> {
+  await $fetch(`${GITHUB_API}/repos/${owner}/${repo}/git/refs`, {
+    method: 'POST',
+    headers: ghHeaders(token),
+    body: { ref: `refs/heads/${branch}`, sha: fromSha },
+  })
+}
+
+// Best-effort branch cleanup; never throws.
+export async function deleteBranch(token: string, { owner, repo }: RepoRef, branch: string): Promise<void> {
+  try {
+    await $fetch(`${GITHUB_API}/repos/${owner}/${repo}/git/refs/heads/${branch}`, {
+      method: 'DELETE',
+      headers: ghHeaders(token),
+    })
+  }
+  catch {
+    // ignore — cleanup is opportunistic
+  }
+}
+
+// Reads a file's UTF-8 content + blob sha at a given ref.
+export async function getFile(token: string, { owner, repo }: RepoRef, path: string, ref: string): Promise<{ content: string, sha: string }> {
+  const res = await $fetch<{ content: string, encoding: string, sha: string }>(
+    `${GITHUB_API}/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(ref)}`,
+    { headers: ghHeaders(token) },
+  )
+  const content = Buffer.from(res.content, res.encoding as BufferEncoding).toString('utf8')
+  return { content, sha: res.sha }
+}
+
+export interface PutFileInput {
+  path: string
+  content: string
+  message: string
+  branch: string
+  /** Blob sha of the file being replaced; omit when creating a new file. */
+  sha?: string
+}
+
+// Creates or updates a single file on `branch` (one commit per call).
+export async function putFile(token: string, { owner, repo }: RepoRef, input: PutFileInput): Promise<void> {
+  await $fetch(`${GITHUB_API}/repos/${owner}/${repo}/contents/${input.path}`, {
+    method: 'PUT',
+    headers: ghHeaders(token),
+    body: {
+      message: input.message,
+      content: Buffer.from(input.content, 'utf8').toString('base64'),
+      branch: input.branch,
+      ...(input.sha ? { sha: input.sha } : {}),
+    },
+  })
+}
+
+export interface CreatePullRequestInput {
+  title: string
+  head: string
+  base: string
+  body: string
+}
+
+export async function createPullRequest(token: string, { owner, repo }: RepoRef, input: CreatePullRequestInput): Promise<{ url: string, number: number }> {
+  const res = await $fetch<{ html_url: string, number: number }>(
+    `${GITHUB_API}/repos/${owner}/${repo}/pulls`,
+    {
+      method: 'POST',
+      headers: ghHeaders(token),
+      body: { title: input.title, head: input.head, base: input.base, body: input.body },
     },
   )
   return { url: res.html_url, number: res.number }
