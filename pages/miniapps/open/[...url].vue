@@ -51,10 +51,10 @@ definePageMeta({ robots: false })
 <template>
   <article
     v-if="app"
-    class="relative min-h-[calc(100vh-260px)] grid place-items-center overflow-hidden py-20 text-center"
+    class="relative min-h-[calc(100vh-260px)] grid place-items-center py-20 text-center"
   >
     <div
-      class="absolute inset-0 bg-[radial-gradient(circle_at_18%_50%,rgba(255,199,44,0.12),transparent_30%),radial-gradient(circle_at_82%_45%,rgba(20,122,243,0.12),transparent_32%)]"
+      class="absolute top-0 bottom-0 left-1/2 w-screen -translate-x-1/2 bg-[radial-gradient(circle_at_18%_50%,rgba(255,199,44,0.12),transparent_30%),radial-gradient(circle_at_82%_45%,rgba(20,122,243,0.12),transparent_32%)]"
       aria-hidden="true"
     />
 
