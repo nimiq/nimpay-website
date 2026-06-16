@@ -39,20 +39,13 @@ defineOgImage('SiteCard', {
             {{ t('home.subtitle') }}
           </p>
         </div>
-        <div class="flex items-center gap-4 justify-start lg:justify-end">
-          <div class="text-right">
-            <p class="m-0 text-base font-black text-[var(--text-primary)]">
-              {{ t('home.available', { count: apps.length }) }}
-            </p>
-            <p class="m-0 text-xs text-tertiary">
-              {{ t('home.updated') }}
-            </p>
-          </div>
-          <div class="w-12 h-12 rounded-2xl bg-[var(--surface-1)] border border-[var(--border-subtle)] grid place-items-center text-[var(--brand-yellow-deep)] shadow-[var(--card-shadow)]" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 7h.01M12 7h.01M17 7h.01M7 12h.01M12 12h.01M17 12h.01M7 17h.01M12 17h.01M17 17h.01" />
-            </svg>
-          </div>
+        <div class="text-left lg:text-right">
+          <p class="m-0 text-base font-black text-[var(--text-primary)]">
+            {{ t('home.available', { count: apps.length }) }}
+          </p>
+          <p class="m-0 text-xs text-tertiary">
+            {{ t('home.updated') }}
+          </p>
         </div>
       </div>
     </section>
@@ -87,17 +80,13 @@ defineOgImage('SiteCard', {
       v-model:type="type"
       :total="apps.length"
       :visible="filtered.length"
+      :is-filtering="isFiltering"
     />
 
     <section class="flex flex-col gap-6">
-      <div>
-        <h2 class="m-0 text-[28px] sm:text-[34px] font-black tracking-[-0.02em] text-[var(--text-primary)]">
-          {{ t('home.allApps') }}
-        </h2>
-        <p class="m-0 mt-1 text-sm text-tertiary">
-          {{ t('filter.count', { visible: filtered.length, total: apps.length }) }}
-        </p>
-      </div>
+      <h2 class="m-0 text-[28px] sm:text-[34px] font-black tracking-[-0.02em] text-[var(--text-primary)]">
+        {{ t('home.allApps') }}
+      </h2>
       <MiniAppGrid :apps="filtered" :query="search" @clear="clear" />
     </section>
   </div>

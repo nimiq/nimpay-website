@@ -34,12 +34,13 @@ const related = computed(() => (apps.value ?? [])
 
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-12 lg:gap-20 items-start">
       <div class="flex flex-col gap-10 min-w-0">
-        <header class="flex flex-col sm:flex-row gap-8 items-start">
-          <div>
+        <header class="flex flex-row gap-5 sm:gap-8 items-center">
+          <div class="flex flex-col items-center gap-3">
             <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" :style="vtDetailStyle(app, 'logo')" />
+            <MiniAppTypeBadge :type="app.type" class="!self-center sm:hidden" />
           </div>
           <div class="flex flex-col gap-4 min-w-0 pt-1">
-            <div class="flex flex-wrap gap-3 items-center">
+            <div class="hidden sm:flex flex-wrap gap-3 items-center">
               <MiniAppTypeBadge :type="app.type" :style="vtDetailStyle(app, 'badge')" />
             </div>
             <h1 class="m-0 text-[48px] sm:text-[64px] font-black leading-[0.95] tracking-[-0.03em] text-[var(--heading-contrast)]" :style="vtDetailStyle(app, 'name')">

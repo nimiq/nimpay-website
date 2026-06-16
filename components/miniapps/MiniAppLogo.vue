@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<{ logo: string, url: string, name: string
 const SIZE_CLASSES: Record<LogoSize, string> = {
   sm: 'w-14 h-14 rounded-[14px]',
   md: 'w-16 h-16 rounded-[14px]',
-  lg: 'w-28 h-28 rounded-3xl',
+  lg: 'w-20 h-20 rounded-3xl sm:w-28 sm:h-28',
 }
 
 const initialStage = (): LogoStage => props.logo ? 'logo' : 'favicon'

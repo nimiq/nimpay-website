@@ -267,6 +267,17 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
             <input id="submit-company" v-model="form.company" type="text" tabindex="-1" autocomplete="off">
           </div>
 
+          <!-- Mobile-only live preview: sits before the confirm/captcha/submit block (desktop keeps it in the sticky aside). -->
+          <div class="lg:hidden">
+            <MiniAppSubmitPreview
+              :logo="logo?.preview ?? ''"
+              :url="form.url"
+              :name="form.name"
+              :type="previewType"
+              :description="form.description"
+            />
+          </div>
+
           <label class="flex items-start gap-3 cursor-pointer">
             <input v-model="form.confirmation" type="checkbox" class="mt-0.5 w-4 h-4 shrink-0 accent-[var(--brand-yellow)] focus-ring rounded" required>
             <span class="text-[13px] leading-[1.5] text-secondary">{{ SUBMIT_CONFIRMATION }}</span>
@@ -295,22 +306,15 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
     </section>
 
     <aside class="lg:sticky lg:top-28 flex flex-col gap-8">
-      <div class="flex flex-col gap-4">
-        <p class="self-start m-0 px-3 py-1.5 rounded-full bg-[var(--chip-blue-bg)] text-[var(--chip-blue-text)] text-[11px] font-extrabold uppercase tracking-[0.12em]">
-          {{ t('submit.previewLabel') }}
-        </p>
-        <div class="rounded-[32px] bg-[var(--surface-1)] border border-[var(--border-subtle)] p-8 shadow-[var(--card-shadow)] flex items-center gap-6">
-          <MiniAppLogo :logo="logo?.preview ?? ''" :url="form.url" :name="form.name || 'A'" size="lg" />
-          <div class="flex flex-col gap-2 min-w-0">
-            <MiniAppTypeBadge v-if="previewType" :type="previewType" variant="dot" />
-            <h2 class="m-0 text-2xl font-black text-[var(--heading-contrast)] truncate">
-              {{ form.name || t('submit.previewName') }}
-            </h2>
-            <p class="m-0 text-sm text-secondary leading-[1.45] line-clamp-3">
-              {{ form.description || t('submit.previewDescription') }}
-            </p>
-          </div>
-        </div>
+      <!-- Desktop preview lives in the sticky aside; on mobile it renders inside the form instead. -->
+      <div class="hidden lg:block">
+        <MiniAppSubmitPreview
+          :logo="logo?.preview ?? ''"
+          :url="form.url"
+          :name="form.name"
+          :type="previewType"
+          :description="form.description"
+        />
       </div>
 
       <div class="rounded-[24px] bg-[var(--brand-navy)] text-white p-6 shadow-[var(--card-shadow)]">

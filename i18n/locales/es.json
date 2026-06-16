@@ -8,7 +8,9 @@
     "blog": "Blog",
     "developers": "Desarrolladores",
     "downloadApp": "Descargar la app",
-    "submitApp": "Enviar app"
+    "submitApp": "Enviar app",
+    "menu": "Menú",
+    "closeMenu": "Cerrar menú"
   },
   "landing": {
     "metaTitle": "Nimiq Pay — Pagos cripto para el mundo real",
@@ -76,7 +78,10 @@
         "body": "Juegos, tiendas y herramientas en Nimiq y EVM, directamente dentro de la app."
       },
       "label": "Pagos rápidos ante todo",
-      "body": "Nimiq Pay está hecha para la velocidad. Sin navegar por menús complejos ni interfaces de trading. Abre la app, escanea y confirma."
+      "body": "Nimiq Pay está hecha para la velocidad. Sin navegar por menús complejos ni interfaces de trading. Abre la app, escanea y confirma.",
+      "goToStep": "Ir a {step}",
+      "prev": "Paso anterior",
+      "next": "Paso siguiente"
     },
     "miniapps": {
       "eyebrow": "Mini Apps",

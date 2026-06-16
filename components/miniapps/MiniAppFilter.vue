@@ -4,7 +4,7 @@ import { LayoutGroup, motion } from 'motion-v'
 import { Label, ToggleGroupItem, ToggleGroupRoot } from 'reka-ui'
 import { backgroundForFilter } from '~/utils/miniAppType'
 
-const props = defineProps<{ search: string, type: TypeFilter, total: number, visible: number }>()
+const props = defineProps<{ search: string, type: TypeFilter, total: number, visible: number, isFiltering: boolean }>()
 const emit = defineEmits<{
   'update:search': [value: string]
   'update:type': [value: TypeFilter]
@@ -43,13 +43,13 @@ function onTypeChange(value: unknown) {
         >
       </label>
     </Label>
-    <div class="overflow-x-auto scrollbar-none -mx-1 px-1 lg:overflow-visible">
+    <div class="w-full lg:w-auto">
       <LayoutGroup>
         <ToggleGroupRoot
           type="single"
           :model-value="type"
           :aria-label="t('filter.typeLabel')"
-          class="inline-flex p-1.5 bg-[var(--surface-2)] rounded-2xl min-h-14"
+          class="flex w-full lg:inline-flex lg:w-auto p-1.5 bg-[var(--surface-2)] rounded-2xl min-h-14"
           @update:model-value="onTypeChange"
         >
           <ToggleGroupItem
@@ -59,7 +59,7 @@ function onTypeChange(value: unknown) {
             :value="opt.value"
           >
             <motion.button
-              class="relative px-8 py-3 min-h-11 rounded-xl border-none bg-transparent text-sm font-extrabold cursor-pointer outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--brand-yellow)]"
+              class="relative flex-1 lg:flex-none px-2 lg:px-8 py-3 min-h-11 rounded-xl border-none bg-transparent text-sm font-extrabold text-center cursor-pointer outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--brand-yellow)]"
               :class="type === opt.value ? 'text-white' : 'text-tertiary'"
               :while-press="{ scale: 0.93 }"
               :transition="{ type: 'spring', stiffness: 400, damping: 22 }"
@@ -78,8 +78,8 @@ function onTypeChange(value: unknown) {
         </ToggleGroupRoot>
       </LayoutGroup>
     </div>
-    <p role="status" class="lg:col-span-2 m-0 text-[13px] whitespace-nowrap text-tertiary">
-      {{ t('filter.count', { visible, total }) }}
-    </p>
+    <div role="status" class="lg:col-span-2 m-0 text-[13px] whitespace-nowrap text-tertiary">
+      <span v-if="isFiltering">{{ t('filter.count', { visible, total }) }}</span>
+    </div>
   </div>
 </template>
