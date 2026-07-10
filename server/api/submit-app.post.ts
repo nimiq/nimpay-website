@@ -27,7 +27,6 @@ const submitSchema = z.object({
   type: z.enum(MINI_APP_TYPES),
   description: z.string().trim().min(1).max(MAX_DESCRIPTION_LENGTH),
   source: httpsUrl.optional(),
-  developer: z.string().trim().min(1, 'Developer handle is required').max(100),
   logoSvg: z.string().optional(),
   confirmation: z.literal(true),
   turnstileToken: z.string().min(1),
@@ -38,15 +37,11 @@ const submitSchema = z.object({
 // Source entry shape — the catalog model minus the build-generated `slug`.
 type MiniAppEntry = Omit<MiniApp, 'slug'>
 
-// Normalize a GitHub handle to the "@name" form stored in the JSON.
-function normalizeDeveloper(value?: string): string | null {
-  const v = value?.trim()
-  if (!v) return null
-  return v.startsWith('@') ? v : `@${v}`
-}
-
 function buildPrBody(entry: MiniAppEntry): string {
   return [
+    // The mention subscribes the submitter to maintainer replies.
+    `Mini app submitted by ${entry.developer}.`,
+    '',
     '## New Mini App Submission',
     '',
     '### App Details',
@@ -65,6 +60,12 @@ function buildPrBody(entry: MiniAppEntry): string {
 }
 
 export default defineEventHandler(async (event) => {
+  const { user } = await requireUserSession(event)
+
+  if (getHeader(event, 'origin') !== getRequestURL(event).origin) {
+    throw createError({ statusCode: 403, statusMessage: 'Request rejected' })
+  }
+
   const body = await readBody(event)
   const parsed = submitSchema.safeParse(body)
   if (!parsed.success) {
@@ -91,7 +92,7 @@ export default defineEventHandler(async (event) => {
   const baseBranch = config.submitRepoBranch
 
   const slug = generateSlug(data.name)
-  const developer = normalizeDeveloper(data.developer)
+  const developer = `@${user.login}`
 
   // Sanitize the logo up front; derive its filename per nimiq/awesome's convention.
   let logo: { svg: string, fileName: string } | null = null
@@ -103,7 +104,7 @@ export default defineEventHandler(async (event) => {
     catch {
       throw createError({ statusCode: 400, statusMessage: 'Invalid SVG logo' })
     }
-    const developerSlug = generateSlug((developer ?? '').replace(/^@/, ''))
+    const developerSlug = generateSlug(user.login)
     logo = { svg, fileName: `${developerSlug}-${slug}.svg` }
   }
 
@@ -151,6 +152,9 @@ export default defineEventHandler(async (event) => {
     else apps.splice(insertAt, 0, entry)
     const updatedJson = `${JSON.stringify(apps, null, 2)}\n`
 
+    // Link the commits to the participant without requesting their email.
+    const author = { name: user.name, email: `${user.id}+${user.login}@users.noreply.github.com` }
+
     branch = `submit-app/${slug}-${globalThis.crypto.randomUUID().slice(0, 8)}`
     await createBranch(token, repo, branch, baseSha)
 
@@ -160,6 +164,7 @@ export default defineEventHandler(async (event) => {
       message: `feat: add ${entry.name} mini app`,
       branch,
       sha: file.sha,
+      author,
     })
 
     if (logo) {
@@ -168,6 +173,7 @@ export default defineEventHandler(async (event) => {
         content: logo.svg,
         message: `feat: add ${entry.name} logo`,
         branch,
+        author,
       })
     }
 

@@ -270,7 +270,7 @@
   },
   "submit": {
     "title": "Soumettez votre Mini App",
-    "body": "Ajoutez votre app à l'écosystème Nimiq. La soumission ouvre une pull request sur le dépôt nimiq/awesome pour qu'un mainteneur l'examine.",
+    "body": "Ajoutez votre app au catalogue de mini apps de Nimiq Pay. Nous ouvrirons une pull request dans nimiq/awesome pour qu'un mainteneur l'examine.",
     "backToApps": "Retour aux mini apps",
     "fields": {
       "name": "Nom de l'app",
@@ -314,6 +314,22 @@
     "successTitle": "Pull request ouverte !",
     "successBody": "Votre mini app est maintenant ouverte sur nimiq/awesome. Un mainteneur l'examinera bientôt.",
     "viewPr": "Voir la pull request",
-    "watchPrBody": "Les mainteneurs peuvent demander des modifications ou poser des questions sur la pull request — gardez-la à l'œil et répondez pour que votre soumission avance."
+    "watchPrBody": "GitHub vous préviendra si un mainteneur commente ou demande des modifications. Répondez-y pour poursuivre l'examen.",
+    "competition": {
+      "title": "Vous participez à la Mini Apps Competition ?",
+      "body": "Les candidatures au concours passent par un autre formulaire. Cette page ajoute uniquement votre app au catalogue de Nimiq Pay.",
+      "cta": "Ouvrir le formulaire du concours"
+    },
+    "auth": {
+      "gateTitle": "Connectez-vous pour soumettre votre app",
+      "gateBody": "Connectez-vous avec GitHub pour apparaître comme développeur. GitHub vous préviendra lorsqu'un mainteneur répondra.",
+      "continue": "Continuer avec GitHub",
+      "perms": "Nous utilisons votre nom d'utilisateur GitHub et votre avatar pour identifier votre soumission. La connexion ne nous donne pas accès à vos dépôts.",
+      "signedInAs": "Connecté en tant que {handle}",
+      "signOut": "Se déconnecter",
+      "lockedHint": "Depuis votre profil GitHub",
+      "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+      "oauthError": "La connexion GitHub n'a pas abouti. Veuillez réessayer."
+    }
   }
 }

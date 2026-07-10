@@ -270,7 +270,7 @@
   },
   "submit": {
     "title": "Submit your Mini App",
-    "body": "Add your app to the Nimiq ecosystem. Submitting opens a pull request on the nimiq/awesome repository for a maintainer to review.",
+    "body": "Add your app to the Nimiq Pay mini apps catalog. We'll open a pull request in nimiq/awesome for review.",
     "backToApps": "Back to mini apps",
     "fields": {
       "name": "App name",
@@ -314,6 +314,22 @@
     "successTitle": "Pull request opened!",
     "successBody": "Your mini app submission is now open on nimiq/awesome. A maintainer will review it soon.",
     "viewPr": "View pull request",
-    "watchPrBody": "Maintainers may request changes or ask questions on the pull request — keep an eye on it and reply so your submission keeps moving."
+    "watchPrBody": "GitHub will notify you if a maintainer comments or requests changes. Reply there to continue the review.",
+    "competition": {
+      "title": "Entering the Mini Apps Competition?",
+      "body": "Competition entries use a separate form. This page only adds your app to the Nimiq Pay catalog.",
+      "cta": "Open competition form"
+    },
+    "auth": {
+      "gateTitle": "Sign in to submit your app",
+      "gateBody": "Sign in with GitHub so we can list you as the developer. GitHub will notify you when maintainers reply.",
+      "continue": "Continue with GitHub",
+      "perms": "We use your GitHub username and avatar to identify your submission. Signing in doesn't give us access to your repositories.",
+      "signedInAs": "Signed in as {handle}",
+      "signOut": "Sign out",
+      "lockedHint": "From your GitHub profile",
+      "sessionExpired": "Your session expired. Please sign in again.",
+      "oauthError": "GitHub sign-in didn't complete. Please try again."
+    }
   }
 }

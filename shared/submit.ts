@@ -25,22 +25,13 @@ export function generateSlug(name: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-// The logo filename embeds the developer handle ({developer}-{name}.svg), so a
-// logo can't be committed without one. Shared by the client form and the server
-// schema so the rule has a single definition.
-export function requiresDeveloper(payload: { logoSvg?: string, developer?: string }): boolean {
-  return Boolean(payload.logoSvg) && !payload.developer?.trim()
-}
-
 export interface SubmitPayload {
   name: string
   url: string
   type: MiniAppType
   description: string
   source?: string
-  /** GitHub developer handle. Required — every entry is credited to a developer. */
-  developer: string
-  /** Raw SVG markup of the app logo. Optional; requires `developer` when present. */
+  /** Raw SVG markup of the app logo. Optional. */
   logoSvg?: string
   confirmation: true
   turnstileToken: string

@@ -22,6 +22,7 @@
     "motion-v": "^2.2.1",
     "nimiq-css": "^1.0.0-beta.162",
     "nuxt": "^4.4.6",
+    "nuxt-auth-utils": "^0.5.29",
     "nuxt-og-image": "^6.6.0",
     "reka-ui": "^2.9.7",
     "satori": "^0.26.0",

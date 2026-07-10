@@ -270,7 +270,7 @@
   },
   "submit": {
     "title": "Submete a tua Mini App",
-    "body": "Adiciona a tua app ao ecossistema Nimiq. Ao submeter, é aberto um pull request no repositório nimiq/awesome para um mantenedor rever.",
+    "body": "Adiciona a tua app ao catálogo de mini apps do Nimiq Pay. Abriremos um pull request no nimiq/awesome para revisão.",
     "backToApps": "Voltar às mini apps",
     "fields": {
       "name": "Nome da app",
@@ -314,6 +314,22 @@
     "successTitle": "Pull request aberto!",
     "successBody": "A tua mini app já está aberta em nimiq/awesome. Um mantenedor vai revê-la em breve.",
     "viewPr": "Ver pull request",
-    "watchPrBody": "Os responsáveis podem pedir alterações ou fazer perguntas na pull request — fica atento e responde para a tua submissão continuar a avançar."
+    "watchPrBody": "O GitHub avisa-te se um mantenedor comentar ou pedir alterações. Responde aí para continuar a revisão.",
+    "competition": {
+      "title": "Vais participar na Mini Apps Competition?",
+      "body": "As participações no concurso usam outro formulário. Esta página apenas adiciona a tua app ao catálogo do Nimiq Pay.",
+      "cta": "Abrir formulário do concurso"
+    },
+    "auth": {
+      "gateTitle": "Inicia sessão para submeter a tua app",
+      "gateBody": "Inicia sessão com o GitHub para apareceres como programador. O GitHub avisa-te quando os mantenedores responderem.",
+      "continue": "Continuar com o GitHub",
+      "perms": "Usamos o teu nome de utilizador e avatar do GitHub para identificar a tua submissão. Iniciar sessão não nos dá acesso aos teus repositórios.",
+      "signedInAs": "Sessão iniciada como {handle}",
+      "signOut": "Terminar sessão",
+      "lockedHint": "Do teu perfil do GitHub",
+      "sessionExpired": "A tua sessão expirou. Inicia sessão novamente.",
+      "oauthError": "O início de sessão com o GitHub não foi concluído. Tenta novamente."
+    }
   }
 }

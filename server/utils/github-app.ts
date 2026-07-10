@@ -155,6 +155,8 @@ export interface PutFileInput {
   branch: string
   /** Blob sha of the file being replaced; omit when creating a new file. */
   sha?: string
+  /** Attributes the commit to this author (the App token stays the committer). */
+  author?: { name: string, email: string }
 }
 
 // Creates or updates a single file on `branch` (one commit per call).
@@ -167,6 +169,7 @@ export async function putFile(token: string, { owner, repo }: RepoRef, input: Pu
       content: Buffer.from(input.content, 'utf8').toString('base64'),
       branch: input.branch,
       ...(input.sha ? { sha: input.sha } : {}),
+      ...(input.author ? { author: input.author } : {}),
     },
   })
 }

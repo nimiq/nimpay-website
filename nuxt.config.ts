@@ -21,7 +21,7 @@ const NON_DEFAULT_LOCALES = I18N_LOCALES.filter(l => l.code !== DEFAULT_LOCALE).
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-01',
   ssr: true,
-  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', 'nuxt-og-image', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt', '@nuxtjs/turnstile'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap', 'nuxt-og-image', '@nuxt/eslint', 'motion-v/nuxt', '@unocss/nuxt', '@nuxtjs/turnstile', 'nuxt-auth-utils'],
 
   // Cloudflare Turnstile: secret read from NUXT_TURNSTILE_SECRET_KEY at runtime
   turnstile: {
@@ -31,6 +31,12 @@ export default defineNuxtConfig({
   // Secrets injected as Cloudflare Worker secrets (NUXT_*-prefixed). Repo target
   // overridable via env for testing against a scratch repo before nimiq/awesome.
   runtimeConfig: {
+    // Submit login uses the GitHub App's user-to-server flow via nuxt-auth-utils:
+    // it reads NUXT_OAUTH_GITHUB_CLIENT_ID/_SECRET (the App's client credentials)
+    // and NUXT_SESSION_PASSWORD to seal the identity cookie. Login is identity
+    // only — the user token is discarded; repo writes run as the App installation
+    // (githubApp* below). Scope [] because GitHub Apps ignore OAuth scopes.
+    oauth: { github: { clientId: '', clientSecret: '' } },
     githubAppId: '',
     githubAppPrivateKey: '',
     githubAppInstallationId: '',
@@ -118,6 +124,9 @@ export default defineNuxtConfig({
         // Worker secrets, never here.
         vars: {
           NUXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+          // GitHub App OAuth client id (non-secret; appears in the login redirect).
+          // The client secret + NUXT_SESSION_PASSWORD stay as Worker secrets.
+          NUXT_OAUTH_GITHUB_CLIENT_ID: process.env.NUXT_OAUTH_GITHUB_CLIENT_ID,
           NUXT_REPORT_REPO_OWNER: process.env.NUXT_REPORT_REPO_OWNER || 'nimiq',
           NUXT_REPORT_REPO_NAME: process.env.NUXT_REPORT_REPO_NAME || 'awesome',
           NUXT_SUBMIT_REPO_OWNER: process.env.NUXT_SUBMIT_REPO_OWNER || 'nimiq',

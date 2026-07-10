@@ -270,7 +270,7 @@
   },
   "submit": {
     "title": "Reiche deine Mini-App ein",
-    "body": "Füge deine App zum Nimiq-Ökosystem hinzu. Beim Einreichen wird ein Pull Request im Repository nimiq/awesome geöffnet, den ein Maintainer prüft.",
+    "body": "Füge deine App zum Mini-Apps-Katalog von Nimiq Pay hinzu. Wir öffnen einen Pull Request in nimiq/awesome, den ein Maintainer prüft.",
     "backToApps": "Zurück zu den Mini-Apps",
     "fields": {
       "name": "App-Name",
@@ -314,6 +314,22 @@
     "successTitle": "Pull Request geöffnet!",
     "successBody": "Deine Mini-App ist jetzt auf nimiq/awesome geöffnet. Ein Maintainer prüft sie bald.",
     "viewPr": "Pull Request ansehen",
-    "watchPrBody": "Maintainer können Änderungen anfordern oder Fragen zur Pull Request stellen – behalte sie im Blick und antworte, damit deine Einreichung vorankommt."
+    "watchPrBody": "GitHub benachrichtigt dich, wenn ein Maintainer kommentiert oder Änderungen anfragt. Antworte dort, damit die Prüfung weitergeht.",
+    "competition": {
+      "title": "Nimmst du an der Mini Apps Competition teil?",
+      "body": "Wettbewerbsbeiträge werden über ein separates Formular eingereicht. Diese Seite fügt deine App nur zum Nimiq Pay-Katalog hinzu.",
+      "cta": "Wettbewerbsformular öffnen"
+    },
+    "auth": {
+      "gateTitle": "Melde dich an, um deine App einzureichen",
+      "gateBody": "Melde dich mit GitHub an, damit wir dich als Entwickler angeben können. GitHub benachrichtigt dich, wenn ein Maintainer antwortet.",
+      "continue": "Mit GitHub fortfahren",
+      "perms": "Wir verwenden deinen GitHub-Benutzernamen und Avatar, um deine Einreichung zuzuordnen. Durch die Anmeldung erhalten wir keinen Zugriff auf deine Repositorys.",
+      "signedInAs": "Angemeldet als {handle}",
+      "signOut": "Abmelden",
+      "lockedHint": "Aus deinem GitHub-Profil",
+      "sessionExpired": "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.",
+      "oauthError": "Die GitHub-Anmeldung wurde nicht abgeschlossen. Bitte versuche es erneut."
+    }
   }
 }
