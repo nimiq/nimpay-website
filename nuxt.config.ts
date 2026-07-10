@@ -105,9 +105,15 @@ export default defineNuxtConfig({
   // Report form is a runtime page (Turnstile + POST); keep crawlLinks from
   // statically rendering it per mini app.
   routeRules: {
+    // OAuth and other API handlers must always execute in the Worker.
+    '/api/**': { prerender: false },
     '/miniapps/*/*/report': { prerender: false },
     // Submit form is runtime too (Turnstile + POST that opens a PR).
     '/miniapps/submit': { prerender: false },
+    ...Object.fromEntries(NON_DEFAULT_LOCALES.map(locale => [
+      `/${locale}/miniapps/submit`,
+      { prerender: false },
+    ])),
   },
 
   nitro: {
