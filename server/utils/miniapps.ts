@@ -1,12 +1,15 @@
+import type { MiniAppCategory, MiniAppType } from '../../utils/miniApps'
 import { hostOf, normalizeHost } from '../../utils/deeplink'
+import { isMiniAppCategory, MINI_APP_TYPES } from '../../utils/miniApps'
 
-export const MINI_APP_TYPES = ['nimiq', 'evm'] as const
-export type MiniAppType = (typeof MINI_APP_TYPES)[number]
+export { isMiniAppType, MINI_APP_TYPES } from '../../utils/miniApps'
+export type { MiniAppCategory, MiniAppType } from '../../utils/miniApps'
 
 export interface MiniApp {
   name: string
   url: string
   type: MiniAppType
+  category: MiniAppCategory
   description: string
   logo: string
   source: string | null
@@ -32,7 +35,11 @@ async function load(): Promise<MiniApp[]> {
   const data = (await res.json()) as MiniAppsData
   const flat: MiniApp[] = []
   for (const type of MINI_APP_TYPES) {
-    for (const entry of data[type] ?? []) flat.push({ ...entry, type })
+    for (const entry of data[type] ?? []) {
+      if (!isMiniAppCategory(entry.category))
+        throw new Error(`Mini app "${entry.name}" has an invalid category`)
+      flat.push({ ...entry, type })
+    }
   }
   return flat
 }
@@ -50,8 +57,4 @@ export function findMiniApp(apps: MiniApp[], type: string, slug: string): MiniAp
 export function findByHost(apps: MiniApp[], host: string): MiniApp | undefined {
   const target = normalizeHost(host)
   return apps.find(a => hostOf(a.url) === target)
-}
-
-export function isMiniAppType(value: string): value is MiniAppType {
-  return (MINI_APP_TYPES as readonly string[]).includes(value)
 }

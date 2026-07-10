@@ -1,10 +1,9 @@
-import type { MiniAppType } from '~~/server/utils/miniapps'
-import { MINI_APP_TYPES } from '~~/server/utils/miniapps'
+import type { MiniAppCategory, MiniAppType } from '../utils/miniApps'
+import { MINI_APP_CATEGORIES, MINI_APP_TYPES } from '../utils/miniApps'
 
-// Single source of truth for the type list lives in server/utils/miniapps.ts;
-// re-export so submit code has one import surface.
-export { MINI_APP_TYPES }
-export type { MiniAppType }
+// Re-export the shared mini-app taxonomy so submit code has one import surface.
+export { MINI_APP_CATEGORIES, MINI_APP_TYPES }
+export type { MiniAppCategory, MiniAppType }
 
 // build.ts validates `description.length <= 200`.
 export const MAX_DESCRIPTION_LENGTH = 200
@@ -29,6 +28,7 @@ export interface SubmitPayload {
   name: string
   url: string
   type: MiniAppType
+  category: MiniAppCategory
   description: string
   source?: string
   /** Raw SVG markup of the app logo. Optional. */

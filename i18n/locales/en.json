@@ -190,13 +190,25 @@
       "finance": "Finance"
     }
   },
+  "categories": {
+    "defi": "DeFi",
+    "exchanges": "Exchanges",
+    "games": "Games",
+    "marketplaces": "Marketplaces",
+    "nfts": "NFTs",
+    "social": "Social",
+    "utilities": "Utilities",
+    "wallets": "Wallets"
+  },
   "filter": {
     "all": "All",
     "nimiq": "Nimiq",
     "evm": "EVM",
     "searchLabel": "Search mini apps",
-    "searchPlaceholder": "Search by name, description, developer…",
+    "searchPlaceholder": "Search by name, category, description, developer…",
     "typeLabel": "Filter by chain type",
+    "categoryLabel": "Filter by category",
+    "allCategories": "All categories",
     "count": "Showing {visible} of {total}"
   },
   "card": {
@@ -215,6 +227,7 @@
     "curated": "Curated",
     "aboutNamed": "About {name}",
     "supportedAssets": "Supported assets",
+    "network": "Network",
     "category": "Category",
     "viewAll": "View all apps"
   },
@@ -275,6 +288,7 @@
     "fields": {
       "name": "App name",
       "type": "Type",
+      "category": "Category",
       "url": "App URL",
       "description": "Short description",
       "source": "Source code",
@@ -292,6 +306,8 @@
       "evm": "EVM"
     },
     "choose": "Select a type",
+    "chooseCategory": "Select a category",
+    "categoryHint": "Choose the app's one primary purpose.",
     "optional": "(optional)",
     "descriptionHint": "{count}/200",
     "visuals": "App icon",

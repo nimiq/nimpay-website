@@ -7,7 +7,7 @@ const { data: apps, status } = await useMiniApps()
 const featured = computed(() => apps.value.filter(a => a.featured))
 const sorted = computed(() => featuredFirst(apps.value))
 
-const { search, type, filtered, isFiltering, clear } = useMiniAppFilter(sorted)
+const { search, type, category, filtered, isFiltering, clear } = useMiniAppFilter(sorted)
 const isPending = computed(() => status.value === 'pending')
 
 useSeoMeta({
@@ -78,6 +78,7 @@ defineOgImage('SiteCard', {
     <MiniAppFilter
       v-model:search="search"
       v-model:type="type"
+      v-model:category="category"
       :total="apps.length"
       :visible="filtered.length"
       :is-filtering="isFiltering"

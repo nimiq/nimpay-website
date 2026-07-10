@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { MiniAppType, SubmitPayload } from '~~/shared/submit'
-import { MAX_DESCRIPTION_LENGTH, MAX_LOGO_BYTES, SUBMIT_CONFIRMATION } from '~~/shared/submit'
+import type { MiniAppCategory, MiniAppType, SubmitPayload } from '~~/shared/submit'
+import { MAX_DESCRIPTION_LENGTH, MAX_LOGO_BYTES, MINI_APP_CATEGORIES, SUBMIT_CONFIRMATION } from '~~/shared/submit'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -23,6 +23,7 @@ const form = reactive({
   name: '',
   url: '',
   type: '' as '' | MiniAppType,
+  category: '' as '' | MiniAppCategory,
   description: '',
   source: '',
   confirmation: false,
@@ -43,11 +44,13 @@ const descriptionLength = computed(() => form.description.trim().length)
 const descriptionOver = computed(() => descriptionLength.value > MAX_DESCRIPTION_LENGTH)
 
 const previewType = computed(() => form.type || null)
+const previewCategory = computed(() => form.category || null)
 
 const canSubmit = computed(() => Boolean(
   form.name.trim()
   && form.url.trim().startsWith('https://')
   && form.type
+  && form.category
   && form.description.trim()
   && !descriptionOver.value
   && form.confirmation
@@ -99,6 +102,7 @@ async function onSubmit() {
     name: form.name.trim(),
     url: form.url.trim(),
     type: form.type as MiniAppType,
+    category: form.category as MiniAppCategory,
     description: form.description.trim(),
     source: form.source.trim() || undefined,
     logoSvg: logo.value?.svg || undefined,
@@ -255,6 +259,19 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
               </div>
 
               <div class="flex flex-col gap-2">
+                <label for="submit-category" :class="labelClass">{{ t('submit.fields.category') }}</label>
+                <select id="submit-category" v-model="form.category" :class="field" aria-describedby="submit-category-hint" required>
+                  <option value="" disabled>
+                    {{ t('submit.chooseCategory') }}
+                  </option>
+                  <option v-for="categoryOption in MINI_APP_CATEGORIES" :key="categoryOption" :value="categoryOption">
+                    {{ t(`categories.${categoryOption}`) }}
+                  </option>
+                </select>
+                <span id="submit-category-hint" class="text-[12px] leading-[1.45] text-tertiary">{{ t('submit.categoryHint') }}</span>
+              </div>
+
+              <div class="sm:col-span-2 flex flex-col gap-2">
                 <label for="submit-url" :class="labelClass">{{ t('submit.fields.url') }}</label>
                 <input id="submit-url" v-model="form.url" type="url" inputmode="url" :placeholder="t('submit.placeholders.url')" :class="field" required>
               </div>
@@ -342,6 +359,7 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
                 :url="form.url"
                 :name="form.name"
                 :type="previewType"
+                :category="previewCategory"
                 :description="form.description"
               />
             </div>
@@ -381,6 +399,7 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
             :url="form.url"
             :name="form.name"
             :type="previewType"
+            :category="previewCategory"
             :description="form.description"
           />
         </div>

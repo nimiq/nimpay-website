@@ -3,6 +3,7 @@ import { z } from 'zod'
 import {
   generateSlug,
   MAX_DESCRIPTION_LENGTH,
+  MINI_APP_CATEGORIES,
   MINI_APP_TYPES,
 } from '~~/shared/submit'
 import {
@@ -25,6 +26,7 @@ const submitSchema = z.object({
   name: z.string().trim().min(1).max(80),
   url: httpsUrl,
   type: z.enum(MINI_APP_TYPES),
+  category: z.enum(MINI_APP_CATEGORIES),
   description: z.string().trim().min(1).max(MAX_DESCRIPTION_LENGTH),
   source: httpsUrl.optional(),
   logoSvg: z.string().optional(),
@@ -49,6 +51,7 @@ function buildPrBody(entry: MiniAppEntry): string {
     `- **Name**: ${entry.name}`,
     `- **URL**: ${entry.url}`,
     `- **Type**: ${entry.type}`,
+    `- **Category**: ${entry.category}`,
     `- **Description**: ${entry.description}`,
     `- **Logo**: ${entry.logo || 'Not provided'}`,
     `- **Source Code**: ${entry.source ?? 'N/A'}`,
@@ -112,6 +115,7 @@ export default defineEventHandler(async (event) => {
     name: data.name.trim(),
     url: data.url.trim(),
     type: data.type,
+    category: data.category,
     description: data.description.trim(),
     logo: logo ? `./assets/mini-apps/${logo.fileName}` : '',
     source: data.source?.trim() || null,

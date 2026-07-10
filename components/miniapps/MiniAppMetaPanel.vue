@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MiniApp } from '~~/server/utils/miniapps'
 import { hostOf } from '~~/utils/deeplink'
+import { labelForType } from '~/utils/miniAppType'
 
 const props = defineProps<{ app: MiniApp, reportOnly?: boolean }>()
 const { t } = useI18n()
@@ -8,11 +9,28 @@ const localePath = useLocalePath()
 
 const websiteHost = computed(() => hostOf(props.app.url) ?? props.app.url)
 const sourceLabel = computed(() => props.app.source?.replace(/^https?:\/\//, '') ?? null)
+const typeLabel = computed(() => labelForType(props.app.type))
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
     <dl v-if="!reportOnly" class="m-0 rounded-[28px] border border-[var(--border-subtle)] bg-[var(--surface-1)] shadow-[var(--card-shadow)] overflow-hidden">
+      <div class="flex justify-between items-center gap-3 px-5 py-4 border-b border-[var(--border-subtle)]">
+        <dt class="text-[11px] font-extrabold tracking-[0.1em] uppercase text-label">
+          {{ t('detail.network') }}
+        </dt>
+        <dd class="m-0 text-[13px] font-bold">
+          {{ typeLabel }}
+        </dd>
+      </div>
+      <div class="flex justify-between items-center gap-3 px-5 py-4 border-b border-[var(--border-subtle)]">
+        <dt class="text-[11px] font-extrabold tracking-[0.1em] uppercase text-label">
+          {{ t('detail.category') }}
+        </dt>
+        <dd class="m-0">
+          <MiniAppCategoryBadge :category="app.category" />
+        </dd>
+      </div>
       <div class="flex justify-between items-center gap-3 px-5 py-4 border-b border-[var(--border-subtle)] min-w-0">
         <dt class="text-[11px] font-extrabold tracking-[0.1em] uppercase text-label">
           {{ t('detail.url') }}

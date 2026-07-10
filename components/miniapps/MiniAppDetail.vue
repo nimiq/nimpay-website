@@ -16,7 +16,7 @@ const websiteHost = computed(() => hostOf(props.app.url) ?? props.app.url)
 const sourceLabel = computed(() => props.app.source?.replace(/^https?:\/\//, '') ?? null)
 
 const related = computed(() => (apps.value ?? [])
-  .filter(a => a.type === props.app.type && a.slug !== props.app.slug)
+  .filter(a => a.category === props.app.category && a.slug !== props.app.slug)
   .slice(0, 3))
 </script>
 
@@ -38,10 +38,12 @@ const related = computed(() => (apps.value ?? [])
           <div class="flex flex-col items-center gap-3">
             <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" :style="vtDetailStyle(app, 'logo')" />
             <MiniAppTypeBadge :type="app.type" class="!self-center sm:hidden" />
+            <MiniAppCategoryBadge :category="app.category" class="sm:hidden" />
           </div>
           <div class="flex flex-col gap-4 min-w-0 pt-1">
             <div class="hidden sm:flex flex-wrap gap-3 items-center">
               <MiniAppTypeBadge :type="app.type" :style="vtDetailStyle(app, 'badge')" />
+              <MiniAppCategoryBadge :category="app.category" />
             </div>
             <h1 class="m-0 text-[48px] sm:text-[64px] font-black leading-[0.95] tracking-[-0.03em] text-[var(--heading-contrast)]" :style="vtDetailStyle(app, 'name')">
               {{ app.name }}
@@ -70,10 +72,18 @@ const related = computed(() => (apps.value ?? [])
           <dl class="mt-8 pt-6 border-t border-[var(--border-subtle)] m-0 flex flex-col gap-3">
             <div class="flex items-center justify-between gap-4">
               <dt class="text-sm text-secondary">
-                {{ t('detail.category') }}
+                {{ t('detail.network') }}
               </dt>
               <dd class="m-0 font-black">
                 {{ typeLabel }}
+              </dd>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-sm text-secondary">
+                {{ t('detail.category') }}
+              </dt>
+              <dd class="m-0">
+                <MiniAppCategoryBadge :category="app.category" />
               </dd>
             </div>
             <div class="flex items-center justify-between gap-4 min-w-0">
