@@ -155,7 +155,7 @@ export interface PutFileInput {
   branch: string
   /** Blob sha of the file being replaced; omit when creating a new file. */
   sha?: string
-  /** Attributes the commit to this author (the App token stays the committer). */
+  /** Attributes the commit to this GitHub user while the App token performs the write. */
   author?: { name: string, email: string }
 }
 
@@ -169,7 +169,7 @@ export async function putFile(token: string, { owner, repo }: RepoRef, input: Pu
       content: Buffer.from(input.content, 'utf8').toString('base64'),
       branch: input.branch,
       ...(input.sha ? { sha: input.sha } : {}),
-      ...(input.author ? { author: input.author } : {}),
+      ...(input.author ? { author: input.author, committer: input.author } : {}),
     },
   })
 }
