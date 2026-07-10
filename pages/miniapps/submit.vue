@@ -361,6 +361,7 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
                 :type="previewType"
                 :category="previewCategory"
                 :description="form.description"
+                :developer="user?.login ? `@${user.login}` : null"
               />
             </div>
 
@@ -401,6 +402,7 @@ const labelClass = 'text-[13px] font-extrabold text-[var(--text-primary)]'
             :type="previewType"
             :category="previewCategory"
             :description="form.description"
+            :developer="user?.login ? `@${user.login}` : null"
           />
         </div>
 
