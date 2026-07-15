@@ -11,18 +11,21 @@ async function testCategoryContract() {
   }
 
   assert.deepEqual(miniApps.MINI_APP_CATEGORIES, [
-    'defi',
-    'exchanges',
-    'games',
-    'marketplaces',
-    'nfts',
-    'social',
-    'utilities',
-    'wallets',
+    'Games',
+    'Social',
+    'Earning',
+    'Marketplaces',
+    'Productivity',
+    'Creator tools',
+    'Education',
+    'Health & fitness',
+    'Food & dining',
+    'Shopping & deals',
+    'Lifestyle',
   ])
-  assert.equal(miniApps.isMiniAppCategory('social'), true)
+  assert.equal(miniApps.isMiniAppCategory('Social'), true)
   assert.equal(miniApps.isMiniAppCategory('art'), false)
-  assert.equal(miniApps.isMiniAppCategory(['nfts']), false)
+  assert.equal(miniApps.isMiniAppCategory(['Marketplaces']), false)
   assert.deepEqual(miniApps.MINI_APP_TYPES, ['nimiq', 'evm'])
   assert.equal(miniApps.isMiniAppType('evm'), true)
   assert.equal(miniApps.isMiniAppType('bitcoin'), false)
@@ -37,24 +40,24 @@ async function testCombinedFilters() {
     description: 'Discover digital collectibles',
     developer: '@opensea',
     type: 'evm' as const,
-    category: 'nfts' as const,
+    category: 'Marketplaces' as const,
   }
   const categoryLabel = () => 'Coleccionables'
 
   assert.equal(matchesMiniAppFilters(app, {
     search: '',
     type: 'evm',
-    category: 'nfts',
+    category: 'Marketplaces',
   }, categoryLabel), true)
   assert.equal(matchesMiniAppFilters(app, {
     search: '',
     type: 'nimiq',
-    category: 'nfts',
+    category: 'Marketplaces',
   }, categoryLabel), false)
   assert.equal(matchesMiniAppFilters(app, {
     search: '',
     type: 'evm',
-    category: 'games',
+    category: 'Games',
   }, categoryLabel), false)
   assert.equal(matchesMiniAppFilters(app, {
     search: 'coleccion',

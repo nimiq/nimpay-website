@@ -2,14 +2,17 @@ export const MINI_APP_TYPES = ['nimiq', 'evm'] as const
 export type MiniAppType = (typeof MINI_APP_TYPES)[number]
 
 export const MINI_APP_CATEGORIES = [
-  'defi',
-  'exchanges',
-  'games',
-  'marketplaces',
-  'nfts',
-  'social',
-  'utilities',
-  'wallets',
+  'Games',
+  'Social',
+  'Earning',
+  'Marketplaces',
+  'Productivity',
+  'Creator tools',
+  'Education',
+  'Health & fitness',
+  'Food & dining',
+  'Shopping & deals',
+  'Lifestyle',
 ] as const
 
 export type MiniAppCategory = (typeof MINI_APP_CATEGORIES)[number]

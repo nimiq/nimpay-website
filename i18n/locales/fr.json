@@ -191,14 +191,17 @@
     }
   },
   "categories": {
-    "defi": "DeFi",
-    "exchanges": "Échanges",
-    "games": "Jeux",
-    "marketplaces": "Places de marché",
-    "nfts": "NFTs",
-    "social": "Social",
-    "utilities": "Utilitaires",
-    "wallets": "Portefeuilles"
+    "Games": "Jeux",
+    "Social": "Réseaux sociaux",
+    "Earning": "Revenus",
+    "Marketplaces": "Places de marché",
+    "Productivity": "Productivité",
+    "Creator tools": "Outils pour créateurs",
+    "Education": "Éducation",
+    "Health & fitness": "Santé et fitness",
+    "Food & dining": "Restauration",
+    "Shopping & deals": "Shopping et bonnes affaires",
+    "Lifestyle": "Style de vie"
   },
   "filter": {
     "all": "Toutes",
