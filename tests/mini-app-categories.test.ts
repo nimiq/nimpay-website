@@ -22,8 +22,10 @@ async function testCategoryContract() {
     'Food & dining',
     'Shopping & deals',
     'Lifestyle',
+    'On-chain services',
   ])
   assert.equal(miniApps.isMiniAppCategory('Social'), true)
+  assert.equal(miniApps.isMiniAppCategory('On-chain services'), true)
   assert.equal(miniApps.isMiniAppCategory('art'), false)
   assert.equal(miniApps.isMiniAppCategory(['Marketplaces']), false)
   assert.deepEqual(miniApps.MINI_APP_TYPES, ['nimiq', 'evm'])
