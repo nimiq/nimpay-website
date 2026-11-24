@@ -29,7 +29,7 @@ const { data: siteMetadata } = await useAsyncData(
 )
 
 const app = computed(() => listedApp.value ?? {
-  name: siteMetadata.value?.name || parsed.host,
+  name: parsed.host,
   description: siteMetadata.value?.description ?? '',
   logo: siteMetadata.value?.icon ?? '',
   url: parsed.full,
@@ -44,13 +44,13 @@ const fullUrl = computed(() =>
 
 const deeplinkPath = computed(() => buildOpenPath(fullUrl.value))
 
-const seoName = computed(() => listedApp.value?.name ?? parsed.host)
+const siteName = computed(() => listedApp.value ? '' : siteMetadata.value?.name ?? '')
 const seoDescription = computed(() => listedApp.value?.description ?? t('open.unlisted'))
 
 useSeoMeta({
-  title: () => `${t('open.title', { name: seoName.value })} · Nimiq Pay`,
+  title: () => `${t('open.title', { name: app.value.name })} · Nimiq Pay`,
   description: () => seoDescription.value,
-  ogTitle: () => seoName.value,
+  ogTitle: () => app.value.name,
   ogDescription: () => clampDescription(seoDescription.value),
   robots: 'noindex',
 })
@@ -120,14 +120,14 @@ definePageMeta({ robots: false })
         <MiniAppLogo :logo="app.logo" :url="app.url" :name="app.name" size="lg" />
       </div>
 
-      <h1 class="m-0 text-[46px] sm:text-[64px] font-black tracking-[-0.03em] leading-[0.96] max-w-[12ch] text-[var(--heading-contrast)]">
+      <h1 class="m-0 text-[46px] sm:text-[64px] font-black tracking-[-0.03em] leading-[0.96] max-w-[12ch] text-[var(--heading-contrast)] [overflow-wrap:anywhere]">
         {{ t('open.heading', { name: app.name }) }}
       </h1>
       <p
-        v-if="!listedApp && app.name !== parsed.host"
-        class="m-0 mt-3 font-mono text-sm sm:text-base text-secondary break-all"
+        v-if="siteName && siteName.toLowerCase() !== parsed.host"
+        class="m-0 mt-3 text-xl sm:text-2xl font-bold text-[var(--heading-contrast)] max-w-[24ch] [overflow-wrap:anywhere]"
       >
-        {{ parsed.host }}
+        {{ siteName }}
       </p>
       <p v-if="app.description" class="m-0 mt-4 text-lg sm:text-xl text-secondary max-w-[42ch] leading-[1.5]">
         {{ app.description }}
