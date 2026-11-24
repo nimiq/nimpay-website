@@ -262,7 +262,8 @@
     "title": "{name} öffnen",
     "heading": "{name} öffnen",
     "hint": "Falls nach einer Sekunde nichts passiert, ist die Nimiq Pay App möglicherweise nicht installiert.",
-    "invite": "Mini-App-Einladung"
+    "invite": "Mini-App-Einladung",
+    "unlisted": "Diese App ist noch nicht im Verzeichnis, deshalb hat Nimiq sie nicht geprüft."
   },
   "cta": {
     "openInPay": "In Nimiq Pay öffnen",
