@@ -5,7 +5,7 @@ import { findByHost } from '~~/server/utils/miniapps'
 import { buildOpenPath, IOS_APP_ID, joinQuery, parseOpenPath } from '~~/utils/deeplink'
 
 const route = useRoute()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const { data: apps, error: appsError } = await useMiniApps()
 const reduced = useReducedMotion()
 
@@ -77,14 +77,17 @@ else {
 }
 
 // Smart App Banner on iOS Safari — `app-argument` is delivered to the app via
-// appUrlOpen and resolved by the existing https branch in src/lib/deep-link.ts.
+// appUrlOpen and resolved by the existing https branch in src/lib/deep-link.ts,
+// which only accepts `/miniapps/open/…`: strip the locale prefix. Keep the raw
+// path, since `deeplinkPath` is decoded and loses an encoded `#` (`%23`).
 // Include `search` so query params forwarded to the mini-app survive the launch.
 const requestUrl = useRequestURL()
 // The deeplink must use the public origin. At runtime requestUrl.origin already
 // is the real host; at prerender it's localhost, so use the canonical site URL.
 const { url: siteUrl } = useSiteConfig()
 const origin = import.meta.prerender ? siteUrl.replace(/\/$/, '') : requestUrl.origin
-const appArgument = computed(() => `${origin}${requestUrl.pathname}${requestUrl.search}`)
+const openPath = requestUrl.pathname.replace(new RegExp(`^/${locale.value}(?=/)`, 'i'), '')
+const appArgument = computed(() => `${origin}${openPath}${requestUrl.search}`)
 useHead({
   meta: [
     { name: 'apple-itunes-app', content: () => `app-id=${IOS_APP_ID}, app-argument=${appArgument.value}` },
