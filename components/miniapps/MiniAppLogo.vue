@@ -31,11 +31,16 @@ function onError() {
   if (stage.value === 'logo') stage.value = 'favicon'
   else if (stage.value === 'favicon') stage.value = 'placeholder'
 }
+
+const img = useTemplateRef<HTMLImageElement>('img')
+onMounted(() => {
+  if (img.value?.complete && img.value.naturalWidth === 0) img.value.decode().catch(onError)
+})
 </script>
 
 <template>
   <div class="grid place-items-center bg-[var(--surface-2)] overflow-hidden flex-shrink-0" :class="SIZE_CLASSES[size]">
-    <img v-if="src" :src="src" :alt="`${name} logo`" class="w-full h-full object-contain" loading="lazy" @error="onError">
+    <img v-if="src" ref="img" :src="src" :alt="`${name} logo`" class="w-full h-full object-contain" loading="lazy" @error="onError">
     <div v-else class="font-bold text-[var(--text-muted)]" :class="size === 'lg' ? 'text-[44px]' : 'text-[28px]'" aria-hidden="true">
       {{ name.slice(0, 1) }}
     </div>

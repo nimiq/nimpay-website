@@ -262,7 +262,8 @@
     "title": "Open {name}",
     "heading": "Open {name}",
     "hint": "If nothing happens in a second, your Nimiq Pay app may not be installed yet.",
-    "invite": "Mini app invite"
+    "invite": "Mini app invite",
+    "unlisted": "This app isn't in the directory yet, so Nimiq hasn't reviewed it."
   },
   "cta": {
     "openInPay": "Open in Nimiq Pay",

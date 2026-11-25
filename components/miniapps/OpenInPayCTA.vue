@@ -7,14 +7,14 @@ import { themeForType } from '~/utils/miniAppType'
 const props = withDefaults(defineProps<{
   deeplink: string
   fallbackUrl: string
-  type: MiniAppType
+  type?: MiniAppType
   compact?: boolean
 }>(), { compact: false })
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 const localizedDeeplink = computed(() => localePath(props.deeplink))
-const theme = computed(() => themeForType(props.type))
+const theme = computed(() => props.type ? themeForType(props.type) : undefined)
 
 // Same-origin Universal Links / App Links are blocked by Safari and Chrome.
 // Re-dispatch via platform-specific schemes that bypass the block.
@@ -72,7 +72,7 @@ const link = 'inline-flex items-center justify-center min-h-12 px-5 rounded-2xl 
     <motion.a
       :href="localizedDeeplink"
       :class="primary"
-      :style="{ boxShadow: theme.ctaShadow }"
+      :style="{ boxShadow: theme?.ctaShadow }"
       :while-hover="{ scale: 1.02, y: -1 }"
       :while-press="{ scale: 0.97 }"
       :transition="{ type: 'spring', stiffness: 380, damping: 22 }"
