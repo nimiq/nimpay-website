@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "ZK66THWMSR.com.nimiq.pay",
-        "paths": ["*"]
+        "paths": ["/miniapps/open/*"]
       }
     ]
   }
