@@ -15,11 +15,11 @@ export const IOS_STORE_FALLBACK_MS = 5000
  * `host` defaults to the current origin so non-production deploys build an
  * intent that resolves against the same host as the page.
  */
-export function buildAndroidIntentUrl(targetMiniAppUrl: string, host?: string): string {
+export function buildAndroidIntentUrl(openPath: string, host?: string): string {
   const resolvedHost = host ?? (typeof window !== 'undefined' ? window.location.host : 'nimpay.app')
   // The intent URI uses `;` as a parameter separator and `#` to start the Intent
   // section, so any raw `;`/`#` in the embedded path/query would corrupt parsing.
-  const path = buildOpenPath(targetMiniAppUrl)
+  const path = openPath
     .replace(/;/g, '%3B')
     .replace(/#/g, '%23')
   return `intent://${resolvedHost}${path}#Intent;scheme=https;package=${APP_PACKAGE_NAME};S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`
@@ -44,15 +44,6 @@ export function detectMobilePlatform(): 'ios' | 'android' | null {
     return 'ios'
   }
   return null
-}
-
-export function joinQuery(targetUrl: string, extraQuery: Record<string, string | string[]>): string {
-  const url = new URL(targetUrl)
-  for (const [k, v] of Object.entries(extraQuery)) {
-    if (Array.isArray(v)) v.forEach(item => url.searchParams.append(k, item))
-    else url.searchParams.set(k, v)
-  }
-  return url.toString()
 }
 
 export function normalizeHost(host: string): string {
@@ -84,7 +75,7 @@ export function getFaviconUrl(url: string, size = 128): string {
 export function parseOpenPath(raw: string | string[] | undefined): { host: string, path: string, full: string } | null {
   if (!raw) return null
   const segments = Array.isArray(raw) ? raw : [raw]
-  const joined = segments.filter(Boolean).join('/').replace(/^\/+/, '')
+  const joined = segments.join('/').replace(/^\/+/, '')
   if (!joined) return null
   const cleaned = joined.replace(/^https?:\/\//i, '')
   const slashIdx = cleaned.indexOf('/')
