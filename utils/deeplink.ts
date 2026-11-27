@@ -2,8 +2,9 @@ export const APP_STORE_URL = 'https://apps.apple.com/app/nimiq-pay/id6471844738'
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.nimiq.pay'
 export const IOS_APP_ID = '6471844738'
 export const APP_PACKAGE_NAME = 'com.nimiq.pay'
-// If the custom scheme dispatch did not launch the app within this window, the
-// tab is still visible and we redirect to the App Store as a fallback.
+// If the custom scheme dispatch did not launch the app after the page has had
+// focus for this long, the tab is still visible and we redirect to the App
+// Store as a fallback.
 export const IOS_STORE_FALLBACK_MS = 5000
 
 /**
@@ -32,6 +33,41 @@ export function buildAndroidIntentUrl(openPath: string, host?: string): string {
  */
 export function buildIosCustomSchemeUrl(targetMiniAppUrl: string): string {
   return `nimiqpay://miniapp?url=${encodeURIComponent(targetMiniAppUrl)}`
+}
+
+// iOS custom schemes fail silently when the app is not installed. Poll while
+// the page remains visible and cancel permanently once the app backgrounds it.
+// Safari's "Open in …?" prompt blurs the page without hiding it, so only time
+// with focus counts towards the fallback.
+export function openIosCustomSchemeWithStoreFallback(targetMiniAppUrl: string): void {
+  let focusedMs = 0
+  let lastTickAt = Date.now()
+  const abortFallbackListeners = new AbortController()
+
+  const fallbackInterval = window.setInterval(() => {
+    if (document.hidden) {
+      stopFallback()
+      return
+    }
+    const now = Date.now()
+    if (document.hasFocus()) focusedMs += now - lastTickAt
+    lastTickAt = now
+    if (focusedMs >= IOS_STORE_FALLBACK_MS) {
+      stopFallback()
+      window.location.href = APP_STORE_URL
+    }
+  }, 250)
+
+  function stopFallback() {
+    window.clearInterval(fallbackInterval)
+    abortFallbackListeners.abort()
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopFallback()
+  }, { signal: abortFallbackListeners.signal })
+  window.addEventListener('pagehide', stopFallback, { once: true, signal: abortFallbackListeners.signal })
+  window.location.href = buildIosCustomSchemeUrl(targetMiniAppUrl)
 }
 
 export function detectMobilePlatform(): 'ios' | 'android' | null {
