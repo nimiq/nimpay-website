@@ -2,7 +2,7 @@
 import type { SiteMetadata } from '~~/server/utils/site-metadata'
 import { motion, useReducedMotion } from 'motion-v'
 import { findByHost } from '~~/server/utils/miniapps'
-import { buildOpenPath, IOS_APP_ID, joinQuery, parseOpenPath } from '~~/utils/deeplink'
+import { IOS_APP_ID, parseOpenPath } from '~~/utils/deeplink'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -34,15 +34,6 @@ const app = computed(() => listedApp.value ?? {
   logo: siteMetadata.value?.icon ?? '',
   url: parsed.full,
 })
-
-const forwardQuery = computed(() => route.query as Record<string, string | string[]>)
-const hasQuery = computed(() => Object.keys(forwardQuery.value).length > 0)
-
-const fullUrl = computed(() =>
-  hasQuery.value ? joinQuery(parsed.full, forwardQuery.value) : parsed.full,
-)
-
-const deeplinkPath = computed(() => buildOpenPath(fullUrl.value))
 
 const siteName = computed(() => listedApp.value ? '' : siteMetadata.value?.name ?? '')
 const seoDescription = computed(() => listedApp.value?.description ?? t('open.unlisted'))
@@ -79,15 +70,17 @@ else {
 // Smart App Banner on iOS Safari — `app-argument` is delivered to the app via
 // appUrlOpen and resolved by the existing https branch in src/lib/deep-link.ts,
 // which only accepts `/miniapps/open/…`: strip the locale prefix. Keep the raw
-// path, since `deeplinkPath` is decoded and loses an encoded `#` (`%23`).
-// Include `search` so query params forwarded to the mini-app survive the launch.
+// path and search: vue-router decodes `%23` in params and parses `?flag` as null.
+// The Open in Nimiq Pay button hands the app the same raw link.
 const requestUrl = useRequestURL()
 // The deeplink must use the public origin. At runtime requestUrl.origin already
 // is the real host; at prerender it's localhost, so use the canonical site URL.
 const { url: siteUrl } = useSiteConfig()
 const origin = import.meta.prerender ? siteUrl.replace(/\/$/, '') : requestUrl.origin
-const openPath = requestUrl.pathname.replace(new RegExp(`^/${locale.value}(?=/)`, 'i'), '')
-const appArgument = computed(() => `${origin}${openPath}${requestUrl.search}`)
+const openPath = requestUrl.pathname.replace(new RegExp(`^/${locale.value}(?=/)`, 'i'), '').replace(/^\/miniapps\/open\//i, '/miniapps/open/')
+const deeplinkPath = `${openPath}${requestUrl.search}`
+const fullUrl = `${parsed.full}${requestUrl.search}`
+const appArgument = computed(() => `${origin}${deeplinkPath}`)
 useHead({
   meta: [
     { name: 'apple-itunes-app', content: () => `app-id=${IOS_APP_ID}, app-argument=${appArgument.value}` },

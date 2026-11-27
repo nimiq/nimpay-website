@@ -11,9 +11,9 @@ const props = withDefaults(defineProps<{
   compact?: boolean
 }>(), { compact: false })
 
-const { t } = useI18n()
-const localePath = useLocalePath()
-const localizedDeeplink = computed(() => localePath(props.deeplink))
+const { t, locale, defaultLocale } = useI18n()
+// localePath re-parses the deeplink: `?flag` becomes `?flag=`, `%20` becomes `+` and `%23` becomes `#`.
+const localizedDeeplink = computed(() => locale.value === defaultLocale ? props.deeplink : `/${locale.value}${props.deeplink}`)
 const theme = computed(() => props.type ? themeForType(props.type) : undefined)
 
 // Same-origin Universal Links / App Links are blocked by Safari and Chrome.
@@ -25,7 +25,7 @@ function onOpenInApp(e: MouseEvent) {
   if (!platform) return
   e.preventDefault()
   if (platform === 'android') {
-    window.location.href = buildAndroidIntentUrl(props.fallbackUrl)
+    window.location.href = buildAndroidIntentUrl(props.deeplink)
     return
   }
   // iOS custom schemes fail silently when the app is not installed. Poll while
