@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MiniAppType } from '~~/server/utils/miniapps'
 import { motion } from 'motion-v'
-import { APP_STORE_URL, buildAndroidIntentUrl, buildIosCustomSchemeUrl, detectMobilePlatform, IOS_STORE_FALLBACK_MS } from '~~/utils/deeplink'
+import { buildAndroidIntentUrl, detectMobilePlatform, openIosCustomSchemeWithStoreFallback } from '~~/utils/deeplink'
 import { themeForType } from '~/utils/miniAppType'
 
 const props = withDefaults(defineProps<{
@@ -28,38 +28,7 @@ function onOpenInApp(e: MouseEvent) {
     window.location.href = buildAndroidIntentUrl(props.deeplink)
     return
   }
-  // iOS custom schemes fail silently when the app is not installed. Poll while
-  // the page remains visible and cancel permanently once the app backgrounds it.
-  const fallbackStartedAt = Date.now()
-  let fallbackInterval: number | undefined
-  const abortFallbackListeners = new AbortController()
-
-  const stopFallback = () => {
-    if (fallbackInterval !== undefined) {
-      window.clearInterval(fallbackInterval)
-      fallbackInterval = undefined
-    }
-    abortFallbackListeners.abort()
-  }
-
-  const onVisibilityChange = () => {
-    if (document.hidden) stopFallback()
-  }
-
-  fallbackInterval = window.setInterval(() => {
-    if (document.hidden) {
-      stopFallback()
-      return
-    }
-    if (Date.now() - fallbackStartedAt >= IOS_STORE_FALLBACK_MS) {
-      stopFallback()
-      window.location.href = APP_STORE_URL
-    }
-  }, 250)
-
-  document.addEventListener('visibilitychange', onVisibilityChange, { signal: abortFallbackListeners.signal })
-  window.addEventListener('pagehide', stopFallback, { once: true, signal: abortFallbackListeners.signal })
-  window.location.href = buildIosCustomSchemeUrl(props.fallbackUrl)
+  openIosCustomSchemeWithStoreFallback(props.fallbackUrl)
 }
 
 const btnBase = 'inline-flex items-center justify-center gap-2 px-5 py-4 rounded-2xl font-black no-underline text-base focus-ring'
